@@ -18,11 +18,6 @@ module.exports = function(api) {
 
     return {
         presets: defaultPresets.concat('@babel/preset-react'),
-        plugins: [
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-object-rest-spread',
-            '@babel/plugin-transform-react-constant-elements',
-            'styled-jsx/babel',
-        ],
+        plugins: ['styled-jsx/babel'],
     }
 }

@@ -1090,6 +1090,14 @@
     tape "^4.9.1"
     yargs "^12.0.5"
 
+"@dhis2/ui-core@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-1.1.1.tgz#ce50b4fdc54a80d13b1b758df4e477cc206c28a2"
+  integrity sha512-kncfTqTKV14MUa2KlWDonlv0MfrAIp+lFjfUv5PCSHsPEcmD1d3Z3NQpNOcj9nRB+uoA6h3oJB3jbvjyAlGpDw==
+  dependencies:
+    classnames "^2.2.6"
+    styled-jsx "^3.2.1"
+
 "@emotion/cache@^10.0.9":
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.9.tgz#e0c7b7a289f7530edcfad4dcf3858bd2e5700a6f"

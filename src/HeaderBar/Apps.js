@@ -15,6 +15,8 @@ import styles from './styles.js'
 
 import css from 'styled-jsx/css'
 
+import { DataRequest } from '@dhis2/app-service-data'
+
 const appIcon = css.resolve`
     svg {
 		fill: ${colors.white};
@@ -159,39 +161,55 @@ export default class Apps extends React.Component {
 
     onChange = (_, filter) => this.setState({ filter })
 
-    onSettingsClick = () =>
-        gotoURL(`${this.props.baseURL}/dhis-web-menu-management`)
+    onSettingsClick = () => gotoURL(`/dhis-web-menu-management`)
 
     onIconClick = () => this.setState({ filter: '' })
 
     render() {
         return (
-            <div className={cx('apps')} ref={c => (this.elContainer = c)}>
-                <a onClick={this.onToggle}>
-                    <AppsIcon className={appIcon.className} />
-                </a>
-                {this.state.show && (
-                    <div
-                        className={cx('contents')}
-                        ref={c => (this.elApps = c)}
-                    >
-                        <Card>
-                            <Search
-                                value={this.state.filter}
-                                onChange={this.onChange}
-                                onSettingsClick={this.onSettingsClick}
-                                onIconClick={this.onIconClick}
-                            />
-                            <List
-                                apps={this.props.apps}
-                                filter={this.state.filter}
-                            />
-                        </Card>
-                    </div>
-                )}
-                {appIcon.styles}
-                <style jsx>{styles}</style>
-            </div>
+            <DataRequest resourcePath="../../dhis-web-commons/menu/getModules.action">
+                {({ error, loading, data }) => {
+                    console.log(loading, error, data)
+
+                    if (loading) return <span>...</span>
+
+                    if (error) return <span>{`ERROR: ${error.message}`}</span>
+
+                    return (
+                        <div
+                            className={cx('apps')}
+                            ref={c => (this.elContainer = c)}
+                        >
+                            <a onClick={this.onToggle}>
+                                <AppsIcon className={appIcon.className} />
+                            </a>
+                            {this.state.show && (
+                                <div
+                                    className={cx('contents')}
+                                    ref={c => (this.elApps = c)}
+                                >
+                                    <Card>
+                                        <Search
+                                            value={this.state.filter}
+                                            onChange={this.onChange}
+                                            onSettingsClick={
+                                                this.onSettingsClick
+                                            }
+                                            onIconClick={this.onIconClick}
+                                        />
+                                        <List
+                                            apps={data.modules}
+                                            filter={this.state.filter}
+                                        />
+                                    </Card>
+                                </div>
+                            )}
+                            {appIcon.styles}
+                            <style jsx>{styles}</style>
+                        </div>
+                    )
+                }}
+            </DataRequest>
         )
     }
 }

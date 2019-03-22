@@ -15,6 +15,8 @@ import cx from 'classnames'
 
 import styles from './styles.js'
 
+import { DataRequest } from '@dhis2/app-service-data'
+
 const notificationIcon = css.resolve`
     svg {
 		fill: ${colors.white};
@@ -54,7 +56,7 @@ function HeaderBar({
         <header className={cx('blue', className)}>
             <div>
                 <div className="headerbar-logo">
-                    <a href={`${baseURL}`}>
+                    <a href="/">
                         <LogoIconWhite className={logotype.className} />
                     </a>
                 </div>
@@ -63,23 +65,37 @@ function HeaderBar({
                 </div>
             </div>
 
-            <div>
-                <NotificationIcon
-                    count={interpretations.count}
-                    href={`${baseURL}/dhis-web-interpretation`}
-                >
-                    <Message className={notificationIcon.className} />
-                </NotificationIcon>
-                <NotificationIcon
-                    icon="email"
-                    count={messages.count}
-                    href={`${baseURL}/dhis-web-messaging`}
-                >
-                    <Email className={notificationIcon.className} />
-                </NotificationIcon>
-                <Apps apps={apps} baseURL={baseURL} />
-                <Profile profile={profile} baseURL={baseURL} />
-            </div>
+            <DataRequest resourcePath="me/dashboard">
+                {({ error, loading, data }) => {
+                    console.log(loading, error, data)
+
+                    if (loading) return <span>...</span>
+
+                    if (error) return <span>{`ERROR: ${error.message}`}</span>
+
+                    return (
+                        <div>
+                            <NotificationIcon
+                                count={data.unreadInterpretations}
+                                href={`/dhis-web-interpretation`}
+                            >
+                                <Message
+                                    className={notificationIcon.className}
+                                />
+                            </NotificationIcon>
+                            <NotificationIcon
+                                icon="email"
+                                count={data.unreadMessageConversations}
+                                href={`/dhis-web-messaging`}
+                            >
+                                <Email className={notificationIcon.className} />
+                            </NotificationIcon>
+                            <Apps />
+                            <Profile />
+                        </div>
+                    )
+                }}
+            </DataRequest>
 
             {notificationIcon.styles}
             {logotype.styles}

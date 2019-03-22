@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { HeaderBar } from '../src/HeaderBar'
+import { HeaderBarContainer } from '../src/HeaderBar'
+import { DataProvider } from '@dhis2/app-service-data'
 
 const props = {
     baseURL: 'https://play.dhis2.org/dev',
@@ -77,5 +78,7 @@ function getProps() {
 }
 
 storiesOf('HeaderBar', module).add('Default', () => (
-    <HeaderBar {...getProps()} />
+    <DataProvider baseUrl="https://dhis2.vardevs.se/dev" apiVersion={32}>
+        <HeaderBarContainer appName="Example!" />
+    </DataProvider>
 ))

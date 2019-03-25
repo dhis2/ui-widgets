@@ -111,21 +111,6 @@ export default css`
         cursor: inherit;
     }
 
-    .apps {
-        position: relative;
-        width: 24px;
-        height: 24px;
-        margin: 8px 0 0 0;
-    }
-
-    .apps .contents {
-        z-index: 10000;
-        position: absolute;
-        top: 28px;
-        right: -6px;
-        border-top: 4px solid transparent;
-    }
-
     .search {
         display: flex;
         flex-direction: row;

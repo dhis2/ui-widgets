@@ -9,8 +9,6 @@ import { Help } from '../icons/Help.js'
 import { Exit } from '../icons/Exit.js'
 import { Account } from '../icons/Account.js'
 
-import { isPointInRect } from '../utils/math.js'
-
 import { Card, Divider, Menu, MenuItem, colors } from '@dhis2/ui-core'
 import styles from './styles.js'
 
@@ -153,17 +151,8 @@ export default class Profile extends React.Component {
     }
 
     onDocClick = evt => {
-        if (this.elContainer && this.elContents) {
-            const target = { x: evt.clientX, y: evt.clientY }
-            const contents = this.elContents.getBoundingClientRect()
-            const container = this.elContainer.getBoundingClientRect()
-
-            if (
-                !isPointInRect(target, contents) &&
-                !isPointInRect(target, container)
-            ) {
-                this.setState({ show: false })
-            }
+        if (this.elContainer && !this.elContainer.contains(evt.target)) {
+            this.setState({ show: false })
         }
     }
 
@@ -195,7 +184,7 @@ export default class Profile extends React.Component {
         const avatar = avatarPath(me.avatar)
 
         return (
-            <div className="contents" ref={c => (this.elContents = c)}>
+            <div className="contents">
                 <Card>
                     <div className="profile-alignment">
                         <Header img={avatar} name={me.name} email={me.email} />

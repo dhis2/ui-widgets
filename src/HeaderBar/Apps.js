@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { Card, InputField, colors } from '@dhis2/ui-core'
 
 import { gotoURL } from '../utils/url.js'
-import { isPointInRect } from '../utils/math.js'
 
 import { Settings } from '../icons/Settings.js'
 import { Apps as AppsIcon } from '../icons/Apps.js'
@@ -43,6 +42,7 @@ const settingsIcon = css.resolve`
         color: ${colors.grey900};
 		height: 24px;
 		width: 24px;
+        cursor: pointer;
     }
 `
 
@@ -93,7 +93,7 @@ Search.propTypes = {
 function Item({ name, path, img }) {
     return (
         <a href={path} className={cx('app')}>
-            <img src={img} alt="app logo" className={cx()} />
+            <img src={img} alt="app logo" />
             <div className={cx('name')}>{name}</div>
             <style jsx>{styles}</style>
         </a>
@@ -110,17 +110,17 @@ function List({ apps, filter }) {
     return (
         <div className={cx('modules')}>
             {apps
-                .filter(({ name }) => {
+                .filter(({ displayName }) => {
                     return filter.length > 0
-                        ? name.toLowerCase().match(filter.toLowerCase())
+                        ? displayName.toLowerCase().match(filter.toLowerCase())
                         : true
                 })
-                .map(({ name, path, img }, idx) => (
+                .map(({ displayName, name, namespace, icon }, idx) => (
                     <Item
                         key={`app-${name}-${idx}`}
-                        name={name}
-                        path={path}
-                        img={img}
+                        name={displayName || name}
+                        path={namespace}
+                        img={icon}
                     />
                 ))}
             <style jsx>{styles}</style>
@@ -143,17 +143,8 @@ export default class Apps extends React.Component {
     }
 
     onDocClick = evt => {
-        if (this.elContainer && this.elApps) {
-            const target = { x: evt.clientX, y: evt.clientY }
-            const apps = this.elApps.getBoundingClientRect()
-            const container = this.elContainer.getBoundingClientRect()
-
-            if (
-                !isPointInRect(target, apps) &&
-                !isPointInRect(target, container)
-            ) {
-                this.setState({ show: false })
-            }
+        if (this.elContainer && !this.elContainer.contains(evt.target)) {
+            this.setState({ show: false })
         }
     }
 
@@ -164,6 +155,30 @@ export default class Apps extends React.Component {
     onSettingsClick = () => gotoURL(`/dhis-web-menu-management`)
 
     onIconClick = () => this.setState({ filter: '' })
+
+    AppMenu = data => (
+        <div>
+            <Card>
+                <Search
+                    value={this.state.filter}
+                    onChange={this.onChange}
+                    onSettingsClick={this.onSettingsClick}
+                    onIconClick={this.onIconClick}
+                />
+                <List apps={data.modules} filter={this.state.filter} />
+            </Card>
+
+            <style jsx>{`
+                div {
+                    z-index: 10000;
+                    position: absolute;
+                    top: 28px;
+                    right: -6px;
+                    border-top: 4px solid transparent;
+                }
+            `}</style>
+        </div>
+    )
 
     render() {
         return (
@@ -176,44 +191,30 @@ export default class Apps extends React.Component {
                     if (error) return <span>{`ERROR: ${error.message}`}</span>
 
                     return (
-                        <div
-                            className={cx('apps')}
-                            ref={c => (this.elContainer = c)}
-                        >
+                        <div ref={c => (this.elContainer = c)}>
                             <a onClick={this.onToggle}>
                                 <AppsIcon className={appIcon.className} />
                             </a>
-                            {this.state.show && (
-                                <div
-                                    className={cx('contents')}
-                                    ref={c => (this.elApps = c)}
-                                >
-                                    <Card>
-                                        <Search
-                                            value={this.state.filter}
-                                            onChange={this.onChange}
-                                            onSettingsClick={
-                                                this.onSettingsClick
-                                            }
-                                            onIconClick={this.onIconClick}
-                                        />
-                                        <List
-                                            apps={data.modules}
-                                            filter={this.state.filter}
-                                        />
-                                    </Card>
-                                </div>
-                            )}
+
+                            {this.state.show && this.AppMenu(data)}
+
                             {appIcon.styles}
-                            <style jsx>{styles}</style>
+                            <style jsx>{`
+                                a {
+                                    display: block;
+                                }
+
+                                div {
+                                    position: relative;
+                                    width: 24px;
+                                    height: 30px;
+                                    margin: 8px 0 0 0;
+                                }
+                            `}</style>
                         </div>
                     )
                 }}
             </DataRequest>
         )
     }
-}
-
-Apps.propTypes = {
-    baseURL: PropTypes.string.isRequired,
 }

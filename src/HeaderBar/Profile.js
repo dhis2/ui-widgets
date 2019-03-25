@@ -14,6 +14,13 @@ import styles from './styles.js'
 
 import { DataRequest } from '@dhis2/app-service-data'
 
+const profileIcon = css`
+    div {
+        width: 48px;
+        height: 48px;
+    }
+`
+
 function avatarPath(avatar) {
     if (!avatar) {
         return null
@@ -29,9 +36,9 @@ function TextIcon({ name, onClick }) {
     }
 
     return (
-        <div className="icon" onClick={onClick}>
+        <div onClick={onClick}>
             <div className="initials">{title}</div>
-            <style jsx>{styles}</style>
+            <style jsx>{profileIcon}</style>
         </div>
     )
 }
@@ -47,9 +54,9 @@ TextIcon.propTypes = {
 
 function ImageIcon({ src, onClick }) {
     return (
-        <div className="icon" onClick={onClick}>
+        <div onClick={onClick}>
             <img src={src} alt="user avatar" />
-            <style jsx>{styles}</style>
+            <style jsx>{profileIcon}</style>
         </div>
     )
 }
@@ -77,7 +84,87 @@ function Header({ name, email, img }) {
                     Edit profile
                 </a>
             </div>
-            <style jsx>{styles}</style>
+            <style jsx>{`
+                .profile-alignment {
+                    width: 100%;
+                    padding: 8px 0;
+                }
+                .profile {
+                    position: relative;
+                    width: 36px;
+                    height: 36px;
+                    margin: 2px 12px 0 24px;
+                }
+                .profile .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 36px;
+                    height: 36px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    color: #fff;
+                    cursor: pointer;
+                }
+                .profile .icon > .initials {
+                    font-size: 14px;
+                    font-weight: 500;
+                    letter-spacing: 1px;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+
+                .profile .icon > img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+
+                .profile .contents {
+                    z-index: 10000;
+                    position: absolute;
+                    top: 34px;
+                    right: -6px;
+                    width: 310px;
+                    border-top: 4px solid transparent;
+                }
+
+                .header {
+                    display: flex;
+                    flex-direction: row;
+                    margin-left: 24px;
+                    padding-top: 20px;
+                }
+
+                .header > .details {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 20px;
+                    color: #000;
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+
+                .details > .name {
+                    margin-bottom: 3px;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+
+                .details > .email {
+                    margin-bottom: 6px;
+                    font-size: 14px;
+                    line-height: 16px;
+                }
+
+                .details > .edit_profile {
+                    color: rgba(0, 0, 0, 0.87);
+                    font-size: 12px;
+                    line-height: 14px;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            `}</style>
         </div>
     )
 }

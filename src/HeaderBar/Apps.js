@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Card, InputField, colors } from '@dhis2/ui-core'
+import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 
 import { gotoURL } from '../utils/url.js'
 
@@ -10,7 +10,6 @@ import { Apps as AppsIcon } from '../icons/Apps.js'
 import { Cancel } from '../icons/Cancel.js'
 
 import cx from 'classnames'
-import styles from './styles.js'
 
 import css from 'styled-jsx/css'
 
@@ -56,7 +55,7 @@ function TrailIcon({ onClick }) {
 
 function Search({ value, onChange, onSettingsClick, onIconClick }) {
     return (
-        <div className={cx('search')}>
+        <div>
             <InputField
                 value={value}
                 name="filter"
@@ -74,7 +73,15 @@ function Search({ value, onChange, onSettingsClick, onIconClick }) {
 
             {trailIcon.styles}
             {settingsIcon.styles}
-            <style jsx>{styles}</style>
+            <style jsx>{`
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    height: 52px;
+                    margin: 8px;
+                }
+            `}</style>
         </div>
     )
 }
@@ -95,7 +102,48 @@ function Item({ name, path, img }) {
         <a href={path} className={cx('app')}>
             <img src={img} alt="app logo" />
             <div className={cx('name')}>{name}</div>
-            <style jsx>{styles}</style>
+            <style jsx>{`
+                .app {
+                    display: inline-block;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 96px;
+                    margin: 8px;
+                    padding: 8px;
+                    border-radius: 12px;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                .app:hover,
+                .app:focus {
+                    background-color: ${theme.primary050};
+                    cursor: pointer;
+                }
+
+                .app:hover > .name {
+                    font-weight: 500;
+                    cursor: pointer;
+                }
+
+                .app > img {
+                    width: 48px;
+                    height: 48px;
+                    cursor: pointer;
+                }
+
+                .app > .name {
+                    margin-top: 14px;
+                    color: rgba(0, 0, 0, 0.87);
+                    font-size: 12px;
+                    letter-spacing: 0.01em;
+                    line-height: 14px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            `}</style>
         </a>
     )
 }
@@ -108,7 +156,7 @@ Item.propTypes = {
 
 function List({ apps, filter }) {
     return (
-        <div className={cx('modules')}>
+        <div>
             {apps
                 .filter(({ displayName }) => {
                     return filter.length > 0
@@ -123,7 +171,27 @@ function List({ apps, filter }) {
                         img={icon}
                     />
                 ))}
-            <style jsx>{styles}</style>
+
+            <style jsx>{`
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    width: 30vw;
+                    min-width: 300px;
+                    max-width: 560px;
+
+                    min-height: 200px;
+                    max-height: 465px;
+                    margin: 0 8px 8px 8px;
+
+                    overflow: auto;
+                    overflow-x: hidden;
+                }
+            `}</style>
         </div>
     )
 }

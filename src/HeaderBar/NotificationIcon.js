@@ -41,44 +41,42 @@ function icon(kind) {
     }
 }
 
-function NotificationIcon({ count, href, kind }) {
-    return (
-        <a href={href} className={kind}>
-            {icon(kind)}
+export const NotificationIcon = ({ count, href, kind }) => (
+    <a href={href} className={kind}>
+        {icon(kind)}
 
-            {count > 0 && <span>{count}</span>}
+        {count > 0 && <span>{count}</span>}
 
-            <style jsx>{`
-                a {
-                    position: relative;
-                    margin: 8px 24px 0 0;
-                    cursor: pointer;
-                }
+        <style jsx>{`
+            a {
+                position: relative;
+                margin: 8px 24px 0 0;
+                cursor: pointer;
+            }
 
-                .message {
-                    margin-top: 10px;
-                }
+            .message {
+                margin-top: 10px;
+            }
 
-                span {
-                    z-index: 1;
-                    position: absolute;
-                    top: -6px;
-                    right: -10px;
-                    width: 16px;
-                    height: 16px;
-                    border-radius: 50%;
-                    background-color: ${theme.secondary300};
-                    color: #fff;
-                    font-size: 9px;
-                    font-weight: 500;
-                    line-height: 16px;
-                    text-align: center;
-                    cursor: inherit;
-                }
-            `}</style>
-        </a>
-    )
-}
+            span {
+                z-index: 1;
+                position: absolute;
+                top: -6px;
+                right: -10px;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: ${theme.secondary300};
+                color: #fff;
+                font-size: 9px;
+                font-weight: 500;
+                line-height: 16px;
+                text-align: center;
+                cursor: inherit;
+            }
+        `}</style>
+    </a>
+)
 
 NotificationIcon.defaultProps = {
     count: 0,
@@ -89,5 +87,3 @@ NotificationIcon.propTypes = {
     href: PropTypes.string.isRequired,
     count: PropTypes.number,
 }
-
-export default NotificationIcon

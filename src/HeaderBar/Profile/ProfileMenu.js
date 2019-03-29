@@ -62,38 +62,61 @@ const list = [
     },
 ]
 
-export const ProfileMenu = ({ avatar, name, email }) => (
-    <div className="contents">
-        <Card>
-            <div className="profile-alignment">
-                <Divider margin="13px 0 7px 0" />
-                <ul>
-                    {list.map(
-                        ({ label, value, icon, link, target, nobase }) => {
-                            return (
-                                <a
-                                    href={link}
-                                    target={target}
-                                    key={`h-p-${value}`}
-                                >
-                                    <MenuItem
-                                        key={`h-mi-${value}`}
-                                        label={label}
-                                        value={value}
-                                        icon={icon}
-                                    />
-                                </a>
-                            )
-                        }
-                    )}
-                </ul>
-            </div>
-        </Card>
+const ProfileContents = ({ name, email, avatar }) => (
+    <Card>
+        <div>
+            <Header name={name} email={email} img={avatar} />
+            <Divider margin="13px 0 7px 0" />
+            <ul>
+                {list.map(({ label, value, icon, link, target, nobase }) => {
+                    return (
+                        <a href={link} target={target} key={`h-p-${value}`}>
+                            <MenuItem
+                                key={`h-mi-${value}`}
+                                label={label}
+                                value={value}
+                                icon={icon}
+                            />
+                        </a>
+                    )
+                })}
+            </ul>
+        </div>
+
         {iconStyle.styles}
         <style jsx>{`
             div {
                 width: 100%;
-                padding: 8px 0;
+                padding: 0;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            a,
+            a:hover,
+            a:focus,
+            a:active,
+            a:visited {
+                text-decoration: none;
+            }
+        `}</style>
+    </Card>
+)
+
+export const ProfileMenu = ({ avatar, name, email }) => (
+    <div>
+        <ProfileContents name={name} email={email} avatar={avatar} />
+        <style jsx>{`
+            div {
+                z-index: 10000;
+                position: absolute;
+                top: 34px;
+                right: -6px;
+                width: 310px;
+                border-top: 4px solid transparent;
             }
         `}</style>
     </div>

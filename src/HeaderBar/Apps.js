@@ -5,9 +5,9 @@ import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 
 import { gotoURL } from '../utils/url.js'
 
-import { Settings } from '../icons/Settings.js'
-import { Apps as AppsIcon } from '../icons/Apps.js'
-import { Cancel } from '../icons/Cancel.js'
+import { Settings } from './icons/Settings.js'
+import { Apps as AppsIcon } from './icons/Apps.js'
+import { Cancel } from './icons/Cancel.js'
 
 import cx from 'classnames'
 

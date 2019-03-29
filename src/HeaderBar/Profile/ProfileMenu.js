@@ -5,11 +5,11 @@ import css from 'styled-jsx/css'
 
 import { Card, Divider, Menu, MenuItem, colors } from '@dhis2/ui-core'
 
-import { Settings } from '../../icons/Settings.js'
-import { Info } from '../../icons/Info.js'
-import { Help } from '../../icons/Help.js'
-import { Exit } from '../../icons/Exit.js'
-import { Account } from '../../icons/Account.js'
+import { Settings } from '../icons/Settings.js'
+import { Info } from '../icons/Info.js'
+import { Help } from '../icons/Help.js'
+import { Exit } from '../icons/Exit.js'
+import { Account } from '../icons/Account.js'
 
 import { Header } from './Header.js'
 

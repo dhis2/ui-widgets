@@ -13,8 +13,6 @@ import cx from 'classnames'
 
 import css from 'styled-jsx/css'
 
-import { DataRequest } from '@dhis2/app-service-data'
-
 const appIcon = css.resolve`
     svg {
 		fill: ${colors.white};
@@ -224,7 +222,7 @@ export default class Apps extends React.Component {
 
     onIconClick = () => this.setState({ filter: '' })
 
-    AppMenu = data => (
+    AppMenu = apps => (
         <div>
             <Card>
                 <Search
@@ -233,7 +231,7 @@ export default class Apps extends React.Component {
                     onSettingsClick={this.onSettingsClick}
                     onIconClick={this.onIconClick}
                 />
-                <List apps={data.modules} filter={this.state.filter} />
+                <List apps={apps} filter={this.state.filter} />
             </Card>
 
             <style jsx>{`
@@ -249,40 +247,33 @@ export default class Apps extends React.Component {
     )
 
     render() {
+        const apps = this.props.apps
         return (
-            <DataRequest resourcePath="../../dhis-web-commons/menu/getModules.action">
-                {({ error, loading, data }) => {
-                    console.log(loading, error, data)
+            <div ref={c => (this.elContainer = c)}>
+                <a onClick={this.onToggle}>
+                    <AppsIcon className={appIcon.className} />
+                </a>
 
-                    if (loading) return <span>...</span>
+                {this.state.show && this.AppMenu(apps)}
 
-                    if (error) return <span>{`ERROR: ${error.message}`}</span>
+                {appIcon.styles}
+                <style jsx>{`
+                    a {
+                        display: block;
+                    }
 
-                    return (
-                        <div ref={c => (this.elContainer = c)}>
-                            <a onClick={this.onToggle}>
-                                <AppsIcon className={appIcon.className} />
-                            </a>
-
-                            {this.state.show && this.AppMenu(data)}
-
-                            {appIcon.styles}
-                            <style jsx>{`
-                                a {
-                                    display: block;
-                                }
-
-                                div {
-                                    position: relative;
-                                    width: 24px;
-                                    height: 30px;
-                                    margin: 8px 0 0 0;
-                                }
-                            `}</style>
-                        </div>
-                    )
-                }}
-            </DataRequest>
+                    div {
+                        position: relative;
+                        width: 24px;
+                        height: 30px;
+                        margin: 8px 0 0 0;
+                    }
+                `}</style>
+            </div>
         )
     }
+}
+
+Apps.propTypes = {
+    apps: PropTypes.array.isRequired,
 }

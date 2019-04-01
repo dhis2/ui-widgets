@@ -8,7 +8,7 @@ import Profile from './Profile'
 
 import css from 'styled-jsx/css'
 
-import { DataRequest } from '@dhis2/app-service-data'
+import { Query } from '@dhis2/app-service-data'
 
 import { Logo } from './Logo.js'
 import { Title } from './Title.js'
@@ -16,23 +16,43 @@ import { Title } from './Title.js'
 import { Notifications } from './Notifications.js'
 
 export const HeaderBar = ({ appName, className }) => (
-    <DataRequest resourcePath="system/info">
+    <Query
+        query={{
+            systemInfo: {
+                resource: 'system/info',
+            },
+            user: {
+                resource: 'me',
+            },
+            apps: {
+                resource: '../../dhis-web-commons/menu/getModules.action',
+            },
+            notifications: {
+                resource: 'me/dashboard',
+            },
+        }}
+    >
         {({ loading, error, data }) => {
             if (loading) return <span>...</span>
 
             if (error) return <span>{`ERROR: ${error.message}`}</span>
 
+            const { systemInfo, user, apps, notifications } = data
+
             return (
                 <header className={className}>
                     <Logo />
 
-                    <Title app={appName} instance={data.systemName} />
+                    <Title app={appName} instance={systemInfo.systemName} />
 
-                    <Notifications />
+                    <Notifications
+                        interpretations={notifications.unreadInterpretations}
+                        messages={notifications.unreadMessageConversations}
+                    />
 
-                    <Apps />
+                    <Apps apps={apps.modules} />
 
-                    <Profile />
+                    <Profile user={user} />
 
                     <style jsx>{`
                         header {
@@ -49,7 +69,7 @@ export const HeaderBar = ({ appName, className }) => (
                 </header>
             )
         }}
-    </DataRequest>
+    </Query>
 )
 
 HeaderBar.propTypes = {

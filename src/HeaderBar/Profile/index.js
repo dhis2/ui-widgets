@@ -5,8 +5,6 @@ import css from 'styled-jsx/css'
 
 import { Card, Divider, Menu, MenuItem, colors } from '@dhis2/ui-core'
 
-import { DataRequest } from '@dhis2/app-service-data'
-
 import { ProfileMenu } from './ProfileMenu.js'
 
 import { TextIcon } from '../TextIcon.js'
@@ -41,7 +39,7 @@ export default class Profile extends React.Component {
 
     onToggle = () => this.setState({ show: !this.state.show })
 
-    viewIcon(me) {
+    userIcon(me) {
         const avatar = avatarPath(me.avatar)
 
         if (avatar) {
@@ -52,39 +50,33 @@ export default class Profile extends React.Component {
     }
 
     render() {
+        const user = this.props.user
+
         return (
-            <DataRequest resourcePath="me">
-                {({ error, loading, data }) => {
-                    console.log(loading, error, data)
+            <div ref={c => (this.elContainer = c)}>
+                {this.userIcon(user)}
 
-                    if (loading) return <span>...</span>
+                {this.state.show ? (
+                    <ProfileMenu
+                        avatar={avatarPath(user.avatar)}
+                        name={user.name}
+                        email={user.email}
+                    />
+                ) : null}
 
-                    if (error) return <span>{`ERROR: ${error.message}`}</span>
-
-                    return (
-                        <div ref={c => (this.elContainer = c)}>
-                            {this.viewIcon(data)}
-
-                            {this.state.show ? (
-                                <ProfileMenu
-                                    avatar={avatarPath(data.avatar)}
-                                    name={data.name}
-                                    email={data.email}
-                                />
-                            ) : null}
-
-                            <style jsx>{`
-                                div {
-                                    position: relative;
-                                    width: 36px;
-                                    height: 36px;
-                                    margin: 2px 12px 0 24px;
-                                }
-                            `}</style>
-                        </div>
-                    )
-                }}
-            </DataRequest>
+                <style jsx>{`
+                    div {
+                        position: relative;
+                        width: 36px;
+                        height: 36px;
+                        margin: 2px 12px 0 24px;
+                    }
+                `}</style>
+            </div>
         )
     }
+}
+
+Profile.propTypes = {
+    user: PropTypes.object.isRequired,
 }

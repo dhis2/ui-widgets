@@ -1094,9 +1094,10 @@
   dependencies:
     find-up "^2.1.0"
 
-"@dhis2/app-service-data@https://github.com/amcgee/dhis2-app-service-data":
-  version "0.1.0"
-  resolved "https://github.com/amcgee/dhis2-app-service-data#650f26102cebae76cb5c772fc97e22cb7a6811e7"
+"@dhis2/app-runtime@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-1.0.0.tgz#9cc55b0d54e3d5e38d58dffe620efba3e392ee75"
+  integrity sha512-UgRBVcJ4mj26dCSZUJAAL/5IESIxi2d5qzePDbgXnEG8y/66V+sx4aM9OODNI5/SHGUPaJpo4zZSuusZXU1jAw==
 
 "@dhis2/cli-helpers-engine@^1.0.1":
   version "1.0.1"

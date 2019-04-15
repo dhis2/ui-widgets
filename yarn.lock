@@ -1094,10 +1094,10 @@
   dependencies:
     find-up "^2.1.0"
 
-"@dhis2/app-runtime@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-1.0.0.tgz#9cc55b0d54e3d5e38d58dffe620efba3e392ee75"
-  integrity sha512-UgRBVcJ4mj26dCSZUJAAL/5IESIxi2d5qzePDbgXnEG8y/66V+sx4aM9OODNI5/SHGUPaJpo4zZSuusZXU1jAw==
+"@dhis2/app-runtime@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-1.1.0.tgz#0b6256f7c61428ab62e7b2403338c2fbf6b28530"
+  integrity sha512-0fJ61KeHRF2FsGVoSdogUX1zCOCoFWa6jJdPJl6GPUo8IaR//Fv7PYQvTuSUMAIO61dOmnh1pAQ8ouf8Ip7lyw==
 
 "@dhis2/cli-helpers-engine@^1.0.1":
   version "1.0.1"

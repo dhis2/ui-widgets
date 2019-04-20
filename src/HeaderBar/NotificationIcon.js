@@ -9,19 +9,19 @@ import { Message } from '../icons/Message.js'
 
 const messageIcon = css.resolve`
     svg {
-		fill: ${colors.white};
+        fill: ${colors.white};
         cursor: pointer;
-		height: 24px;
-		width: 24px;
+        height: 24px;
+        width: 24px;
     }
 `
 
 const interpretationIcon = css.resolve`
     svg {
-		fill: ${colors.white};
+        fill: ${colors.white};
         cursor: pointer;
-		height: 24px;
-		width: 24px;
+        height: 24px;
+        width: 24px;
     }
 `
 

@@ -15,10 +15,10 @@ import { ProfileHeader } from './ProfileHeader.js'
 
 const iconStyle = css.resolve`
     svg {
-		fill: ${colors.grey900};
+        fill: ${colors.grey900};
         cursor: pointer;
-		height: 24px;
-		width: 24px;
+        height: 24px;
+        width: 24px;
     }
 `
 

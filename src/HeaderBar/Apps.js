@@ -13,21 +13,21 @@ import css from 'styled-jsx/css'
 
 const appIcon = css.resolve`
     svg {
-		fill: ${colors.white};
+        fill: ${colors.white};
         cursor: pointer;
-		height: 24px;
-		width: 24px;
+        height: 24px;
+        width: 24px;
     }
 `
 
 const trailIcon = css.resolve`
     svg {
-		fill: ${colors.grey900};
+        fill: ${colors.grey900};
         cursor: pointer;
-		height: 24px;
-		width: 24px;
-		margin-right: 8px;
-		margin-top: 4px;
+        height: 24px;
+        width: 24px;
+        margin-right: 8px;
+        margin-top: 4px;
     }
 `
 
@@ -35,8 +35,8 @@ const settingsIcon = css.resolve`
     svg {
         margin: 8px 8px 0 16px;
         color: ${colors.grey900};
-		height: 24px;
-		width: 24px;
+        height: 24px;
+        width: 24px;
         cursor: pointer;
     }
 `

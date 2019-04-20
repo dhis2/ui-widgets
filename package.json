@@ -16,7 +16,7 @@
         "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir ./build/cjs --copy-files --verbose",
         "build:modules": "BABEL_ENV=modules babel src --out-dir ./build/es --copy-files --verbose",
         "build:docs": "cd ./docs && yarn install && CI=false yarn build && cd .. && cp -r ./docs/build ./build/docs",
-        "build": "yarn build:commonjs && yarn build:modules",
+        "build": "NODE_ENV=production yarn build:commonjs && yarn build:modules",
         "postbuild": "yarn build-storybook && size-limit",
         "build-storybook": "build-storybook -c .storybook -o ./build/docs",
         "start-storybook": "start-storybook --port 5000",
@@ -31,7 +31,7 @@
     "devDependencies": {
         "@babel/cli": "^7.0.0",
         "@babel/core": "^7.0.0",
-        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/plugin-proposal-class-properties": "^7.4.0",
         "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
         "@babel/plugin-transform-react-constant-elements": "^7.2.0",
         "@babel/preset-env": "^7.1.6",

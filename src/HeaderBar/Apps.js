@@ -5,9 +5,9 @@ import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 
 import { gotoURL } from '../utils/url.js'
 
-import { Settings } from './icons/Settings.js'
-import { Apps as AppsIcon } from './icons/Apps.js'
-import { Cancel } from './icons/Cancel.js'
+import { Settings } from '../icons/Settings.js'
+import { Apps as AppsIcon } from '../icons/Apps.js'
+import { Cancel } from '../icons/Cancel.js'
 
 import cx from 'classnames'
 
@@ -97,11 +97,11 @@ Search.propTypes = {
 
 function Item({ name, path, img }) {
     return (
-        <a href={path} className={cx('app')}>
+        <a href={path} className={cx('ui-headerbar-app')}>
             <img src={img} alt="app logo" />
-            <div className={cx('name')}>{name}</div>
+            <div className={cx('ui-headerbar-app-name')}>{name}</div>
             <style jsx>{`
-                .app {
+                .ui-headerbar-app {
                     display: inline-block;
                     display: flex;
                     flex-direction: column;
@@ -115,24 +115,24 @@ function Item({ name, path, img }) {
                     cursor: pointer;
                 }
 
-                .app:hover,
-                .app:focus {
+                .ui-headerbar-app:hover,
+                .ui-headerbar-app:focus {
                     background-color: ${theme.primary050};
                     cursor: pointer;
                 }
 
-                .app:hover > .name {
+                .ui-headerbar-app:hover > .ui-headerbar-app-name {
                     font-weight: 500;
                     cursor: pointer;
                 }
 
-                .app > img {
+                img {
                     width: 48px;
                     height: 48px;
                     cursor: pointer;
                 }
 
-                .app > .name {
+                .ui-headerbar-app-name {
                     margin-top: 14px;
                     color: rgba(0, 0, 0, 0.87);
                     font-size: 12px;

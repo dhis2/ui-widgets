@@ -18,6 +18,9 @@ module.exports = function(api) {
 
     return {
         presets: defaultPresets.concat('@babel/preset-react'),
-        plugins: ['styled-jsx/babel'],
+        plugins: [
+            '@babel/plugin-proposal-class-properties',
+            'styled-jsx/babel',
+        ],
     }
 }

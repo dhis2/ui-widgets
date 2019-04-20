@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { HeaderBar } from '../src/HeaderBar'
+import { HeaderBar } from '../src'
 import { CustomDataProvider } from '@dhis2/app-runtime'
 
 const customData = {
@@ -14,52 +14,52 @@ const customData = {
     '../../dhis-web-commons/menu/getModules.action': {
         modules: [
             {
-                name: 'Dashboard',
+                displayName: 'Dashboard',
                 path: '',
                 img: '',
             },
             {
-                name: 'Data Visualizer',
+                displayName: 'Data Visualizer',
                 path: '',
                 img: '',
             },
             {
-                name: 'Capture',
+                displayName: 'Capture',
                 path: '',
                 img: '',
             },
             {
-                name: 'Maintenance',
+                displayName: 'Maintenance',
                 path: '',
                 img: '',
             },
             {
-                name: 'Maps',
+                displayName: 'Maps',
                 path: '',
                 img: '',
             },
             {
-                name: 'Event Reports',
+                displayName: 'Event Reports',
                 path: '',
                 img: '',
             },
             {
-                name: 'Interpretations',
+                displayName: 'Interpretations',
                 path: '',
                 img: '',
             },
             {
-                name: 'Messaging',
+                displayName: 'Messaging',
                 path: '',
                 img: '',
             },
             {
-                name: 'Import/Export',
+                displayName: 'Import/Export',
                 path: '',
                 img: '',
             },
             {
-                name: 'User Settings',
+                displayName: 'User Settings',
                 path: '',
                 img: '',
             },

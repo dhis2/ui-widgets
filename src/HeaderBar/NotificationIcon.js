@@ -4,8 +4,8 @@ import css from 'styled-jsx/css'
 
 import { colors, theme } from '@dhis2/ui-core'
 
-import { Email } from './icons/Email.js'
-import { Message } from './icons/Message.js'
+import { Email } from '../icons/Email.js'
+import { Message } from '../icons/Message.js'
 
 const messageIcon = css.resolve`
     svg {
@@ -52,10 +52,6 @@ export const NotificationIcon = ({ count, href, kind }) => (
                 position: relative;
                 margin: 8px 24px 0 0;
                 cursor: pointer;
-            }
-
-            .message {
-                margin-top: 10px;
             }
 
             span {

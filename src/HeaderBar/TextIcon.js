@@ -11,11 +11,11 @@ export const TextIcon = ({ name, onClick }) => {
     }
 
     return (
-        <div className="root" onClick={onClick}>
-            <div className="initials">{title}</div>
+        <div onClick={onClick}>
+            <p>{title}</p>
 
             <style jsx>{`
-                .root {
+                div {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -28,7 +28,7 @@ export const TextIcon = ({ name, onClick }) => {
                     cursor: pointer;
                 }
 
-                div {
+                p {
                     font-size: 14px;
                     font-weight: 500;
                     letter-spacing: 1px;

@@ -7,14 +7,14 @@ import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
 
 export const Header = ({ name, email, img }) => (
-    <div className="header">
+    <div className="ui-profile-header">
         {img ? <ImageIcon src={img} /> : <TextIcon name={name} />}
 
-        <div className="details">
-            <div className="name">{name}</div>
-            <div className="email">{email}</div>
+        <div className="ui-profile-details">
+            <div className="ui-profile-name">{name}</div>
+            <div className="ui-profile-email">{email}</div>
             <a
-                className="edit_profile"
+                className="ui-profile-edit-profile"
                 href={`/dhis-web-user-profile/#/profile`}
             >
                 Edit profile
@@ -22,14 +22,14 @@ export const Header = ({ name, email, img }) => (
         </div>
 
         <style jsx>{`
-            .header {
+            .ui-profile-header {
                 display: flex;
                 flex-direction: row;
                 margin-left: 24px;
                 padding-top: 20px;
             }
 
-            .header > .details {
+            .ui-profile-details {
                 display: flex;
                 flex-direction: column;
                 margin-left: 20px;
@@ -38,19 +38,19 @@ export const Header = ({ name, email, img }) => (
                 font-weight: 400;
             }
 
-            .details > .name {
+            .ui-profile-name {
                 margin-bottom: 3px;
                 font-size: 16px;
                 line-height: 19px;
             }
 
-            .details > .email {
+            .ui-profile-email {
                 margin-bottom: 6px;
                 font-size: 14px;
                 line-height: 16px;
             }
 
-            .details > .edit_profile {
+            .ui-profile-edit-profile {
                 color: rgba(0, 0, 0, 0.87);
                 font-size: 12px;
                 line-height: 14px;

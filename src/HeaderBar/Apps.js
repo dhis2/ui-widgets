@@ -94,11 +94,13 @@ Search.propTypes = {
 
 function Item({ name, path, img }) {
     return (
-        <a href={path} className={cx('ui-headerbar-app')}>
+        <a href={path}>
             <img src={img} alt="app logo" />
-            <div className={cx('ui-headerbar-app-name')}>{name}</div>
+
+            <div>{name}</div>
+
             <style jsx>{`
-                .ui-headerbar-app {
+                a {
                     display: inline-block;
                     display: flex;
                     flex-direction: column;
@@ -112,13 +114,13 @@ function Item({ name, path, img }) {
                     cursor: pointer;
                 }
 
-                .ui-headerbar-app:hover,
-                .ui-headerbar-app:focus {
+                a:hover,
+                a:focus {
                     background-color: ${theme.primary050};
                     cursor: pointer;
                 }
 
-                .ui-headerbar-app:hover > .ui-headerbar-app-name {
+                a:hover > div {
                     font-weight: 500;
                     cursor: pointer;
                 }
@@ -129,7 +131,7 @@ function Item({ name, path, img }) {
                     cursor: pointer;
                 }
 
-                .ui-headerbar-app-name {
+                div {
                     margin-top: 14px;
                     color: rgba(0, 0, 0, 0.87);
                     font-size: 12px;

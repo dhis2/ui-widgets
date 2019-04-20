@@ -11,7 +11,7 @@ import { Help } from '../../icons/Help.js'
 import { Exit } from '../../icons/Exit.js'
 import { Account } from '../../icons/Account.js'
 
-import { Header } from './Header.js'
+import { ProfileHeader } from './ProfileHeader.js'
 
 const iconStyle = css.resolve`
     svg {
@@ -65,7 +65,7 @@ const list = [
 const ProfileContents = ({ name, email, avatar }) => (
     <Card>
         <div>
-            <Header name={name} email={email} img={avatar} />
+            <ProfileHeader name={name} email={email} img={avatar} />
             <Divider margin="13px 0 7px 0" />
             <ul>
                 {list.map(({ label, value, icon, link, target, nobase }) => {

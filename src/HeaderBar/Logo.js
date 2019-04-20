@@ -13,14 +13,14 @@ const logotype = css.resolve`
 `
 
 export const Logo = () => (
-    <div className="ui-headerbar-logo">
+    <div>
         <a href="/">
             <LogoIconWhite className={logotype.className} />
         </a>
 
         {logotype.styles}
         <style jsx>{`
-            .ui-headerbar-logo {
+            div {
                 box-sizing: border-box;
                 width: 48px;
                 height: 48px;

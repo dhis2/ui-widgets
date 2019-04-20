@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 
-import { gotoURL } from '../utils/url.js'
-
 import { Settings } from '../icons/Settings.js'
 import { Apps as AppsIcon } from '../icons/Apps.js'
 import { Cancel } from '../icons/Cancel.js'
@@ -51,7 +49,7 @@ function TrailIcon({ onClick }) {
     )
 }
 
-function Search({ value, onChange, onSettingsClick, onIconClick }) {
+function Search({ value, onChange, onIconClick }) {
     return (
         <div>
             <InputField
@@ -65,7 +63,7 @@ function Search({ value, onChange, onSettingsClick, onIconClick }) {
                 trailIcon={<TrailIcon onClick={onIconClick} />}
             />
 
-            <a onClick={onSettingsClick}>
+            <a href="/dhis-web-menu-management">
                 <Settings className={settingsIcon.className} />
             </a>
 
@@ -91,7 +89,6 @@ Search.defaultProps = {
 Search.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    onSettingsClick: PropTypes.func.isRequired,
     onIconClick: PropTypes.func,
 }
 
@@ -218,8 +215,6 @@ export default class Apps extends React.Component {
 
     onChange = (_, filter) => this.setState({ filter })
 
-    onSettingsClick = () => gotoURL(`/dhis-web-menu-management`)
-
     onIconClick = () => this.setState({ filter: '' })
 
     AppMenu = apps => (
@@ -228,7 +223,6 @@ export default class Apps extends React.Component {
                 <Search
                     value={this.state.filter}
                     onChange={this.onChange}
-                    onSettingsClick={this.onSettingsClick}
                     onIconClick={this.onIconClick}
                 />
                 <List apps={apps} filter={this.state.filter} />

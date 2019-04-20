@@ -68,18 +68,16 @@ const ProfileContents = ({ name, email, avatar }) => (
             <ProfileHeader name={name} email={email} img={avatar} />
             <Divider margin="13px 0 7px 0" />
             <ul>
-                {list.map(({ label, value, icon, link, target, nobase }) => {
-                    return (
-                        <a href={link} target={target} key={`h-p-${value}`}>
-                            <MenuItem
-                                key={`h-mi-${value}`}
-                                label={label}
-                                value={value}
-                                icon={icon}
-                            />
-                        </a>
-                    )
-                })}
+                {list.map(({ label, value, icon, link, target, nobase }) => (
+                    <a href={link} target={target} key={`h-p-${value}`}>
+                        <MenuItem
+                            key={`h-mi-${value}`}
+                            label={label}
+                            value={value}
+                            icon={icon}
+                        />
+                    </a>
+                ))}
             </ul>
         </div>
 

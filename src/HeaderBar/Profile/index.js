@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import css from 'styled-jsx/css'
 
-import { Card, Divider, Menu, MenuItem, colors } from '@dhis2/ui-core'
-
 import { ProfileMenu } from './ProfileMenu.js'
 
 import { TextIcon } from '../TextIcon.js'

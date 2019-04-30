@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import css from 'styled-jsx/css'
 
-import { Card, Divider, Menu, MenuItem, colors } from '@dhis2/ui-core'
+import { Card, Divider, MenuItem, colors } from '@dhis2/ui-core'
 
 import { Settings } from '../../icons/Settings.js'
 import { Info } from '../../icons/Info.js'
@@ -15,7 +15,7 @@ import { ProfileHeader } from './ProfileHeader.js'
 
 const iconStyle = css.resolve`
     svg {
-        fill: ${colors.grey900};
+        fill: ${colors.grey700};
         cursor: pointer;
         height: 24px;
         width: 24px;

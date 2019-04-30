@@ -52,20 +52,24 @@ function TrailIcon({ onClick }) {
 function Search({ value, onChange, onIconClick }) {
     return (
         <div>
-            <InputField
-                value={value}
-                name="filter"
-                kind="filled"
-                size="dense"
-                focus={true}
-                label="Search apps"
-                onChange={onChange}
-                trailIcon={<TrailIcon onClick={onIconClick} />}
-            />
+            <span>
+                <InputField
+                    value={value}
+                    name="filter"
+                    label="Search apps"
+                    onChange={onChange}
+                    trailIcon={<TrailIcon onClick={onIconClick} />}
+                    focus
+                    filled
+                    dense
+                />
+            </span>
 
-            <a href="/dhis-web-menu-management">
-                <Settings className={settingsIcon.className} />
-            </a>
+            <span>
+                <a href="/dhis-web-menu-management">
+                    <Settings className={settingsIcon.className} />
+                </a>
+            </span>
 
             {trailIcon.styles}
             {settingsIcon.styles}
@@ -76,6 +80,14 @@ function Search({ value, onChange, onIconClick }) {
                     flex-wrap: nowrap;
                     height: 52px;
                     margin: 8px;
+                }
+
+                span {
+                    flex: 1 100%;
+                }
+
+                span:last-child {
+                    flex: 1 auto;
                 }
             `}</style>
         </div>

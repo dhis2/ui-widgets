@@ -227,7 +227,7 @@ export default class Apps extends React.Component {
 
     onToggle = () => this.setState({ show: !this.state.show })
 
-    onChange = (_, filter) => this.setState({ filter })
+    onChange = e => this.setState({ filter: e.target.value })
 
     onIconClick = () => this.setState({ filter: '' })
 

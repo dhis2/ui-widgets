@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dhis2/ui-widgets/compare/v1.0.1...v1.0.2) (2019-05-06)
+
+
+### Bug Fixes
+
+* include build dir in release ([c42658d](https://github.com/dhis2/ui-widgets/commit/c42658d))
+
 ## [1.0.1](https://github.com/dhis2/ui-widgets/compare/v1.0.0...v1.0.1) (2019-05-06)
 
 

@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+- lts/*
+script:
+- yarn build
+deploy:
+- provider: script
+  skip_cleanup: true
+  script:
+  - npx --package @dhis2/deploy-build deploy-build
+  on:
+    tags: false
+    branch: master
+- provider: script
+  skip_cleanup: true
+  script:
+  - npx @dhis2/cli-utils release --publish npm
+  on:
+    tags: false
+    branch: master
+env:
+  global:
+  - GIT_AUTHOR_NAME=@dhis2-bot
+  - GIT_AUTHOR_EMAIL=ci@dhis2.org
+  - GIT_COMMITTER_NAME=@dhis2-bot
+  - GIT_COMMITTER_EMAIL=ci@dhis2.org
+  - secure: nQEIpuM3L/21Y7XL5tvegBSYp9tM7us0E6jEz3DG7Ejpk0scv0sTENwyEduw8rLK782px6wNpmkLTXcsG7JdhhrctdEzKRYaeaAGVt2gFfPqJjnc0mam3lmEyuIon/dAv+NxTaH8AK8s0BNNT5wiOAKcRgyYcTey7ejQMze+PzgflUlIXsIYqSvGwjqx6L5S9M6yBUTdH4sbOlflzhsfJLRuu2dGxiELYVjvjJvIO0pblltPxtcslf5ByGU0eXn3NZrrpBaH4YRC5+IKbMmvHuozjjkVpz+9bFR1kuO2G6iP7FZH6vIwbn6zdvyg83My1dy2vZEaCs2mrl0q2y1kiNtOA9lCkBnckkaHijxBK+dclRGnl3OqmcHN2/wvqpLn98N5UK5pZPcDqqmvMw2sdRw70qqzNg8D4KB+Et0ZmJz5CUOHiwt9/KlcxxN5VrL8XLmtGgtPtDXnE8pDJUFbBz7iRU7/0JXFYfaxS/+ehzPxxQJ/9mgKSdbmbMdgK/DDGyvSPCjgQ+13Ime0EUjp5qclsTmPoNP5WeF5Y3QxEKwKxk/NDFPfGMv84HDYSRj2z3ir39REWsUT0LukA1FjGgepaoUKbMw+XLzV9OY0eGrudYqc3mXXQbSg2eoOsT0e/s8Z1/ajZEbBuZRQ4KrtvAWH2k3Jd8FveYQTmPam7v8=
+  - secure: EqFH8ZKZ//Xv/03FMXuJuHFWBVIcX4CPFEvtO0Q5kUvJCvvnISWSh8Z3WTP2UtpEwi8/LQvNSNPGxIFOfgDWoV39R91QNT06amelo4tsA3KerKYy2qNSwD9J7DFl7Uncesz9goUO0lKqigVMGti/feGHw9ah12VOaiDoH+r3M37PIgf8MDjBEwjpgmgaxci+RnYiQrHcZu5wg1KoTeZO6FaqxwfBZ2fonYsJ2kssT4gYmDU6ZfR5rPtPFU7y+oQ7/9dd4vvJdBHxqv7y8wdOnMN5s1zb7eaNBw3RfIZCcbH+MLRHCHw6bzsM8sajO2UcQR2vbyWUQwGqgV4clsXIpENlb3cSs1+QdHUA4EYLs1qqtumg+c9PoX9TjFENZyt8oK2tUK72ivkzQCph4xEWQseWmFDp6j6+tHeQAsHZZm6LNGKahTn/UjYDuWuP11pFEhiKVyYKYcMg4p2DPeRig3Vb7Z+l3GbV6TUzClr3evHaJpxo91KcPCB50W39m9DLFGulYkyovd+nTzr42/gGUvl+hiHa/4BBXfsa2EH7WiALG6b8khXyDufVjqTGrw+ieM/77uKoIK7zx1TKxwZXcJmzPZrZ+j1Bjk3sCmTChkjAXEOcT55mmuEZtriRtfk00Rd6IWDAGHUWaXBxvE1VzhzTwBkNLb6Z+YgWqDSrLLs=

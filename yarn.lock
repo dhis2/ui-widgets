@@ -1503,10 +1503,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/ui-core@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-2.0.1.tgz#7818b4834f5ce3046c3b21353d26a70b78c57982"
-  integrity sha512-/W+qGJVNBOAxhs0Fhe9jzCxlEDvLPjVOqJCS+laYOWqdlwvT2HMbTzu8L40+vwgblLPGsfLVwIrE4LG7bIHKHA==
+"@dhis2/ui-core@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-2.0.2.tgz#ef71d18ebe7ca8b0070fef3ead4a05087fafea0c"
+  integrity sha512-Vacm6NQ3UF4Iss7X5n17ggXQ5l2gdRMFw/VrVriaGWSZ4At9Br6C7QNnZ/OK6t+6D9B0ETTXaahbDmCyUXMAhA==
   dependencies:
     classnames "^2.2.6"
     styled-jsx "^3.2.1"

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import i18n from '@dhis2/d2-i18n'
 import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 
 import { Settings } from '../icons/Settings.js'
@@ -56,7 +57,7 @@ function Search({ value, onChange, onIconClick }) {
                 <InputField
                     value={value}
                     name="filter"
-                    label="Search apps"
+                    label={i18n.t('Search apps')}
                     onChange={onChange}
                     trailIcon={<TrailIcon onClick={onIconClick} />}
                     focus

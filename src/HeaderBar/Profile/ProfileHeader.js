@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import css from 'styled-jsx/css'
+
+import i18n from '@dhis2/d2-i18n'
 
 import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
@@ -54,7 +55,7 @@ const ProfileDetails = ({ name, email }) => (
     <div>
         <ProfileName>{name}</ProfileName>
         <ProfileEmail>{email}</ProfileEmail>
-        <ProfileEdit>Edit profile</ProfileEdit>
+        <ProfileEdit>{i18n.t('Edit profile')}</ProfileEdit>
 
         <style jsx>{`
             div {

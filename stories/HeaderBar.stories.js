@@ -10,6 +10,9 @@ const customData = {
     me: {
         name: 'John Doe',
         email: 'john_doe@dhis2.org',
+        settings: {
+            keyUiLocale: 'en',
+        },
     },
     '../../dhis-web-commons/menu/getModules.action': {
         modules: [

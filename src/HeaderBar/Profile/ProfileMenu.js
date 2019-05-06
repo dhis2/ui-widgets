@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import css from 'styled-jsx/css'
 
+import i18n from '@dhis2/d2-i18n'
 import { Card, Divider, MenuItem, colors } from '@dhis2/ui-core'
 
 import { Settings } from '../../icons/Settings.js'
@@ -25,21 +25,21 @@ const iconStyle = css.resolve`
 const list = [
     {
         icon: <Settings className={iconStyle.className} />,
-        label: 'Settings',
+        label: i18n.t('Settings'),
         value: 'settings',
         link: `/dhis-web-user-profile/#/settings`,
         target: '_self',
     },
     {
         icon: <Account className={iconStyle.className} />,
-        label: 'Account',
+        label: i18n.t('Account'),
         value: 'account',
         link: `/dhis-web-user-profile/#/account`,
         target: '_self',
     },
     {
         icon: <Help className={iconStyle.className} />,
-        label: 'Help',
+        label: i18n.t('Help'),
         value: 'help',
         link:
             'https://docs.dhis2.org/master/en/user/html/dhis2_user_manual_en.html',
@@ -48,14 +48,14 @@ const list = [
     },
     {
         icon: <Info className={iconStyle.className} />,
-        label: 'About DHIS2',
+        label: i18n.t('About DHIS2'),
         value: 'about',
         link: `/dhis-web-user-profile/#/aboutPage`,
         target: '_self',
     },
     {
         icon: <Exit className={iconStyle.className} />,
-        label: 'Logout',
+        label: i18n.t('Logout'),
         value: 'logout',
         link: `/dhis-web-commons-security/logout.action`,
         target: '_self',

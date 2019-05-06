@@ -15,6 +15,9 @@ import { Title } from './Title.js'
 
 import { Notifications } from './Notifications.js'
 
+import '../locales'
+import i18n from '@dhis2/d2-i18n'
+
 export const HeaderBar = ({ appName, className }) => {
     const { loading, error, data } = useDataQuery({
         systemInfo: {
@@ -34,6 +37,9 @@ export const HeaderBar = ({ appName, className }) => {
     if (loading) return <span>...</span>
 
     if (error) return <span>{`ERROR: ${error.message}`}</span>
+
+    const locale = data.user.settings.keyUiLocale || 'en'
+    i18n.changeLanguage(locale)
 
     return (
         <header className={className}>

@@ -69,6 +69,6 @@
         "styled-jsx": "^3.2.1"
     },
     "files": [
-        "./build"
+        "build"
     ]
 }

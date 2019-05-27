@@ -52,7 +52,7 @@ export const HeaderBar = ({ appName, className }) => {
                         app={appName}
                         instance={data.systemInfo.systemName}
                     />
-                    <div className="rightControlSpacer" />
+                    <div className="right-control-spacer" />
                     <Notifications
                         interpretations={
                             data.notifications.unreadInterpretations
@@ -75,7 +75,7 @@ export const HeaderBar = ({ appName, className }) => {
                     border-bottom: 1px solid rgba(32, 32, 32, 0.15);
                     color: ${colors.white};
                 }
-                .rightControlSpacer {
+                .right-control-spacer {
                     margin-left: auto;
                 }
             `}</style>

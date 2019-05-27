@@ -34,27 +34,35 @@ export const HeaderBar = ({ appName, className }) => {
         },
     })
 
-    if (loading) return <span>...</span>
-
     if (error) return <span>{`ERROR: ${error.message}`}</span>
 
-    const locale = data.user.settings.keyUiLocale || 'en'
-    i18n.changeLanguage(locale)
+    if (!loading) {
+        // TODO: This will run every render which is probably wrong!  Also, setting the global locale shouldn't be done in the headerbar
+        const locale = data.user.settings.keyUiLocale || 'en'
+        i18n.changeLanguage(locale)
+    }
 
     return (
         <header className={className}>
             <Logo />
 
-            <Title app={appName} instance={data.systemInfo.systemName} />
-
-            <Notifications
-                interpretations={data.notifications.unreadInterpretations}
-                messages={data.notifications.unreadMessageConversations}
-            />
-
-            <Apps apps={data.apps.modules} />
-
-            <Profile user={data.user} />
+            {!loading && (
+                <>
+                    <Title
+                        app={appName}
+                        instance={data.systemInfo.systemName}
+                    />
+                    <div className="rightControlSpacer" />
+                    <Notifications
+                        interpretations={
+                            data.notifications.unreadInterpretations
+                        }
+                        messages={data.notifications.unreadMessageConversations}
+                    />
+                    <Apps apps={data.apps.modules} />
+                    <Profile user={data.user} />
+                </>
+            )}
 
             <style jsx>{`
                 header {
@@ -66,6 +74,9 @@ export const HeaderBar = ({ appName, className }) => {
                     height: 48px;
                     border-bottom: 1px solid rgba(32, 32, 32, 0.15);
                     color: ${colors.white};
+                }
+                .rightControlSpacer {
+                    margin-left: auto;
                 }
             `}</style>
         </header>

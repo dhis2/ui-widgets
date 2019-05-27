@@ -74,8 +74,14 @@ const customData = {
     },
 }
 
-storiesOf('HeaderBar', module).add('Default', () => (
-    <CustomDataProvider data={customData}>
-        <HeaderBar appName="Example!" />
-    </CustomDataProvider>
-))
+storiesOf('HeaderBar', module)
+    .add('Default', () => (
+        <CustomDataProvider data={customData}>
+            <HeaderBar appName="Example!" />
+        </CustomDataProvider>
+    ))
+    .add('Loading...', () => (
+        <CustomDataProvider options={{ loadForever: true }}>
+            <HeaderBar appName="Example!" />
+        </CustomDataProvider>
+    ))

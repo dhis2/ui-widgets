@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/dhis2/ui-widgets/compare/v1.0.2...v1.0.3) (2019-05-28)
+
+
+### Bug Fixes
+
+* don't break the page structure while loading data for the headerbar ([#7](https://github.com/dhis2/ui-widgets/issues/7)) ([eae0a16](https://github.com/dhis2/ui-widgets/commit/eae0a16))
+
 ## [1.0.2](https://github.com/dhis2/ui-widgets/compare/v1.0.1...v1.0.2) (2019-05-06)
 
 

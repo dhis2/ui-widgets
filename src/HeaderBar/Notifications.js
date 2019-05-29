@@ -20,7 +20,6 @@ export const Notifications = ({ interpretations, messages }) => (
 
         <style jsx>{`
             div {
-                margin-left: auto;
                 user-select: none;
                 display: flex;
                 flex-direction: row;

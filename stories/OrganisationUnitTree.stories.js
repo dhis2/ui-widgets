@@ -58,23 +58,67 @@ const Test = props => {
     const [selected, setSelected] = useState([])
 
     return (
-        <CustomDataProvider data={customData}>
-            <OrganisationUnitTree
-                name="Root org unit"
-                roots={['/A0000000000']}
-                selected={selected}
-                onChange={onChange(
-                    selected,
-                    setSelected,
-                    props.singleSelectionOnly
-                )}
-                initiallyExpanded={['A0000000001/A0000000002']}
-                {...props}
-            />
-        </CustomDataProvider>
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['/A0000000000']}
+            selected={selected}
+            onChange={onChange(
+                selected,
+                setSelected,
+                props.singleSelectionOnly
+            )}
+            initiallyExpanded={['A0000000001/A0000000002']}
+            {...props}
+        />
     )
 }
 
 storiesOf('OrganisationUnitTree', module)
+    .addDecorator(fn => (
+        <CustomDataProvider data={customData}>{fn()}</CustomDataProvider>
+    ))
+    .add('Collapsed', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={() => {}}
+        />
+    ))
+    .add('Expanded', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={() => {}}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+        />
+    ))
+    .add('Selected multiple', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={() => {}}
+            selected={['/A0000000000', '/A0000000000/A0000000001']}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+        />
+    ))
+    .add('Indeterminate', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={() => {}}
+            selected={['/A0000000000/A0000000001/A0000000003']}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+        />
+    ))
+    .add('Single selection', () => (
+        <OrganisationUnitTree
+            singleSelectionOnly
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={() => {}}
+            selected={['/A0000000000/A0000000001/A0000000003']}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+        />
+    ))
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)

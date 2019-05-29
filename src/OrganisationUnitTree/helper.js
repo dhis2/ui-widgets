@@ -16,7 +16,6 @@ export const orgUnitPathPropValidator = (
             }\` supplied to \`${compName}.${propFullName}\``
         )
     }
-    return undefined
 }
 /* eslint-enable */
 

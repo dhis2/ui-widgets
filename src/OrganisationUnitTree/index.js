@@ -3,7 +3,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 
 import { orgUnitPathPropValidator } from './helper'
-import { OrgUnitTree } from './OrgUnitTree';
+import { OrgUnitTree } from './OrgUnitTree'
 
 const OrganisationUnitTree = ({
     roots,
@@ -11,25 +11,27 @@ const OrganisationUnitTree = ({
     initiallyExpanded,
     onChange,
     openFirstLevel,
+    singleSelectionOnly,
 }) => (
     <div>
-        {(Array.isArray(roots) ? roots : [ roots ]).map(
-            root => (
-                <OrgUnitTree
-                    key={root}
-                    path={root}
-                    onChange={onChange}
-                    initiallyExpanded={initiallyExpanded}
-                    selected={selected}
-                    open={true}
-                />
-            )
-        )}
+        {(Array.isArray(roots) ? roots : [roots]).map(root => (
+            <OrgUnitTree
+                key={root}
+                path={root}
+                onChange={onChange}
+                initiallyExpanded={initiallyExpanded}
+                selected={selected}
+                open={true}
+                singleSelectionOnly={singleSelectionOnly}
+            />
+        ))}
     </div>
 )
 
 OrganisationUnitTree.propTypes = {
-    /* Root org unit id(s) */
+    /**
+     * Root org unit id(s)
+     */
     roots: propTypes.oneOfType([
         propTypes.string,
         propTypes.arrayOf(propTypes.string),
@@ -45,8 +47,16 @@ OrganisationUnitTree.propTypes = {
      */
     onChange: propTypes.func.isRequired,
 
-    /* Should the first level be expanded */
+    /**
+     * Should the first level be expanded
+     */
     openFirstLevel: propTypes.bool,
+
+    /**
+     * When set, no checkboxes will be displayed
+     * and only the first selected path in `selected` will be highlighted
+     */
+    singleSelectionOnly: propTypes.bool,
 
     /**
      * An array of paths of selected OUs

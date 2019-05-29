@@ -6,10 +6,12 @@ import { Checkbox, Tree } from '@dhis2/ui-core'
 import * as All from '@dhis2/ui-core'
 import {
     findDescendantSelectedPaths,
+    isUnitSelected,
     orgUnitPathPropValidator,
     useOrgData,
     useSelectedDescendants,
 } from './helper'
+import { Label } from './Label'
 
 const OrgUnitTree = ({
     path,
@@ -23,13 +25,8 @@ const OrgUnitTree = ({
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
         .length
     const { loading, error, data = { node: {} } } = useOrgData(id)
-    const checked = selected.indexOf(path) !== -1
+    const checked = isUnitSelected(path, selected, isUnitSelected)
     const { children = [], displayName = '' } = data.node
-
-    const onClick = event => {
-        const newChecked = event.target.checked
-        onChange({ id, path, checked: newChecked }, event)
-    }
 
     return (
         <Tree
@@ -37,16 +34,16 @@ const OrgUnitTree = ({
             hasLeafes={loading ? false : !!children.length}
             onToggleOpen={() => setOpen(!open)}
         >
-            <Tree.Label>
-                <Checkbox
-                    checked={checked}
-                    name="org-unit"
-                    value={id}
-                    label={loading ? 'Loading...' : displayName}
-                    indeterminate={!checked && hasSelectedDescendants}
-                    onChange={onClick}
-                />
-            </Tree.Label>
+            <Label
+                id={id}
+                path={path}
+                loading={loading}
+                checked={checked}
+                onChange={onChange}
+                displayName={displayName}
+                singleSelectionOnly={singleSelectionOnly}
+                hasSelectedDescendants={hasSelectedDescendants}
+            />
 
             <Tree.Contents open={open}>
                 {loading && 'Loading...'}
@@ -61,6 +58,7 @@ const OrgUnitTree = ({
                             selected={selected}
                             initiallyExpanded={initiallyExpanded}
                             onChange={onChange}
+                            singleSelectionOnly={singleSelectionOnly}
                         />
                     ))}
             </Tree.Contents>

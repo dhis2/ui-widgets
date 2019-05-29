@@ -29,16 +29,18 @@ export const findDescendantSelectedPaths = (path, selected) =>
         return acc
     }, [])
 
-export const useOrgData = id => useDataQuery({
-    node: {
-        resource: `organisationUnits/${id}`,
-        fields: 'children,displayName,path',
-        paging: false,
-        id,
-    },
-})
+export const useOrgData = id =>
+    useDataQuery({
+        node: {
+            resource: `organisationUnits/${id}`,
+            fields: 'children,displayName,path',
+            paging: false,
+            id,
+        },
+    })
 
-export const useSelectedDescendants = (path, selected) => useMemo(
-    () => findDescendantSelectedPaths(path, selected),
-    [path, selected]
-)
+export const useSelectedDescendants = (path, selected) =>
+    useMemo(() => findDescendantSelectedPaths(path, selected), [path, selected])
+
+export const isUnitSelected = (path, selected, singleSelectionOnly) =>
+    -1 !== (singleSelectionOnly ? selected.slice(0, 1) : selected).indexOf(path)

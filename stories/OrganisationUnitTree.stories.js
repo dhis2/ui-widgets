@@ -15,10 +15,7 @@ const customData = {
     'organisationUnits/A0000000001': {
         path: '/A0000000000/A0000000001',
         displayName: 'Org Unit 2',
-        children: [
-            { id: 'A0000000003' },
-            { id: 'A0000000004' },
-        ],
+        children: [{ id: 'A0000000003' }, { id: 'A0000000004' }],
     },
     'organisationUnits/A0000000002': {
         displayName: 'Org Unit 3',
@@ -38,37 +35,46 @@ const customData = {
     'organisationUnits/A0000000006': () => new Promise(() => {}),
 }
 
-const onChange = (selected, setSelected) => ({ path }) => {
+const onChange = (selected, setSelected, singleSelectionOnly) => ({ path }) => {
     const pathIndex = selected.indexOf(path)
 
     if (pathIndex === -1) {
-        setSelected([ ...selected, path ])
+        setSelected(singleSelectionOnly ? [path] : [...selected, path])
     } else {
         setSelected(
-            pathIndex === 0
+            singleSelectionOnly
+                ? []
+                : pathIndex === 0
                 ? selected.slice(1)
                 : [
-                    ...selected.slice(0, pathIndex),
-                    ...selected.slice(pathIndex + 1),
-                ]
+                      ...selected.slice(0, pathIndex),
+                      ...selected.slice(pathIndex + 1),
+                  ]
         )
     }
 }
 
-const Test = () => {
+const Test = props => {
     const [selected, setSelected] = useState([])
 
     return (
         <CustomDataProvider data={customData}>
             <OrganisationUnitTree
                 name="Root org unit"
-                roots={[ '/A0000000000' ]}
+                roots={['/A0000000000']}
                 selected={selected}
-                onChange={onChange(selected, setSelected)}
+                onChange={onChange(
+                    selected,
+                    setSelected,
+                    props.singleSelectionOnly
+                )}
                 initiallyExpanded={['A0000000001/A0000000002']}
+                {...props}
             />
         </CustomDataProvider>
     )
 }
 
-storiesOf('OrganisationUnitTree', module).add('DX: Test', () => <Test />)
+storiesOf('OrganisationUnitTree', module)
+    .add('DX: Test', () => <Test />)
+    .add('DX: Single selection only', () => <Test singleSelectionOnly />)

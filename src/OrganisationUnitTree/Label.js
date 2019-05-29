@@ -68,6 +68,7 @@ const Label = ({
                 </SingleSelectionLabel>
             ) : (
                 <Checkbox
+                    disabled={loading}
                     checked={checked}
                     name="org-unit"
                     value={id}

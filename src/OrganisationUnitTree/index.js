@@ -4,14 +4,50 @@ import propTypes from 'prop-types'
 
 import { select, deselect, expand, collapse } from './state/reducer'
 import { orgUnitPathPropValidator } from './helper'
+import { OrgUnitTree } from './OrgUnitTree';
 
-const OrganisationUnitTree = ({}) => {
-    return <OrgUnitTree />
-}
+const OrganisationUnitTree = ({
+    roots,
+    selected,
+    initiallyExpanded,
+    onChange,
+    openFirstLevel,
+}) => (
+    <div>
+        {(Array.isArray(roots) ? roots : [ roots ]).map(
+            root => (
+                <OrgUnitTree
+                    key={root}
+                    path={root}
+                    onChange={onChange}
+                    initiallyExpanded={initiallyExpanded}
+                    selected={selected}
+                    open={true}
+                />
+            )
+        )}
+    </div>
+)
 
 OrganisationUnitTree.propTypes = {
-    /* Root org unit id */
-    root: propTypes.string.isRequired,
+    /* Root org unit id(s) */
+    roots: propTypes.oneOfType([
+        propTypes.string,
+        propTypes.arrayOf(propTypes.string),
+    ]).isRequired,
+
+    /**
+     * Will be called with the following object
+     * {
+     *   id: string;
+     *   path: string;
+     *   checked: boolean;
+     * }
+     */
+    onChange: propTypes.func.isRequired,
+
+    /* Should the first level be expanded */
+    openFirstLevel: propTypes.bool,
 
     /**
      * An array of paths of selected OUs
@@ -31,4 +67,7 @@ OrganisationUnitTree.propTypes = {
 OrganisationUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
+    openFirstLevel: true,
 }
+
+export { OrganisationUnitTree }

@@ -1,3 +1,6 @@
+import { useMemo, useState } from 'react'
+import { useDataQuery } from '@dhis2/app-runtime'
+
 /* eslint-disable */
 export const orgUnitPathPropValidator = (
     propValue,
@@ -16,3 +19,26 @@ export const orgUnitPathPropValidator = (
     return undefined
 }
 /* eslint-enable */
+
+export const findDescendantSelectedPaths = (path, selected) =>
+    selected.reduce((acc, cur) => {
+        if (cur.slice(0, path.length) === path) {
+            acc.push(cur)
+        }
+
+        return acc
+    }, [])
+
+export const useOrgData = id => useDataQuery({
+    node: {
+        resource: `organisationUnits/${id}`,
+        fields: 'children,displayName,path',
+        paging: false,
+        id,
+    },
+})
+
+export const useSelectedDescendants = (path, selected) => useMemo(
+    () => findDescendantSelectedPaths(path, selected),
+    [path, selected]
+)

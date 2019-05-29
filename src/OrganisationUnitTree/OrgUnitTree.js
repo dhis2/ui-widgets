@@ -25,7 +25,7 @@ const OrgUnitTree = ({
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
         .length
     const { loading, error, data = { node: {} } } = useOrgData(id)
-    const checked = isUnitSelected(path, selected, isUnitSelected)
+    const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const { children = [], displayName = '' } = data.node
 
     return (

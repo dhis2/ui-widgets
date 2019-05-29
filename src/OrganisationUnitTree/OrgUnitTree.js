@@ -1,5 +1,5 @@
 import { useDataQuery } from '@dhis2/app-runtime'
-import React, { Fragment, useMemo, useState } from 'react'
+import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import propTypes from 'prop-types'
 
 import { Checkbox, Tree } from '@dhis2/ui-core'
@@ -16,23 +16,36 @@ import { Label } from './Label'
 const OrgUnitTree = ({
     path,
     selected,
-    initiallyExpanded,
+    expanded,
     onChange,
     singleSelectionOnly,
+    onExpand,
+    onCollapse,
 }) => {
     const id = useMemo(() => path.replace(/.*\//g, ''), path)
-    const [open, setOpen] = useState(initiallyExpanded.indexOf(path) !== -1)
+    const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
         .length
     const { loading, error, data = { node: {} } } = useOrgData(id)
     const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const { children = [], displayName = '' } = data.node
 
+    const onToggleOpen = useCallback(() => {
+        const newOpen = !open
+        setOpen(newOpen)
+
+        if (onExpand && newOpen) {
+            onExpand({ path })
+        } else if (onCollapse && !newOpen) {
+            onCollapse({ path })
+        }
+    }, [open, path, onExpand, onCollapse, setOpen])
+
     return (
         <Tree
             open={open}
+            onToggleOpen={onToggleOpen}
             hasLeafes={loading ? false : !!children.length}
-            onToggleOpen={() => setOpen(!open)}
         >
             <Label
                 id={id}
@@ -46,7 +59,6 @@ const OrgUnitTree = ({
             />
 
             <Tree.Contents open={open}>
-                {loading && 'Loading...'}
                 {!loading && error && `Error: ${error.message}`}
                 {!loading &&
                     !error &&
@@ -56,9 +68,11 @@ const OrgUnitTree = ({
                             key={child.id}
                             path={`${path}/${child.id}`}
                             selected={selected}
-                            initiallyExpanded={initiallyExpanded}
+                            expanded={expanded}
                             onChange={onChange}
                             singleSelectionOnly={singleSelectionOnly}
+                            onExpand={onExpand}
+                            onCollapse={onCollapse}
                         />
                     ))}
             </Tree.Contents>
@@ -69,10 +83,14 @@ const OrgUnitTree = ({
 OrgUnitTree.propTypes = {
     path: orgUnitPathPropValidator,
     onChange: propTypes.func.isRequired,
-    initiallyExpanded: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    expanded: propTypes.arrayOf(orgUnitPathPropValidator),
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
 
     singleSelectionOnly: propTypes.bool,
+
+    onExpand: propTypes.func,
+    onCollapse: propTypes.func,
 }
 
 export { OrgUnitTree }

@@ -1,5 +1,5 @@
 import { Checkbox, Tree } from '@dhis2/ui-core'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import propTypes from 'prop-types'
 
 import { orgUnitPathPropValidator } from './helper'
@@ -12,21 +12,64 @@ const OrganisationUnitTree = ({
     onChange,
     openFirstLevel,
     singleSelectionOnly,
-}) => (
-    <div>
-        {(Array.isArray(roots) ? roots : [roots]).map(root => (
-            <OrgUnitTree
-                key={root}
-                path={root}
-                onChange={onChange}
-                initiallyExpanded={initiallyExpanded}
-                selected={selected}
-                open={true}
-                singleSelectionOnly={singleSelectionOnly}
-            />
-        ))}
-    </div>
-)
+    onExpand,
+    onCollapse,
+}) => {
+    const [expanded, setExpanded] = useState(initiallyExpanded)
+    const handleExpand = useCallback(
+        ({ path, ...rest }) => {
+            const pathIndex = expanded.indexOf(path)
+
+            if (pathIndex === -1) {
+                setExpanded([...expanded, path])
+
+                if (onExpand) {
+                    onExpand({ path, ...rest })
+                }
+            }
+        },
+        [expanded, onExpand]
+    )
+
+    const handleCollapse = useCallback(
+        ({ path, ...rest }) => {
+            const pathIndex = expanded.indexOf(path)
+
+            if (pathIndex !== -1) {
+                setExpanded(
+                    pathIndex === 0
+                        ? expanded.slice(1)
+                        : [
+                              ...expanded.slice(0, pathIndex),
+                              ...expanded.slice(pathIndex + 1),
+                          ]
+                )
+
+                if (onCollapse) {
+                    onCollapse({ path, ...rest })
+                }
+            }
+        },
+        [expanded, onCollapse]
+    )
+
+    return (
+        <div>
+            {(Array.isArray(roots) ? roots : [roots]).map(root => (
+                <OrgUnitTree
+                    key={root}
+                    path={root}
+                    onChange={onChange}
+                    expanded={expanded}
+                    selected={selected}
+                    singleSelectionOnly={singleSelectionOnly}
+                    onExpand={handleExpand}
+                    onCollapse={handleCollapse}
+                />
+            ))}
+        </div>
+    )
+}
 
 OrganisationUnitTree.propTypes = {
     /**
@@ -71,6 +114,16 @@ OrganisationUnitTree.propTypes = {
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
      */
     initiallyExpanded: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    /**
+     * Called with { path: string } with the path of the parent of the level opened
+     */
+    onExpand: propTypes.func,
+
+    /**
+     * Called with { path: string } with the path of the parent of the level closed
+     */
+    onCollapse: propTypes.func,
 }
 
 OrganisationUnitTree.defaultProps = {

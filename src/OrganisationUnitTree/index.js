@@ -2,7 +2,6 @@ import { Checkbox, Tree } from '@dhis2/ui-core'
 import React from 'react'
 import propTypes from 'prop-types'
 
-import { select, deselect, expand, collapse } from './state/reducer'
 import { orgUnitPathPropValidator } from './helper'
 import { OrgUnitTree } from './OrgUnitTree';
 

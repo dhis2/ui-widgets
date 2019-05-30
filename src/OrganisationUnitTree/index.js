@@ -2,7 +2,12 @@ import { Checkbox, Tree } from '@dhis2/ui-core'
 import React, { useCallback, useState } from 'react'
 import propTypes from 'prop-types'
 
-import { orgUnitPathPropValidator, expandUnit, collapseUnit } from './helper'
+import {
+    orgUnitPathPropValidator,
+    expandUnit,
+    collapseUnit,
+    getIdFromPath,
+} from './helper'
 import { OrgUnitTree } from './OrgUnitTree'
 
 const OrganisationUnitTree = ({
@@ -14,6 +19,8 @@ const OrganisationUnitTree = ({
     singleSelectionOnly,
     onExpand,
     onCollapse,
+    onUnitLoaded,
+    onUnitUnloaded,
 }) => {
     const [expanded, setExpanded] = useState(initiallyExpanded)
     const handleExpand = useCallback(
@@ -37,6 +44,8 @@ const OrganisationUnitTree = ({
                     singleSelectionOnly={singleSelectionOnly}
                     onExpand={handleExpand}
                     onCollapse={handleCollapse}
+                    onUnitLoaded={onUnitLoaded}
+                    onUnitUnloaded={onUnitUnloaded}
                 />
             ))}
         </div>
@@ -96,6 +105,16 @@ OrganisationUnitTree.propTypes = {
      * Called with { path: string } with the path of the parent of the level closed
      */
     onCollapse: propTypes.func,
+
+    /**
+     * Called with { path: string } after a unit's data has been loaded
+     */
+    onUnitLoaded: propTypes.func,
+
+    /**
+     * Called with { path: string } after a unit's data has been unloaded
+     */
+    onUnitUnloaded: propTypes.func,
 }
 
 OrganisationUnitTree.defaultProps = {
@@ -103,5 +122,12 @@ OrganisationUnitTree.defaultProps = {
     initiallyExpanded: [],
     openFirstLevel: true,
 }
+
+/**
+ * ========================
+ * Exposed helper functions
+ * ========================
+ */
+OrganisationUnitTree.getIdFromPath = getIdFromPath
 
 export { OrganisationUnitTree }

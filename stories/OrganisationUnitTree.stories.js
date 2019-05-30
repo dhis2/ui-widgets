@@ -84,6 +84,8 @@ const Test = props => {
             initiallyExpanded={['A0000000001/A0000000002']}
             onExpand={console.log.bind(null, 'onExpand')}
             onCollapse={console.log.bind(null, 'onCollapse')}
+            onUnitLoaded={console.log.bind(null, 'onUnitLoaded')}
+            onUnitUnloaded={console.log.bind(null, 'onUnitUnloaded')}
             {...props}
         />
     )

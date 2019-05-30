@@ -19,6 +19,8 @@ export const orgUnitPathPropValidator = (
 }
 /* eslint-enable */
 
+export const getIdFromPath = path => path.replace(/.*\//g, '')
+
 export const findDescendantSelectedPaths = (path, selected) =>
     selected.reduce((acc, cur) => {
         if (cur.slice(0, path.length) === path) {
@@ -44,17 +46,28 @@ export const useSelectedDescendants = (path, selected) =>
 export const isUnitSelected = (path, selected, singleSelectionOnly) =>
     -1 !== (singleSelectionOnly ? selected.slice(0, 1) : selected).indexOf(path)
 
-// eslint-disable-next-line
-export const toggleOpen = (open, path, onExpand, onCollapse, setOpen) => () => {
+/* eslint-disable max-params */
+export const toggleOpen = (
+    open,
+    path,
+    children,
+    onExpand,
+    onCollapse,
+    setOpen
+) => () => {
     const newOpen = !open
+    const childIds = children.map(({ id }) => `${path}/${id}`)
+    const payload = { path, children: childIds }
+
     setOpen(newOpen)
 
     if (onExpand && newOpen) {
-        onExpand({ path })
+        onExpand(payload)
     } else if (onCollapse && !newOpen) {
-        onCollapse({ path })
+        onCollapse(payload)
     }
 }
+/* eslint-enable */
 
 export const expandUnit = (expanded, setExpanded, onExpand) => ({
     path,

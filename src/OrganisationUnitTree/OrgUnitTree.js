@@ -1,11 +1,18 @@
 import { useDataQuery } from '@dhis2/app-runtime'
-import React, { Fragment, useCallback, useMemo, useState } from 'react'
+import React, {
+    Fragment,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react'
 import propTypes from 'prop-types'
 
 import { Checkbox, Tree } from '@dhis2/ui-core'
 import * as All from '@dhis2/ui-core'
 import {
     findDescendantSelectedPaths,
+    getIdFromPath,
     isUnitSelected,
     orgUnitPathPropValidator,
     useOrgData,
@@ -22,19 +29,26 @@ const OrgUnitTree = ({
     singleSelectionOnly,
     onExpand,
     onCollapse,
+    onUnitLoaded,
+    onUnitUnloaded,
 }) => {
-    const id = useMemo(() => path.replace(/.*\//g, ''), path)
+    const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
-    const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
-        .length
     const { loading, error, data = { node: {} } } = useOrgData(id)
     const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const { children = [], displayName = '' } = data.node
+    const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
+        .length
 
     const onToggleOpen = useCallback(
-        toggleOpen(open, path, onExpand, onCollapse, setOpen),
-        [open, path, onExpand, onCollapse, setOpen]
+        toggleOpen(open, path, children, onExpand, onCollapse, setOpen),
+        [open, path, children, onExpand, onCollapse, setOpen]
     )
+
+    useEffect(() => {
+        !loading && onUnitUnloaded && onUnitLoaded({ path })
+        return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
+    }, [loading, id, path])
 
     return (
         <Tree
@@ -68,6 +82,8 @@ const OrgUnitTree = ({
                             singleSelectionOnly={singleSelectionOnly}
                             onExpand={onExpand}
                             onCollapse={onCollapse}
+                            onUnitLoaded={onUnitLoaded}
+                            onUnitUnloaded={onUnitUnloaded}
                         />
                     ))}
             </Tree.Contents>
@@ -86,6 +102,8 @@ OrgUnitTree.propTypes = {
 
     onExpand: propTypes.func,
     onCollapse: propTypes.func,
+    onUnitLoaded: propTypes.func,
+    onUnitUnloaded: propTypes.func,
 }
 
 export { OrgUnitTree }

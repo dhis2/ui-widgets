@@ -1,4 +1,4 @@
-import { Checkbox, Tree } from '@dhis2/ui-core'
+import { Checkbox, Tree, colors } from '@dhis2/ui-core'
 import React from 'react'
 import propTypes from 'prop-types'
 import css from 'styled-jsx/css'
@@ -39,10 +39,32 @@ SingleSelectionLabel.propTypes = {
     onClick: propTypes.func.isRequired,
 }
 
+const ErrorMessage = ({ id, error, singleSelectionOnly }) => (
+    <span className={cx({ 'with-checkbox': !singleSelectionOnly })}>
+        {`
+            An error occured loading organisation unit with id "${id}".
+            Error: ${error.message}
+        `}
+
+        <style jsx>{`
+            span {
+                display: inline-block;
+                padding-left: 5px;
+                color: ${colors.red500};
+            }
+
+            .with-checkbox {
+                padding-left: 32px;
+            }
+        `}</style>
+    </span>
+)
+
 const Label = ({
     id,
     path,
     loading,
+    error,
     checked,
     onChange,
     displayName,
@@ -57,7 +79,13 @@ const Label = ({
 
     return (
         <Tree.Label>
-            {singleSelectionOnly ? (
+            {!loading && error ? (
+                <ErrorMessage
+                    id={id}
+                    error={error}
+                    singleSelectionOnly={singleSelectionOnly}
+                />
+            ) : singleSelectionOnly ? (
                 <SingleSelectionLabel
                     checked={checked}
                     label={label}

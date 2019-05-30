@@ -9,7 +9,6 @@ import React, {
 import propTypes from 'prop-types'
 
 import { Checkbox, Tree } from '@dhis2/ui-core'
-import * as All from '@dhis2/ui-core'
 import {
     findDescendantSelectedPaths,
     getIdFromPath,
@@ -46,6 +45,7 @@ const OrgUnitTree = ({
     )
 
     useEffect(() => {
+        !loading && console.log(path, error, data)
         !loading && onUnitUnloaded && onUnitLoaded({ path })
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
@@ -59,6 +59,7 @@ const OrgUnitTree = ({
             <Label
                 id={id}
                 path={path}
+                error={error}
                 loading={loading}
                 checked={checked}
                 onChange={onChange}
@@ -68,7 +69,6 @@ const OrgUnitTree = ({
             />
 
             <Tree.Contents open={open}>
-                {!loading && error && `Error: ${error.message}`}
                 {!loading &&
                     !error &&
                     open &&

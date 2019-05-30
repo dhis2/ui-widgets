@@ -43,3 +43,52 @@ export const useSelectedDescendants = (path, selected) =>
 
 export const isUnitSelected = (path, selected, singleSelectionOnly) =>
     -1 !== (singleSelectionOnly ? selected.slice(0, 1) : selected).indexOf(path)
+
+// eslint-disable-next-line
+export const toggleOpen = (open, path, onExpand, onCollapse, setOpen) => () => {
+    const newOpen = !open
+    setOpen(newOpen)
+
+    if (onExpand && newOpen) {
+        onExpand({ path })
+    } else if (onCollapse && !newOpen) {
+        onCollapse({ path })
+    }
+}
+
+export const expandUnit = (expanded, setExpanded, onExpand) => ({
+    path,
+    ...rest
+}) => {
+    const pathIndex = expanded.indexOf(path)
+
+    if (pathIndex === -1) {
+        setExpanded([...expanded, path])
+
+        if (onExpand) {
+            onExpand({ path, ...rest })
+        }
+    }
+}
+
+export const collapseUnit = (expanded, setExpanded, onCollapse) => ({
+    path,
+    ...rest
+}) => {
+    const pathIndex = expanded.indexOf(path)
+
+    if (pathIndex !== -1) {
+        setExpanded(
+            pathIndex === 0
+                ? expanded.slice(1)
+                : [
+                      ...expanded.slice(0, pathIndex),
+                      ...expanded.slice(pathIndex + 1),
+                  ]
+        )
+
+        if (onCollapse) {
+            onCollapse({ path, ...rest })
+        }
+    }
+}

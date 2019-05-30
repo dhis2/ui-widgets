@@ -2,7 +2,7 @@ import { Checkbox, Tree } from '@dhis2/ui-core'
 import React, { useCallback, useState } from 'react'
 import propTypes from 'prop-types'
 
-import { orgUnitPathPropValidator } from './helper'
+import { orgUnitPathPropValidator, expandUnit, collapseUnit } from './helper'
 import { OrgUnitTree } from './OrgUnitTree'
 
 const OrganisationUnitTree = ({
@@ -17,39 +17,11 @@ const OrganisationUnitTree = ({
 }) => {
     const [expanded, setExpanded] = useState(initiallyExpanded)
     const handleExpand = useCallback(
-        ({ path, ...rest }) => {
-            const pathIndex = expanded.indexOf(path)
-
-            if (pathIndex === -1) {
-                setExpanded([...expanded, path])
-
-                if (onExpand) {
-                    onExpand({ path, ...rest })
-                }
-            }
-        },
+        expandUnit(expanded, setExpanded, onExpand),
         [expanded, onExpand]
     )
-
     const handleCollapse = useCallback(
-        ({ path, ...rest }) => {
-            const pathIndex = expanded.indexOf(path)
-
-            if (pathIndex !== -1) {
-                setExpanded(
-                    pathIndex === 0
-                        ? expanded.slice(1)
-                        : [
-                              ...expanded.slice(0, pathIndex),
-                              ...expanded.slice(pathIndex + 1),
-                          ]
-                )
-
-                if (onCollapse) {
-                    onCollapse({ path, ...rest })
-                }
-            }
-        },
+        collapseUnit(expanded, setExpanded, onCollapse),
         [expanded, onCollapse]
     )
 

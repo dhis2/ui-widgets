@@ -10,6 +10,7 @@ import {
     orgUnitPathPropValidator,
     useOrgData,
     useSelectedDescendants,
+    toggleOpen,
 } from './helper'
 import { Label } from './Label'
 
@@ -30,16 +31,10 @@ const OrgUnitTree = ({
     const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const { children = [], displayName = '' } = data.node
 
-    const onToggleOpen = useCallback(() => {
-        const newOpen = !open
-        setOpen(newOpen)
-
-        if (onExpand && newOpen) {
-            onExpand({ path })
-        } else if (onCollapse && !newOpen) {
-            onCollapse({ path })
-        }
-    }, [open, path, onExpand, onCollapse, setOpen])
+    const onToggleOpen = useCallback(
+        toggleOpen(open, path, onExpand, onCollapse, setOpen),
+        [open, path, onExpand, onCollapse, setOpen]
+    )
 
     return (
         <Tree

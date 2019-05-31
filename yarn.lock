@@ -1503,8 +1503,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/ui-core@file:../ui-core":
-  version "2.2.0"
+"@dhis2/ui-core@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-2.5.0.tgz#95ce427ba27ece993988b7edf5c3ba0b22a4d5b9"
+  integrity sha512-/N8snrg1KmR1xN/prpLk0CSSECtC+O6bUTkx3zc120UMuwEbIltK/akXC3VUeljSbpTZFYoP0zrpNh+YwzN15A==
   dependencies:
     classnames "^2.2.6"
     styled-jsx "^3.2.1"

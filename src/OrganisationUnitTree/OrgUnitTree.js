@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import propTypes from 'prop-types'
 
-import { Checkbox, Tree } from '@dhis2/ui-core'
+import { Checkbox, Node } from '@dhis2/ui-core'
 import {
     findDescendantSelectedPaths,
     getIdFromPath,
@@ -50,44 +50,47 @@ const OrgUnitTree = ({
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
 
-    return (
-        <Tree
-            open={open}
-            onToggleOpen={onToggleOpen}
-            hasLeafes={loading ? false : !!children.length}
-        >
-            <Label
-                id={id}
-                path={path}
-                error={error}
-                loading={loading}
-                checked={checked}
-                onChange={onChange}
-                displayName={displayName}
-                singleSelectionOnly={singleSelectionOnly}
-                hasSelectedDescendants={hasSelectedDescendants}
-            />
+    const content = children.length
+        ? !loading &&
+          !error &&
+          open &&
+          children.map(child => (
+              <OrgUnitTree
+                  key={child.id}
+                  path={`${path}/${child.id}`}
+                  selected={selected}
+                  expanded={expanded}
+                  onChange={onChange}
+                  singleSelectionOnly={singleSelectionOnly}
+                  onExpand={onExpand}
+                  onCollapse={onCollapse}
+                  onUnitLoaded={onUnitLoaded}
+                  onUnitUnloaded={onUnitUnloaded}
+              />
+          ))
+        : undefined
 
-            <Tree.Contents open={open}>
-                {!loading &&
-                    !error &&
-                    open &&
-                    children.map(child => (
-                        <OrgUnitTree
-                            key={child.id}
-                            path={`${path}/${child.id}`}
-                            selected={selected}
-                            expanded={expanded}
-                            onChange={onChange}
-                            singleSelectionOnly={singleSelectionOnly}
-                            onExpand={onExpand}
-                            onCollapse={onCollapse}
-                            onUnitLoaded={onUnitLoaded}
-                            onUnitUnloaded={onUnitUnloaded}
-                        />
-                    ))}
-            </Tree.Contents>
-        </Tree>
+    return (
+        <Node
+            open={open}
+            onOpen={onToggleOpen}
+            onClose={onToggleOpen}
+            component={
+                <Label
+                    id={id}
+                    path={path}
+                    error={error}
+                    loading={loading}
+                    checked={checked}
+                    onChange={onChange}
+                    displayName={displayName}
+                    singleSelectionOnly={singleSelectionOnly}
+                    hasSelectedDescendants={hasSelectedDescendants}
+                />
+            }
+        >
+            {content}
+        </Node>
     )
 }
 

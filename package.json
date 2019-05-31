@@ -64,7 +64,7 @@
     },
     "dependencies": {
         "@dhis2/d2-i18n": "1.0.4",
-        "@dhis2/ui-core": "file:../ui-core",
+        "@dhis2/ui-core": "^2.5.0",
         "classnames": "^2.2.6",
         "styled-jsx": "^3.2.1"
     },

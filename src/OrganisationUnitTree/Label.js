@@ -1,4 +1,4 @@
-import { Checkbox, Tree, colors } from '@dhis2/ui-core'
+import { Checkbox, colors } from '@dhis2/ui-core'
 import React from 'react'
 import propTypes from 'prop-types'
 import css from 'styled-jsx/css'
@@ -84,35 +84,31 @@ const Label = ({
         !loading && onChange({ id, path, checked: newChecked }, event)
     }
 
-    return (
-        <Tree.Label>
-            {!loading && error ? (
-                <ErrorMessage
-                    id={id}
-                    error={error}
-                    singleSelectionOnly={singleSelectionOnly}
-                />
-            ) : singleSelectionOnly ? (
-                <SingleSelectionLabel
-                    checked={checked}
-                    label={label}
-                    onChange={onClick}
-                    loading={loading}
-                >
-                    {label}
-                </SingleSelectionLabel>
-            ) : (
-                <Checkbox
-                    disabled={loading}
-                    checked={checked}
-                    name="org-unit"
-                    value={id}
-                    label={label}
-                    indeterminate={!checked && hasSelectedDescendants}
-                    onChange={onClick}
-                />
-            )}
-        </Tree.Label>
+    return !loading && error ? (
+        <ErrorMessage
+            id={id}
+            error={error}
+            singleSelectionOnly={singleSelectionOnly}
+        />
+    ) : singleSelectionOnly ? (
+        <SingleSelectionLabel
+            checked={checked}
+            label={label}
+            onChange={onClick}
+            loading={loading}
+        >
+            {label}
+        </SingleSelectionLabel>
+    ) : (
+        <Checkbox
+            disabled={loading}
+            checked={checked}
+            name="org-unit"
+            value={id}
+            label={label}
+            indeterminate={!checked && hasSelectedDescendants}
+            onChange={onClick}
+        />
     )
 }
 

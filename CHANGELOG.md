@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/dhis2/ui-widgets/compare/v1.0.3...v1.0.4) (2019-06-05)
+
+
+### Bug Fixes
+
+* don't break the layout when a data request fails ([#11](https://github.com/dhis2/ui-widgets/issues/11)) ([cb619c7](https://github.com/dhis2/ui-widgets/commit/cb619c7))
+
 ## [1.0.3](https://github.com/dhis2/ui-widgets/compare/v1.0.2...v1.0.3) (2019-05-28)
 
 

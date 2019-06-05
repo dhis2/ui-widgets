@@ -34,9 +34,7 @@ export const HeaderBar = ({ appName, className }) => {
         },
     })
 
-    if (error) return <span>{`ERROR: ${error.message}`}</span>
-
-    if (!loading) {
+    if (!loading && !error) {
         // TODO: This will run every render which is probably wrong!  Also, setting the global locale shouldn't be done in the headerbar
         const locale = data.user.settings.keyUiLocale || 'en'
         i18n.changeLanguage(locale)
@@ -46,7 +44,7 @@ export const HeaderBar = ({ appName, className }) => {
         <header className={className}>
             <Logo />
 
-            {!loading && (
+            {!loading && !error && (
                 <>
                     <Title
                         app={appName}

@@ -85,3 +85,8 @@ storiesOf('HeaderBar', module)
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))
+    .add('Error!', () => (
+        <CustomDataProvider data={{}}>
+            <HeaderBar appName="Example!" />
+        </CustomDataProvider>
+    ))

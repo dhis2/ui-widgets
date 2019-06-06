@@ -98,8 +98,8 @@ OrgUnitTree.propTypes = {
     path: orgUnitPathPropValidator,
     onChange: propTypes.func.isRequired,
 
-    expanded: propTypes.arrayOf(orgUnitPathPropValidator),
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
+    expanded: propTypes.arrayOf(orgUnitPathPropValidator),
 
     singleSelectionOnly: propTypes.bool,
 

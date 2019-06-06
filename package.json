@@ -54,6 +54,7 @@
         "husky": "^1.0.1",
         "react-dev-utils": "^8.0.0",
         "storybook-addon-jsx": "^7.0.0",
+        "storybook-addon-react-docgen": "^1.2.2",
         "typeface-roboto": "^0.0.54"
     },
     "peerDependencies": {

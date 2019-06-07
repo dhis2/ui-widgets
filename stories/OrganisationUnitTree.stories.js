@@ -70,6 +70,7 @@ const onChange = (selected, setSelected, singleSelectionOnly) => ({ path }) => {
 
 const Test = props => {
     const [selected, setSelected] = useState([])
+    console.log('selected', selected)
 
     return (
         <OrganisationUnitTree
@@ -99,14 +100,14 @@ storiesOf('OrganisationUnitTree', module)
         <OrganisationUnitTree
             name="Root org unit"
             roots={['/A0000000000']}
-            onChange={() => {}}
+            onChange={console.log.bind(null, 'onChange')}
         />
     ))
     .add('Expanded', () => (
         <OrganisationUnitTree
             name="Root org unit"
             roots={['/A0000000000']}
-            onChange={() => {}}
+            onChange={console.log.bind(null, 'onChange')}
             initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
         />
     ))
@@ -114,7 +115,7 @@ storiesOf('OrganisationUnitTree', module)
         <OrganisationUnitTree
             name="Root org unit"
             roots={['/A0000000000']}
-            onChange={() => {}}
+            onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000', '/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
         />
@@ -123,7 +124,7 @@ storiesOf('OrganisationUnitTree', module)
         <OrganisationUnitTree
             name="Root org unit"
             roots={['/A0000000000']}
-            onChange={() => {}}
+            onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
         />
@@ -133,7 +134,7 @@ storiesOf('OrganisationUnitTree', module)
             singleSelectionOnly
             name="Root org unit"
             roots={['/A0000000000']}
-            onChange={() => {}}
+            onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
         />

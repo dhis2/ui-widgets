@@ -31,9 +31,14 @@ const OrganisationUnitTree = ({
         collapseUnit(expanded, setExpanded, onCollapse),
         [expanded, onCollapse]
     )
+    const [reloadId, setReloadId] = useState(0)
+
+    useEffect(() => forceReload === true && setReloadId(reloadId + 1), [
+        forceReload,
+    ])
 
     return (
-        <div>
+        <div key={reloadId}>
             {(Array.isArray(roots) ? roots : [roots]).map(root => (
                 <OrgUnitTree
                     key={root}
@@ -83,11 +88,16 @@ OrganisationUnitTree.propTypes = {
     singleSelectionOnly: propTypes.bool,
 
     /**
-     * Every path that's inside the array will be reloaded.
+     * When set to "true", everything will be reloaded.
+     * When "forceReload" is an array, every path that's
+     * inside the array will be reloaded.
      * In order to load it again after reloading, the path
      * has to be removed and added again
      */
-    forceReloaded: propTypes.arrayOf(orgUnitPathPropValidator),
+    forceReload: propTypes.oneOfType([
+        propTypes.arrayOf(orgUnitPathPropValidator),
+        propTypes.bool,
+    ]),
 
     /**
      * An array of paths of selected OUs
@@ -130,20 +140,6 @@ OrganisationUnitTree.propTypes = {
      * and the component unmounts
      */
     onUnitUnloaded: propTypes.func,
-
-    /**
-     * Called with { path: string }
-     * after a unit's data has been
-     * forcefully reloaded
-     */
-    onForceReloadDone: propTypes.func,
-
-    /**
-     * Called with { path: string, error: Error }
-     * after a unit's data couldn't be
-     * forcefully reloaded
-     */
-    onForceReloadError: propTypes.func,
 }
 
 OrganisationUnitTree.defaultProps = {

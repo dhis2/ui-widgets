@@ -43,23 +43,12 @@ class _OrgUnitTree extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const {
-            path,
-            selected,
-            forceReload,
-            onForceReloadDone,
-            onForceReloadError,
-            singleSelectionOnly,
-        } = this.props
+        const { path, selected, forceReload, singleSelectionOnly } = this.props
 
         if (prevProps.forceReload !== forceReload) {
-            const pathInForceReload = props.forceReload.indexOf(path) !== -1
-
-            if (pathInForceReload) {
+            ;(Array.isArray(props.forceReload) ||
+                props.forceReload.indexOf(path) !== -1) &&
                 this.loadData()
-                    .then(() => onForceReloadDone({ path }))
-                    .catch(error => onForceReloadError({ path, error }))
-            }
         }
 
         if (prevProps.selected !== this.props.selected) {
@@ -200,11 +189,13 @@ const OrgUnitTree = ({
     expanded,
     onChange,
     singleSelectionOnly,
+    forceReload,
     onExpand,
     onCollapse,
     onUnitLoaded,
     onUnitUnloaded,
 }) => {
+    const [reloadId, setReloadId] = useState(0)
     const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
     const { loading, error, data = { node: {} } } = useOrgData(id)
@@ -222,6 +213,14 @@ const OrgUnitTree = ({
         !loading && onUnitUnloaded && onUnitLoaded({ path })
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
+
+    useEffect(
+        () =>
+            Array.isArray(forceReload) &&
+            forceReload.indexOf(path) !== -1 &&
+            setReloadId(reloadId + 1),
+        [forceReload]
+    )
 
     const content = children.length
         ? !loading &&
@@ -259,6 +258,7 @@ const OrgUnitTree = ({
 
     return (
         <Node
+            key={reloadId}
             open={open}
             onOpen={onToggleOpen}
             onClose={onToggleOpen}
@@ -275,7 +275,11 @@ OrgUnitTree.propTypes = {
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
-    forceReloaded: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    forceReloaded: propTypes.oneOfType([
+        propTypes.arrayOf(orgUnitPathPropValidator),
+        propTypes.bool,
+    ]),
 
     singleSelectionOnly: propTypes.bool,
 
@@ -283,8 +287,6 @@ OrgUnitTree.propTypes = {
     onCollapse: propTypes.func,
     onUnitLoaded: propTypes.func,
     onUnitUnloaded: propTypes.func,
-    onForceReloadDone: propTypes.func,
-    onForceReloadError: propTypes.func,
 }
 
 export { OrgUnitTree }

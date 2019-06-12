@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { OrganisationUnitTree } from '../src/OrganisationUnitTree'
 import { CustomDataProvider } from '@dhis2/app-runtime'
@@ -92,6 +92,25 @@ const Test = props => {
     )
 }
 
+const ForceReloadAll = ({ delay }) => {
+    const [forceReload, setForceReload] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => setForceReload(true), delay)
+    }, [])
+
+    return (
+        <OrganisationUnitTree
+            forceReload={forceReload}
+            name="Root org unit"
+            roots={['/A0000000000']}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+            selected={['/A0000000000/A0000000001/A0000000003']}
+        />
+    )
+}
+
 storiesOf('OrganisationUnitTree', module)
     .addDecorator(fn => (
         <CustomDataProvider data={customData}>{fn()}</CustomDataProvider>
@@ -139,5 +158,6 @@ storiesOf('OrganisationUnitTree', module)
             initiallyExpanded={['/A0000000000']}
         />
     ))
+    .add('Force reload all', () => <ForceReloadAll delay={2000} />)
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)

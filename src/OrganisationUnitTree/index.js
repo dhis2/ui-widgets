@@ -1,5 +1,5 @@
 import { Checkbox, Tree } from '@dhis2/ui-core'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import propTypes from 'prop-types'
 
 import {
@@ -14,6 +14,7 @@ const OrganisationUnitTree = ({
     roots,
     selected,
     initiallyExpanded,
+    forceReload,
     onChange,
     openFirstLevel,
     singleSelectionOnly,
@@ -33,9 +34,9 @@ const OrganisationUnitTree = ({
     )
     const [reloadId, setReloadId] = useState(0)
 
-    useEffect(() => forceReload === true && setReloadId(reloadId + 1), [
-        forceReload,
-    ])
+    useEffect(() => {
+        forceReload === true && setReloadId(reloadId + 1)
+    }, [forceReload])
 
     return (
         <div key={reloadId}>
@@ -89,15 +90,10 @@ OrganisationUnitTree.propTypes = {
 
     /**
      * When set to "true", everything will be reloaded.
-     * When "forceReload" is an array, every path that's
-     * inside the array will be reloaded.
-     * In order to load it again after reloading, the path
-     * has to be removed and added again
+     * In order to load it again after reloading,
+     * "forceReload" has to be set to false and then to true again
      */
-    forceReload: propTypes.oneOfType([
-        propTypes.arrayOf(orgUnitPathPropValidator),
-        propTypes.bool,
-    ]),
+    forceReload: propTypes.bool,
 
     /**
      * An array of paths of selected OUs

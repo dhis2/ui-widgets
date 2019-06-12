@@ -189,13 +189,11 @@ const OrgUnitTree = ({
     expanded,
     onChange,
     singleSelectionOnly,
-    forceReload,
     onExpand,
     onCollapse,
     onUnitLoaded,
     onUnitUnloaded,
 }) => {
-    const [reloadId, setReloadId] = useState(0)
     const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
     const { loading, error, data = { node: {} } } = useOrgData(id)
@@ -213,14 +211,6 @@ const OrgUnitTree = ({
         !loading && onUnitUnloaded && onUnitLoaded({ path })
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
-
-    useEffect(
-        () =>
-            Array.isArray(forceReload) &&
-            forceReload.indexOf(path) !== -1 &&
-            setReloadId(reloadId + 1),
-        [forceReload]
-    )
 
     const content = children.length
         ? !loading &&
@@ -258,7 +248,6 @@ const OrgUnitTree = ({
 
     return (
         <Node
-            key={reloadId}
             open={open}
             onOpen={onToggleOpen}
             onClose={onToggleOpen}
@@ -275,11 +264,6 @@ OrgUnitTree.propTypes = {
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
-
-    forceReloaded: propTypes.oneOfType([
-        propTypes.arrayOf(orgUnitPathPropValidator),
-        propTypes.bool,
-    ]),
 
     singleSelectionOnly: propTypes.bool,
 

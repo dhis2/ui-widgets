@@ -43,7 +43,7 @@ const OrganisationUnitTree = ({
             {(Array.isArray(roots) ? roots : [roots]).map(root => (
                 <OrgUnitTree
                     key={root}
-                    path={root}
+                    path={`/${root}`}
                     onChange={onChange}
                     expanded={expanded}
                     selected={selected}

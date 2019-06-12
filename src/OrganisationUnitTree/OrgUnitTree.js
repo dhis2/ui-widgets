@@ -213,26 +213,29 @@ const OrgUnitTree = ({
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
 
-    const content = children.length
-        ? !loading &&
-          !error &&
-          open &&
-          children.map(child => (
-              <OrgUnitTree
-                  key={child.id}
-                  path={`${path}/${child.id}`}
-                  selected={selected}
-                  expanded={expanded}
-                  onChange={onChange}
-                  singleSelectionOnly={singleSelectionOnly}
-                  disableSelection={disableSelection}
-                  onExpand={onExpand}
-                  onCollapse={onCollapse}
-                  onUnitLoaded={onUnitLoaded}
-                  onUnitUnloaded={onUnitUnloaded}
-              />
-          ))
-        : undefined
+    const content = children.length ? (
+        !loading && !error && open ? (
+            children.map(child => (
+                <OrgUnitTree
+                    key={child.id}
+                    path={`${path}/${child.id}`}
+                    selected={selected}
+                    expanded={expanded}
+                    onChange={onChange}
+                    singleSelectionOnly={singleSelectionOnly}
+                    disableSelection={disableSelection}
+                    onExpand={onExpand}
+                    onCollapse={onCollapse}
+                    onUnitLoaded={onUnitLoaded}
+                    onUnitUnloaded={onUnitUnloaded}
+                />
+            ))
+        ) : (
+            <span />
+        )
+    ) : (
+        undefined
+    )
 
     const label = (
         <Label
@@ -243,6 +246,7 @@ const OrgUnitTree = ({
             checked={checked}
             onChange={onChange}
             displayName={displayName}
+            onToggleOpen={onToggleOpen}
             disableSelection={disableSelection}
             singleSelectionOnly={singleSelectionOnly}
             hasSelectedDescendants={hasSelectedDescendants}

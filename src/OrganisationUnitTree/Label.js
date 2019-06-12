@@ -4,8 +4,13 @@ import propTypes from 'prop-types'
 import css from 'styled-jsx/css'
 import cx from 'classnames'
 
-const DisabledSelectionLabel = ({ label, loading }) => (
-    <SingleSelectionLabel checked={false} loading={loading} label={label} />
+const DisabledSelectionLabel = ({ label, loading, onToggleOpen }) => (
+    <SingleSelectionLabel
+        checked={false}
+        loading={loading}
+        label={label}
+        onChange={onToggleOpen}
+    />
 )
 
 DisabledSelectionLabel.propTypes = {
@@ -91,6 +96,7 @@ const Label = ({
     checked,
     onChange,
     displayName,
+    onToggleOpen,
     disableSelection,
     singleSelectionOnly,
     hasSelectedDescendants,
@@ -108,7 +114,11 @@ const Label = ({
             singleSelectionOnly={singleSelectionOnly}
         />
     ) : disableSelection ? (
-        <DisabledSelectionLabel label={label} loading={loading} />
+        <DisabledSelectionLabel
+            label={label}
+            loading={loading}
+            onToggleOpen={onToggleOpen}
+        />
     ) : singleSelectionOnly ? (
         <SingleSelectionLabel
             checked={checked}

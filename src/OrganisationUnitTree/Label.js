@@ -4,6 +4,15 @@ import propTypes from 'prop-types'
 import css from 'styled-jsx/css'
 import cx from 'classnames'
 
+const DisabledSelectionLabel = ({ label, loading }) => (
+    <SingleSelectionLabel checked={false} loading={loading} label={label} />
+)
+
+DisabledSelectionLabel.propTypes = {
+    label: propTypes.string.isRequired,
+    loading: propTypes.bool,
+}
+
 /**
  * @TODO: Use correct styles for background when checked
  */
@@ -43,7 +52,8 @@ const SingleSelectionLabel = ({ checked, label, onChange, loading }) => (
 
 SingleSelectionLabel.propTypes = {
     label: propTypes.string.isRequired,
-    onClick: propTypes.func.isRequired,
+    onClick: propTypes.func,
+    loading: propTypes.bool,
 }
 
 const ErrorMessage = ({ id, error, singleSelectionOnly }) => (
@@ -67,6 +77,12 @@ const ErrorMessage = ({ id, error, singleSelectionOnly }) => (
     </span>
 )
 
+ErrorMessage.propTypes = {
+    id: propTypes.string.isRequired,
+    error: propTypes.shape({ message: propTypes.string }).isRequired,
+    singleSelectionOnly: propTypes.bool,
+}
+
 const Label = ({
     id,
     path,
@@ -75,6 +91,7 @@ const Label = ({
     checked,
     onChange,
     displayName,
+    disableSelection,
     singleSelectionOnly,
     hasSelectedDescendants,
 }) => {
@@ -90,6 +107,8 @@ const Label = ({
             error={error}
             singleSelectionOnly={singleSelectionOnly}
         />
+    ) : disableSelection ? (
+        <DisabledSelectionLabel label={label} loading={loading} />
     ) : singleSelectionOnly ? (
         <SingleSelectionLabel
             checked={checked}
@@ -111,7 +130,5 @@ const Label = ({
         />
     )
 }
-
-Label.propTypes = {}
 
 export { Label }

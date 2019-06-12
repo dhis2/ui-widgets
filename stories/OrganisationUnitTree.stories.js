@@ -175,7 +175,18 @@ storiesOf('OrganisationUnitTree', module)
             initiallyExpanded={['/A0000000000']}
         />
     ))
+    .add('No selection', () => (
+        <OrganisationUnitTree
+            disableSelection
+            name="Root org unit"
+            roots={['A0000000000']}
+            onChange={console.log.bind(null, 'onChange')}
+            selected={['/A0000000000/A0000000001']}
+            initiallyExpanded={['/A0000000000']}
+        />
+    ))
     .add('Force reload all', () => <ForceReloadAll delay={2000} />)
     .add('Replace roots', () => <ReplaceRoots delay={1000} />)
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)
+    .add('DX: selection disabled', () => <Test disableSelection />)

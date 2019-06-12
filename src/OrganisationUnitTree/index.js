@@ -18,6 +18,7 @@ const OrganisationUnitTree = ({
     onChange,
     openFirstLevel,
     singleSelectionOnly,
+    disableSelection,
     onExpand,
     onCollapse,
     onUnitLoaded,
@@ -48,6 +49,7 @@ const OrganisationUnitTree = ({
                     expanded={expanded}
                     selected={selected}
                     singleSelectionOnly={singleSelectionOnly}
+                    disableSelection={disableSelection}
                     onExpand={handleExpand}
                     onCollapse={handleCollapse}
                     onUnitLoaded={onUnitLoaded}
@@ -87,6 +89,11 @@ OrganisationUnitTree.propTypes = {
      * and only the first selected path in `selected` will be highlighted
      */
     singleSelectionOnly: propTypes.bool,
+
+    /**
+     * When set to true, no unit can be selected
+     */
+    disableSelection: propTypes.bool,
 
     /**
      * When set to "true", everything will be reloaded.

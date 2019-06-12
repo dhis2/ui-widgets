@@ -189,6 +189,7 @@ const OrgUnitTree = ({
     expanded,
     onChange,
     singleSelectionOnly,
+    disableSelection,
     onExpand,
     onCollapse,
     onUnitLoaded,
@@ -224,6 +225,7 @@ const OrgUnitTree = ({
                   expanded={expanded}
                   onChange={onChange}
                   singleSelectionOnly={singleSelectionOnly}
+                  disableSelection={disableSelection}
                   onExpand={onExpand}
                   onCollapse={onCollapse}
                   onUnitLoaded={onUnitLoaded}
@@ -241,6 +243,7 @@ const OrgUnitTree = ({
             checked={checked}
             onChange={onChange}
             displayName={displayName}
+            disableSelection={disableSelection}
             singleSelectionOnly={singleSelectionOnly}
             hasSelectedDescendants={hasSelectedDescendants}
         />
@@ -266,6 +269,7 @@ OrgUnitTree.propTypes = {
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
 
     singleSelectionOnly: propTypes.bool,
+    disableSelection: propTypes.bool,
 
     onExpand: propTypes.func,
     onCollapse: propTypes.func,

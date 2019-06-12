@@ -1446,10 +1446,10 @@
   resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-1.2.0.tgz#87e22d817a13d45a7d89d854e6152cfd959ec55d"
   integrity sha512-2JOKPYIdNVpb6vVwuqmO+1ERelUdOYqFgWJDD2xnMNWYhNOPxvqi8v5rPLaOfTsUWeQ0RgBukPfRRJbBSqkipw==
 
-"@dhis2/cli-helpers-engine@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/cli-helpers-engine/-/cli-helpers-engine-1.2.0.tgz#ffec930cf57668aa29c91de3d871d7898ac915b7"
-  integrity sha512-zITy3oTErzjdtqBjd1VklovliJOJxGCV2HRcHCm9aA+aHuBmH0svwh7snJFH0Lvma0/EayCFcFBywSgtJM8N0Q==
+"@dhis2/cli-helpers-engine@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@dhis2/cli-helpers-engine/-/cli-helpers-engine-1.2.1.tgz#9dbe6a0621c741863570113158c68079a520db2f"
+  integrity sha512-+hM4IMcjiS67kTW9KkcPB6GLTDAly3qLTHGnar3OvrhYHNjaFF+7EZHhigEtvcFG15sKBLjefOexoEWR0+rw/A==
   dependencies:
     chalk "^2.4.2"
     mkdirp "^0.5.1"
@@ -1459,21 +1459,24 @@
     update-notifier "^3.0.0"
     yargs "^13.1.0"
 
-"@dhis2/cli-style@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@dhis2/cli-style/-/cli-style-3.2.2.tgz#e4baf9b9b568b9b0760908a2545e82da145e881b"
-  integrity sha512-+3rjhXG+UkmW5nw3cLPA8/42cY3vWT1tW9o7WvaC0BvWLNAD7tByJ+b1I1/km5DiqQ/HsSRmjpF25OvFvoN3Ew==
+"@dhis2/cli-style@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@dhis2/cli-style/-/cli-style-3.3.1.tgz#3d00caa84f734de47d499adab1aa3e97099f22e4"
+  integrity sha512-vIkojX/KZzxFAk8YY5P7f9ywFImZGH6hQPjXlfC+ROPnsg1hdCVr+Y3TDTY+fsh4HxR7uyDIU9qaqQURF9lbUA==
   dependencies:
     "@commitlint/config-conventional" "^7.6.0"
     "@commitlint/format" "^7.6.1"
     "@commitlint/lint" "^7.6.0"
     "@commitlint/load" "^7.6.2"
     "@commitlint/read" "^7.6.0"
-    "@dhis2/cli-helpers-engine" "1.2.0"
+    "@dhis2/cli-helpers-engine" "1.2.1"
     babel-eslint "^10.0.1"
+    chalk "^2.4.2"
     eslint "^5.16.0"
+    fs-extra "^8.0.1"
     perfy "^1.1.5"
     prettier "^1.15.3"
+    semver "^6.0.0"
     yargs "^13.1.0"
 
 "@dhis2/d2-i18n-extract@1.0.8":
@@ -1503,10 +1506,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/ui-core@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-2.5.0.tgz#95ce427ba27ece993988b7edf5c3ba0b22a4d5b9"
-  integrity sha512-/N8snrg1KmR1xN/prpLk0CSSECtC+O6bUTkx3zc120UMuwEbIltK/akXC3VUeljSbpTZFYoP0zrpNh+YwzN15A==
+"@dhis2/ui-core@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-3.1.0.tgz#cd6b075b3df68e05148fbd635dc4721a67f5773c"
+  integrity sha512-/GVnsqpBdbVExDUSdGbTCC7vj527HyFeyVNz69BVNAYg26epdI1MDJ/GssDRQQ/AuiYAp9GAflVR0n4U7BSj/A==
   dependencies:
     classnames "^2.2.6"
     styled-jsx "^3.2.1"
@@ -5176,6 +5179,15 @@ fs-extra@^7.0.0, fs-extra@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
   integrity sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
+fs-extra@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.0.1.tgz#90294081f978b1f182f347a440a209154344285b"
+  integrity sha512-W+XLrggcDzlle47X/XnS7FXrXu9sDo+Ze9zpndeBxdgv88FHLm1HtmkhEwavruS6koanBjp098rUpHs65EmG7A==
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -9041,7 +9053,7 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.5.0, semver@^5.6.0:
+"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
@@ -9050,11 +9062,6 @@ semver@6.0.0, semver@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.0.0.tgz#05e359ee571e5ad7ed641a6eec1e547ba52dea65"
   integrity sha512-0UewU+9rFapKFnlbirLi3byoOuhrSsli/z/ihNnvM24vgF+8sNBiI1LZPBSH9wJKUwaUbw+s3hToDLCXkrghrQ==
-
-semver@^5.0.3, semver@^5.4.1, semver@^5.5.1:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
-  integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
 
 send@0.16.2:
   version "0.16.2"

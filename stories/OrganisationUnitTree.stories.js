@@ -75,7 +75,7 @@ const Test = props => {
     return (
         <OrganisationUnitTree
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             selected={selected}
             onChange={onChange(
                 selected,
@@ -103,10 +103,27 @@ const ForceReloadAll = ({ delay }) => {
         <OrganisationUnitTree
             forceReload={forceReload}
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
             initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
             selected={['/A0000000000/A0000000001/A0000000003']}
+        />
+    )
+}
+
+const ReplaceRoots = ({ delay }) => {
+    const [roots, setRoots] = useState(['A0000000000'])
+
+    useEffect(() => {
+        setTimeout(() => setRoots(['A0000000001']), delay)
+    }, [])
+
+    return (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={roots}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000001']}
         />
     )
 }
@@ -118,14 +135,14 @@ storiesOf('OrganisationUnitTree', module)
     .add('Collapsed', () => (
         <OrganisationUnitTree
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
         />
     ))
     .add('Expanded', () => (
         <OrganisationUnitTree
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
             initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
         />
@@ -133,7 +150,7 @@ storiesOf('OrganisationUnitTree', module)
     .add('Selected multiple', () => (
         <OrganisationUnitTree
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000', '/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
@@ -142,7 +159,7 @@ storiesOf('OrganisationUnitTree', module)
     .add('Indeterminate', () => (
         <OrganisationUnitTree
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
@@ -152,12 +169,13 @@ storiesOf('OrganisationUnitTree', module)
         <OrganisationUnitTree
             singleSelectionOnly
             name="Root org unit"
-            roots={['/A0000000000']}
+            roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
             selected={['/A0000000000/A0000000001']}
             initiallyExpanded={['/A0000000000']}
         />
     ))
     .add('Force reload all', () => <ForceReloadAll delay={2000} />)
+    .add('Replace roots', () => <ReplaceRoots delay={1000} />)
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)

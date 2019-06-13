@@ -30,6 +30,7 @@ const OrgUnitTree = ({
     onChange,
     disableSelection,
     singleSelectionOnly,
+    orgUnitsPathsToInclude,
     idsThatShouldBeReloaded,
     onExpand,
     onCollapse,
@@ -38,8 +39,15 @@ const OrgUnitTree = ({
 }) => {
     const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
-    const { loading, error, data = { node: {} } } = useOrgData(id)
-    const { children = [], displayName = '' } = data.node
+    const { loading, error, data = { node: { children: [] } } } = useOrgData(id)
+    const { displayName = '' } = data.node
+    const children = data.node.children.filter(
+        child =>
+            !orgUnitsPathsToInclude.length ||
+            orgUnitsPathsToInclude.some(
+                pathToInclude => !!pathToInclude.match(`${path}/${child.id}`)
+            )
+    )
     const childIds = useChildIds(children, idsThatShouldBeReloaded)
     const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
@@ -71,6 +79,7 @@ const OrgUnitTree = ({
                     onChange={onChange}
                     disableSelection={disableSelection}
                     singleSelectionOnly={singleSelectionOnly}
+                    orgUnitsPathsToInclude={orgUnitsPathsToInclude}
                     idsThatShouldBeReloaded={idsThatShouldBeReloaded}
                     onExpand={onExpand}
                     onCollapse={onCollapse}
@@ -119,6 +128,7 @@ OrgUnitTree.propTypes = {
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
+    orgUnitsPathsToInclude: propTypes.arrayOf(orgUnitPathPropValidator),
 
     idsThatShouldBeReloaded: propTypes.arrayOf(orgUnitIdPropValidator),
 

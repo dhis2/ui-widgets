@@ -20,6 +20,7 @@ const OrganisationUnitTree = ({
     disableSelection,
     initiallyExpanded,
     singleSelectionOnly,
+    orgUnitsPathsToInclude,
     idsThatShouldBeReloaded,
     onExpand,
     onCollapse,
@@ -43,22 +44,26 @@ const OrganisationUnitTree = ({
 
     return (
         <div key={reloadId}>
-            {(Array.isArray(roots) ? roots : [roots]).map(root => (
-                <OrgUnitTree
-                    key={root}
-                    path={`/${root}`}
-                    onChange={onChange}
-                    expanded={expanded}
-                    selected={selected}
-                    disableSelection={disableSelection}
-                    singleSelectionOnly={singleSelectionOnly}
-                    idsThatShouldBeReloaded={idsThatShouldBeReloaded}
-                    onExpand={handleExpand}
-                    onCollapse={handleCollapse}
-                    onUnitLoaded={onUnitLoaded}
-                    onUnitUnloaded={onUnitUnloaded}
-                />
-            ))}
+            {(Array.isArray(roots) ? roots : [roots]).map(root =>
+                !orgUnitsPathsToInclude.length ||
+                orgUnitsPathsToInclude.some(path => path.match(root)) ? (
+                    <OrgUnitTree
+                        key={root}
+                        path={`/${root}`}
+                        onChange={onChange}
+                        expanded={expanded}
+                        selected={selected}
+                        disableSelection={disableSelection}
+                        singleSelectionOnly={singleSelectionOnly}
+                        orgUnitsPathsToInclude={orgUnitsPathsToInclude}
+                        idsThatShouldBeReloaded={idsThatShouldBeReloaded}
+                        onExpand={handleExpand}
+                        onCollapse={handleCollapse}
+                        onUnitLoaded={onUnitLoaded}
+                        onUnitUnloaded={onUnitUnloaded}
+                    />
+                ) : null
+            )}
         </div>
     )
 }
@@ -123,6 +128,13 @@ OrganisationUnitTree.propTypes = {
     initiallyExpanded: propTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
+     * All organisation units with a path that inclused the provided
+     * paths will be shown. All others will not be rendered.
+     * When not provided, all org units will be shown.
+     */
+    orgUnitsPathsToInclude: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    /**
      * All units with ids (not paths!) provided
      * to "idsThatShouldBeReloaded" will be reloaded
      * In order to reload an id twice, the array must be changed
@@ -163,6 +175,7 @@ OrganisationUnitTree.propTypes = {
 OrganisationUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
+    orgUnitsPathsToInclude: [],
     idsThatShouldBeReloaded: [],
     openFirstLevel: true,
 }

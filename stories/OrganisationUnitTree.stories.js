@@ -182,6 +182,32 @@ storiesOf('OrganisationUnitTree', module)
             initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
         />
     ))
+    .add('Multiple roots', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['A0000000000', 'A0000000001']}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+        />
+    ))
+    .add('Filtered (root)', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['A0000000000', 'A0000000001']}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+            orgUnitsPathsToInclude={['/A0000000000']}
+        />
+    ))
+    .add('Filtered', () => (
+        <OrganisationUnitTree
+            name="Root org unit"
+            roots={['A0000000000']}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+            orgUnitsPathsToInclude={['/A0000000000/A0000000001']}
+        />
+    ))
     .add('Selected multiple', () => (
         <OrganisationUnitTree
             name="Root org unit"

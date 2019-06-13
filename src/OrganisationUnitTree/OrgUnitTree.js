@@ -15,8 +15,10 @@ import {
     getIdFromPath,
     isUnitSelected,
     orgUnitPathPropValidator,
+    orgUnitIdPropValidator,
     useOrgData,
     useSelectedDescendants,
+    useChildIds,
     toggleOpen,
 } from './helper'
 import { Label } from './Label'
@@ -26,8 +28,9 @@ const OrgUnitTree = ({
     selected,
     expanded,
     onChange,
-    singleSelectionOnly,
     disableSelection,
+    singleSelectionOnly,
+    idsThatShouldBeReloaded,
     onExpand,
     onCollapse,
     onUnitLoaded,
@@ -36,8 +39,9 @@ const OrgUnitTree = ({
     const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
     const { loading, error, data = { node: {} } } = useOrgData(id)
-    const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const { children = [], displayName = '' } = data.node
+    const childIds = useChildIds(children, idsThatShouldBeReloaded)
+    const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
         .length
 
@@ -47,7 +51,12 @@ const OrgUnitTree = ({
     )
 
     useEffect(() => {
-        !loading && onUnitUnloaded && onUnitLoaded({ path })
+        !loading &&
+            onUnitLoaded &&
+            onUnitLoaded({
+                path,
+                forced: idsThatShouldBeReloaded.indexOf(id) !== -1,
+            })
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
 
@@ -55,13 +64,14 @@ const OrgUnitTree = ({
         !loading && !error && open ? (
             children.map(child => (
                 <OrgUnitTree
-                    key={child.id}
+                    key={child.id + childIds[child.id]}
                     path={`${path}/${child.id}`}
                     selected={selected}
                     expanded={expanded}
                     onChange={onChange}
-                    singleSelectionOnly={singleSelectionOnly}
                     disableSelection={disableSelection}
+                    singleSelectionOnly={singleSelectionOnly}
+                    idsThatShouldBeReloaded={idsThatShouldBeReloaded}
                     onExpand={onExpand}
                     onCollapse={onCollapse}
                     onUnitLoaded={onUnitLoaded}
@@ -109,6 +119,8 @@ OrgUnitTree.propTypes = {
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    idsThatShouldBeReloaded: propTypes.arrayOf(orgUnitIdPropValidator),
 
     singleSelectionOnly: propTypes.bool,
     disableSelection: propTypes.bool,

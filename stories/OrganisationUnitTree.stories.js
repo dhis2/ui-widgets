@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { storiesOf } from '@storybook/react'
+import React, { Fragment, useEffect, useState } from 'react'
+import { storiesOf, addDecorator } from '@storybook/react'
 import { OrganisationUnitTree } from '../src/OrganisationUnitTree'
 import { CustomDataProvider } from '@dhis2/app-runtime'
+import { CssReset } from '@dhis2/ui-core'
+
+addDecorator(fn => (
+    <Fragment>
+        {fn()}
+        <CssReset />
+    </Fragment>
+))
 
 const customData = {
     'organisationUnits/A0000000000': {
@@ -111,6 +119,33 @@ const ForceReloadAll = ({ delay }) => {
     )
 }
 
+const ForceReloadIds = ({ delay }) => {
+    const [idsThatShouldBeReloaded, setIdsThatShouldBeReloaded] = useState([])
+
+    useEffect(() => {
+        setTimeout(() => setIdsThatShouldBeReloaded(['A0000000001']), delay)
+    }, [])
+
+    return (
+        <OrganisationUnitTree
+            idsThatShouldBeReloaded={idsThatShouldBeReloaded}
+            name="Root org unit"
+            roots={['A0000000000']}
+            onChange={console.log.bind(null, 'onChange')}
+            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+            selected={['/A0000000000/A0000000001/A0000000003']}
+            onUnitLoaded={({ path, forced }) =>
+                path.match(/A0000000001$/) &&
+                console.log(
+                    `Unit with path "${path}" loaded, was forced: ${
+                        forced ? 'yes' : 'no'
+                    }`
+                )
+            }
+        />
+    )
+}
+
 const ReplaceRoots = ({ delay }) => {
     const [roots, setRoots] = useState(['A0000000000'])
 
@@ -186,6 +221,7 @@ storiesOf('OrganisationUnitTree', module)
         />
     ))
     .add('Force reload all', () => <ForceReloadAll delay={2000} />)
+    .add('Forece reload one unit', () => <ForceReloadIds delay={2000} />)
     .add('Replace roots', () => <ReplaceRoots delay={1000} />)
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)

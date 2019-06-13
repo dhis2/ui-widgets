@@ -1,5 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDataQuery } from '@dhis2/app-runtime'
+
+const UNIT_ID_PATTERN = '[a-zA-Z][a-zA-Z0-9]{10}'
 
 /* eslint-disable */
 export const orgUnitPathPropValidator = (
@@ -9,9 +11,27 @@ export const orgUnitPathPropValidator = (
     location,
     propFullName
 ) => {
-    if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
+    if (!new RegExp(`(\/${UNIT_ID_PATTERN})+`).test(propValue[key])) {
         return new Error(
             `Invalid org unit path \`${
+                propValue[key]
+            }\` supplied to \`${compName}.${propFullName}\``
+        )
+    }
+}
+/* eslint-enable */
+
+/* eslint-disable */
+export const orgUnitIdPropValidator = (
+    propValue,
+    key,
+    compName,
+    location,
+    propFullName
+) => {
+    if (!new RegExp(`^${UNIT_ID_PATTERN}$`).test(propValue[key])) {
+        return new Error(
+            `Invalid org unit id \`${
                 propValue[key]
             }\` supplied to \`${compName}.${propFullName}\``
         )
@@ -42,6 +62,41 @@ export const useOrgData = id =>
 
 export const useSelectedDescendants = (path, selected) =>
     useMemo(() => findDescendantSelectedPaths(path, selected), [path, selected])
+
+export const useChildIds = (children, idsThatShouldBeReloaded) => {
+    const [childIds, setChildIds] = useState(
+        children.reduce(
+            (acc, cur) => ({
+                ...acc,
+                [cur.id]: 0,
+            }),
+            {}
+        )
+    )
+
+    useEffect(() => {
+        setChildIds(
+            children.reduce(
+                (acc, { id }) =>
+                    childIds.hasOwnProperty(id) ? acc : { ...acc, [id]: 0 },
+                childIds
+            )
+        )
+    }, [children])
+
+    useEffect(() => {
+        idsThatShouldBeReloaded.forEach(
+            id =>
+                childIds.hasOwnProperty(id) &&
+                setChildIds({
+                    ...childIds,
+                    [id]: childIds[id] + 1,
+                })
+        )
+    }, [idsThatShouldBeReloaded])
+
+    return childIds
+}
 
 export const isUnitSelected = (path, selected, singleSelectionOnly) =>
     -1 !== (singleSelectionOnly ? selected.slice(0, 1) : selected).indexOf(path)

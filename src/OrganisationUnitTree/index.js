@@ -3,22 +3,24 @@ import React, { useCallback, useEffect, useState } from 'react'
 import propTypes from 'prop-types'
 
 import {
-    orgUnitPathPropValidator,
     expandUnit,
     collapseUnit,
     getIdFromPath,
+    orgUnitIdPropValidator,
+    orgUnitPathPropValidator,
 } from './helper'
 import { OrgUnitTree } from './OrgUnitTree'
 
 const OrganisationUnitTree = ({
     roots,
     selected,
-    initiallyExpanded,
-    forceReload,
     onChange,
+    forceReload,
     openFirstLevel,
-    singleSelectionOnly,
     disableSelection,
+    initiallyExpanded,
+    singleSelectionOnly,
+    idsThatShouldBeReloaded,
     onExpand,
     onCollapse,
     onUnitLoaded,
@@ -48,8 +50,9 @@ const OrganisationUnitTree = ({
                     onChange={onChange}
                     expanded={expanded}
                     selected={selected}
-                    singleSelectionOnly={singleSelectionOnly}
                     disableSelection={disableSelection}
+                    singleSelectionOnly={singleSelectionOnly}
+                    idsThatShouldBeReloaded={idsThatShouldBeReloaded}
                     onExpand={handleExpand}
                     onCollapse={handleCollapse}
                     onUnitLoaded={onUnitLoaded}
@@ -120,6 +123,18 @@ OrganisationUnitTree.propTypes = {
     initiallyExpanded: propTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
+     * All units with ids (not paths!) provided
+     * to "idsThatShouldBeReloaded" will be reloaded
+     * In order to reload an id twice, the array must be changed
+     * while keeping the id to reload in the array
+     *
+     * Note: in order to know which unit has been forced to reload,
+     * the first argument of the "onUnitLoaded" callback contains
+     * a "forced" property
+     */
+    idsThatShouldBeReloaded: propTypes.arrayOf(orgUnitIdPropValidator),
+
+    /**
      * Called with { path: string }
      * with the path of the parent of the level opened
      */
@@ -132,7 +147,7 @@ OrganisationUnitTree.propTypes = {
     onCollapse: propTypes.func,
 
     /**
-     * Called with { path: string }
+     * Called with { path: string; forced: boolean; }
      * after a unit's data has been loaded
      */
     onUnitLoaded: propTypes.func,
@@ -148,6 +163,7 @@ OrganisationUnitTree.propTypes = {
 OrganisationUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
+    idsThatShouldBeReloaded: [],
     openFirstLevel: true,
 }
 

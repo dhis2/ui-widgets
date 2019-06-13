@@ -23,20 +23,22 @@ import {
 } from './helper'
 import { Label } from './Label'
 
-const OrgUnitTree = ({
-    path,
-    selected,
-    expanded,
-    onChange,
-    disableSelection,
-    singleSelectionOnly,
-    orgUnitsPathsToInclude,
-    idsThatShouldBeReloaded,
-    onExpand,
-    onCollapse,
-    onUnitLoaded,
-    onUnitUnloaded,
-}) => {
+const OrgUnitTree = props => {
+    const {
+        path,
+        selected,
+        expanded,
+        onChange,
+        disableSelection,
+        singleSelectionOnly,
+        orgUnitsPathsToInclude,
+        idsThatShouldBeReloaded,
+        onExpand,
+        onCollapse,
+        onUnitLoaded,
+        onUnitUnloaded,
+    } = props
+
     const id = useMemo(() => getIdFromPath(path), path)
     const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
     const { loading, error, data = { node: { children: [] } } } = useOrgData(id)
@@ -52,7 +54,6 @@ const OrgUnitTree = ({
     const checked = isUnitSelected(path, selected, singleSelectionOnly)
     const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
         .length
-
     const onToggleOpen = useCallback(
         toggleOpen(open, path, children, onExpand, onCollapse, setOpen),
         [open, path, children, onExpand, onCollapse, setOpen]
@@ -68,54 +69,27 @@ const OrgUnitTree = ({
         return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
     }, [loading, id, path])
 
-    const content = children.length ? (
-        !loading && !error && open ? (
+    const showChildren = !loading && !error && open
+    const content =
+        !!children.length &&
+        (showChildren ? (
             children.map(child => (
                 <OrgUnitTree
+                    {...props}
                     key={child.id + childIds[child.id]}
                     path={`${path}/${child.id}`}
-                    selected={selected}
-                    expanded={expanded}
-                    onChange={onChange}
-                    disableSelection={disableSelection}
-                    singleSelectionOnly={singleSelectionOnly}
-                    orgUnitsPathsToInclude={orgUnitsPathsToInclude}
-                    idsThatShouldBeReloaded={idsThatShouldBeReloaded}
-                    onExpand={onExpand}
-                    onCollapse={onCollapse}
-                    onUnitLoaded={onUnitLoaded}
-                    onUnitUnloaded={onUnitUnloaded}
                 />
             ))
         ) : (
             <span />
-        )
-    ) : (
-        undefined
-    )
-
-    const label = (
-        <Label
-            id={id}
-            path={path}
-            error={error}
-            loading={loading}
-            checked={checked}
-            onChange={onChange}
-            displayName={displayName}
-            onToggleOpen={onToggleOpen}
-            disableSelection={disableSelection}
-            singleSelectionOnly={singleSelectionOnly}
-            hasSelectedDescendants={hasSelectedDescendants}
-        />
-    )
+        ))
 
     return (
         <Node
             open={open}
             onOpen={onToggleOpen}
             onClose={onToggleOpen}
-            component={label}
+            component={<Label {...props} />}
         >
             {content}
         </Node>

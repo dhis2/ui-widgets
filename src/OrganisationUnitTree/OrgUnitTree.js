@@ -89,7 +89,16 @@ const OrgUnitTree = props => {
             open={open}
             onOpen={onToggleOpen}
             onClose={onToggleOpen}
-            component={<Label {...props} />}
+            component={
+                <Label
+                    {...props}
+                    id={id}
+                    error={error}
+                    loading={loading}
+                    displayName={displayName}
+                    onToggleOpen={onToggleOpen}
+                />
+            }
         >
             {content}
         </Node>

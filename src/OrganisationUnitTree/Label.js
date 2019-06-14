@@ -141,4 +141,22 @@ const Label = ({
     )
 }
 
+Label.propTypes = {
+    id: propTypes.string.isRequired,
+    path: propTypes.string.isRequired,
+    displayName: propTypes.string.isRequired,
+
+    loading: propTypes.bool.isRequired,
+
+    onChange: propTypes.func.isRequired,
+    onToggleOpen: propTypes.func.isRequired,
+
+    error: propTypes.string,
+
+    checked: propTypes.bool,
+    disableSelection: propTypes.bool,
+    singleSelectionOnly: propTypes.bool,
+    hasSelectedDescendants: propTypes.bool,
+}
+
 export { Label }

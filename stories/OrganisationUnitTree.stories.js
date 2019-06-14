@@ -1,15 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { storiesOf, addDecorator } from '@storybook/react'
+import { storiesOf } from '@storybook/react'
 import { OrganisationUnitTree } from '../src/OrganisationUnitTree'
 import { CustomDataProvider } from '@dhis2/app-runtime'
 import { CssReset } from '@dhis2/ui-core'
-
-addDecorator(fn => (
-    <Fragment>
-        {fn()}
-        <CssReset />
-    </Fragment>
-))
 
 const customData = {
     'organisationUnits/A0000000000': {
@@ -247,7 +240,7 @@ storiesOf('OrganisationUnitTree', module)
         />
     ))
     .add('Force reload all', () => <ForceReloadAll delay={2000} />)
-    .add('Forece reload one unit', () => <ForceReloadIds delay={2000} />)
+    .add('Force reload one unit', () => <ForceReloadIds delay={2000} />)
     .add('Replace roots', () => <ReplaceRoots delay={1000} />)
     .add('DX: Test', () => <Test />)
     .add('DX: Single selection only', () => <Test singleSelectionOnly />)

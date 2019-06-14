@@ -4,6 +4,9 @@ import propTypes from 'prop-types'
 import css from 'styled-jsx/css'
 import cx from 'classnames'
 
+import { FolderOpen } from './icons/FolderOpen'
+import { FolderClosed } from './icons/FolderClosed'
+
 const DisabledSelectionLabel = ({ label, loading, onToggleOpen }) => (
     <SingleSelectionLabel
         checked={false}
@@ -91,6 +94,7 @@ ErrorMessage.propTypes = {
 const Label = ({
     id,
     path,
+    open,
     loading,
     error,
     checked,
@@ -107,37 +111,57 @@ const Label = ({
         !loading && onChange({ id, path, checked: newChecked }, event)
     }
 
-    return !loading && error ? (
-        <ErrorMessage
-            id={id}
-            error={error}
-            singleSelectionOnly={singleSelectionOnly}
-        />
-    ) : disableSelection ? (
-        <DisabledSelectionLabel
-            label={label}
-            loading={loading}
-            onToggleOpen={onToggleOpen}
-        />
-    ) : singleSelectionOnly ? (
-        <SingleSelectionLabel
-            checked={checked}
-            label={label}
-            onChange={onClick}
-            loading={loading}
-        >
-            {label}
-        </SingleSelectionLabel>
-    ) : (
-        <Checkbox
-            disabled={loading}
-            checked={checked}
-            name="org-unit"
-            value={id}
-            label={label}
-            indeterminate={!checked && hasSelectedDescendants}
-            onChange={onClick}
-        />
+    return (
+        <div className="a">
+            <span>{open ? <FolderOpen /> : <FolderClosed />}</span>
+
+            <span>
+                {!loading && error ? (
+                    <ErrorMessage
+                        id={id}
+                        error={error}
+                        singleSelectionOnly={singleSelectionOnly}
+                    />
+                ) : disableSelection ? (
+                    <DisabledSelectionLabel
+                        label={label}
+                        loading={loading}
+                        onToggleOpen={onToggleOpen}
+                    />
+                ) : singleSelectionOnly ? (
+                    <SingleSelectionLabel
+                        checked={checked}
+                        label={label}
+                        onChange={onClick}
+                        loading={loading}
+                    >
+                        {label}
+                    </SingleSelectionLabel>
+                ) : (
+                    <Checkbox
+                        disabled={loading}
+                        checked={checked}
+                        name="org-unit"
+                        value={id}
+                        label={label}
+                        indeterminate={!checked && hasSelectedDescendants}
+                        onChange={onClick}
+                    />
+                )}
+            </span>
+
+            <style jsx>{`
+                .a {
+                    display: flex;
+                }
+            `}</style>
+
+            <style jsx>{`
+                span {
+                    display: block;
+                }
+            `}</style>
+        </div>
     )
 }
 
@@ -146,6 +170,7 @@ Label.propTypes = {
     path: propTypes.string.isRequired,
     displayName: propTypes.string.isRequired,
 
+    open: propTypes.bool.isRequired,
     loading: propTypes.bool.isRequired,
 
     onChange: propTypes.func.isRequired,

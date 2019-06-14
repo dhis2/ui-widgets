@@ -93,6 +93,7 @@ const OrgUnitTree = props => {
                 <Label
                     {...props}
                     id={id}
+                    open={open}
                     error={error}
                     loading={loading}
                     displayName={displayName}

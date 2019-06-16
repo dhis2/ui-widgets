@@ -49,7 +49,7 @@
         "@storybook/addon-notes": "5.0.11",
         "@storybook/react": "5.0.11",
         "babel-loader": "^8.0.5",
-        "fs-extra": "^7.0.0",
+        "fs-extra": "^8.0.1",
         "husky": "^2.4.1",
         "react": "^16.8.6",
         "react-dev-utils": "^9.0.1",

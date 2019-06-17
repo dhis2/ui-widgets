@@ -6,6 +6,7 @@ import cx from 'classnames'
 
 import { FolderOpen } from './icons/FolderOpen'
 import { FolderClosed } from './icons/FolderClosed'
+import { Single } from './icons/Single'
 
 const DisabledSelectionLabel = ({ label, loading, onToggleOpen }) => (
     <SingleSelectionLabel
@@ -37,13 +38,7 @@ const SingleSelectionLabel = ({ checked, label, onChange, loading }) => (
                 line-height: 26px;
                 white-space: nowrap;
                 cursor: pointer;
-                -webkit-touch-callout: none; /* iOS Safari */
-                -webkit-user-select: none; /* Safari */
-                -khtml-user-select: none; /* Konqueror HTML */
-                -moz-user-select: none; /* Firefox */
-                -ms-user-select: none; /* Internet Explorer/Edge */
-                user-select: none; /* Non-prefixed version, currently
-                                                supported by Chrome and Opera */
+                user-select: none;
             }
 
             .checked {
@@ -99,6 +94,7 @@ const Label = ({
     error,
     checked,
     onChange,
+    hasChildren,
     displayName,
     onToggleOpen,
     disableSelection,
@@ -113,8 +109,6 @@ const Label = ({
 
     return (
         <div className="a">
-            <span>{open ? <FolderOpen /> : <FolderClosed />}</span>
-
             <span>
                 {!loading && error ? (
                     <ErrorMessage
@@ -146,6 +140,15 @@ const Label = ({
                         label={label}
                         indeterminate={!checked && hasSelectedDescendants}
                         onChange={onClick}
+                        icon={
+                            !hasChildren ? (
+                                <Single />
+                            ) : open ? (
+                                <FolderOpen />
+                            ) : (
+                                <FolderClosed />
+                            )
+                        }
                     />
                 )}
             </span>
@@ -172,6 +175,7 @@ Label.propTypes = {
 
     open: propTypes.bool.isRequired,
     loading: propTypes.bool.isRequired,
+    hasChildren: propTypes.bool.isRequired,
 
     onChange: propTypes.func.isRequired,
     onToggleOpen: propTypes.func.isRequired,

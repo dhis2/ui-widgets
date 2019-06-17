@@ -95,9 +95,12 @@ const OrgUnitTree = props => {
                     id={id}
                     open={open}
                     error={error}
+                    checked={checked}
                     loading={loading}
                     displayName={displayName}
+                    hasChildren={!!children.length}
                     onToggleOpen={onToggleOpen}
+                    hasSelectedDescendants={hasSelectedDescendants}
                 />
             }
         >

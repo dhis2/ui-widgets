@@ -84,10 +84,10 @@ const Test = props => {
                 props.singleSelectionOnly
             )}
             initiallyExpanded={['A0000000001/A0000000002']}
-            onExpand={console.log.bind(null, 'onExpand')}
-            onCollapse={console.log.bind(null, 'onCollapse')}
-            onUnitLoaded={console.log.bind(null, 'onUnitLoaded')}
-            onUnitUnloaded={console.log.bind(null, 'onUnitUnloaded')}
+            // onExpand={console.log.bind(null, 'onExpand')}
+            // onCollapse={console.log.bind(null, 'onCollapse')}
+            // onUnitLoaded={console.log.bind(null, 'onUnitLoaded')}
+            // onUnitUnloaded={console.log.bind(null, 'onUnitUnloaded')}
             {...props}
         />
     )
@@ -206,7 +206,10 @@ storiesOf('OrganisationUnitTree', module)
             name="Root org unit"
             roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
-            selected={['/A0000000000', '/A0000000000/A0000000001']}
+            selected={[
+                '/A0000000000/A0000000002',
+                '/A0000000000/A0000000001/A0000000003',
+            ]}
             initiallyExpanded={['/A0000000000']}
         />
     ))

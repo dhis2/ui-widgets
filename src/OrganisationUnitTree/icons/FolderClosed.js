@@ -1,4 +1,5 @@
 import React from 'react'
+import css from 'styled-jsx/css'
 
 export const FolderClosed = () => (
     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
@@ -16,5 +17,11 @@ export const FolderClosed = () => (
                 fill="#D5DDE5"
             />
         </g>
+
+        <style jsx>{`
+            svg {
+                margin: 3px 0;
+            }
+        `}</style>
     </svg>
 )

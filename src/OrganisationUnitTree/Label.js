@@ -95,6 +95,7 @@ const Label = ({
     checked,
     onChange,
     hasChildren,
+    highlighted,
     displayName,
     onToggleOpen,
     disableSelection,
@@ -107,8 +108,9 @@ const Label = ({
         !loading && onChange({ id, path, checked: newChecked }, event)
     }
 
+    /* @TODO Add proper highlighted style once spec exists */
     return (
-        <div className="a">
+        <div className={cx({ highlighted })}>
             <span>
                 {!loading && error ? (
                     <ErrorMessage
@@ -154,14 +156,16 @@ const Label = ({
             </span>
 
             <style jsx>{`
-                .a {
+                div {
                     display: flex;
                 }
-            `}</style>
 
-            <style jsx>{`
                 span {
                     display: block;
+                }
+
+                .highlighted :global(*) {
+                    text-decoration: underline;
                 }
             `}</style>
         </div>
@@ -183,6 +187,7 @@ Label.propTypes = {
     error: propTypes.string,
 
     checked: propTypes.bool,
+    highlighed: propTypes.bool,
     disableSelection: propTypes.bool,
     singleSelectionOnly: propTypes.bool,
     hasSelectedDescendants: propTypes.bool,

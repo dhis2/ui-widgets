@@ -25,18 +25,19 @@ import { Label } from './Label'
 
 const OrgUnitTree = props => {
     const {
-        path,
-        selected,
-        expanded,
-        onChange,
         disableSelection,
-        singleSelectionOnly,
-        orgUnitsPathsToInclude,
+        expanded,
+        highlighted,
         idsThatShouldBeReloaded,
-        onExpand,
+        onChange,
         onCollapse,
+        onExpand,
         onUnitLoaded,
         onUnitUnloaded,
+        orgUnitsPathsToInclude,
+        path,
+        selected,
+        singleSelectionOnly,
     } = props
 
     const id = useMemo(() => getIdFromPath(path), path)
@@ -58,6 +59,9 @@ const OrgUnitTree = props => {
         toggleOpen(open, path, children, onExpand, onCollapse, setOpen),
         [open, path, children, onExpand, onCollapse, setOpen]
     )
+    const isHighlighted = useMemo(() => highlighted.indexOf(path) !== -1, [
+        highlighted,
+    ])
 
     useEffect(() => {
         !loading &&
@@ -92,15 +96,16 @@ const OrgUnitTree = props => {
             component={
                 <Label
                     {...props}
-                    id={id}
-                    open={open}
-                    error={error}
                     checked={checked}
-                    loading={loading}
                     displayName={displayName}
+                    error={error}
                     hasChildren={!!children.length}
-                    onToggleOpen={onToggleOpen}
                     hasSelectedDescendants={hasSelectedDescendants}
+                    highlighted={isHighlighted}
+                    id={id}
+                    loading={loading}
+                    onToggleOpen={onToggleOpen}
+                    open={open}
                 />
             }
         >
@@ -115,6 +120,7 @@ OrgUnitTree.propTypes = {
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
+    highlighted: propTypes.arrayOf(orgUnitPathPropValidator),
     orgUnitsPathsToInclude: propTypes.arrayOf(orgUnitPathPropValidator),
 
     idsThatShouldBeReloaded: propTypes.arrayOf(orgUnitIdPropValidator),

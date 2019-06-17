@@ -16,6 +16,7 @@ const OrganisationUnitTree = ({
     selected,
     onChange,
     forceReload,
+    highlighted,
     openFirstLevel,
     disableSelection,
     initiallyExpanded,
@@ -53,6 +54,7 @@ const OrganisationUnitTree = ({
                         onChange={onChange}
                         expanded={expanded}
                         selected={selected}
+                        highlighted={highlighted}
                         disableSelection={disableSelection}
                         singleSelectionOnly={singleSelectionOnly}
                         orgUnitsPathsToInclude={orgUnitsPathsToInclude}
@@ -135,6 +137,21 @@ OrganisationUnitTree.propTypes = {
     orgUnitsPathsToInclude: propTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
+     * All units provided to "highlighted" as path will be visually
+     * highlighted.
+     *
+     * ==================
+     * Note:
+     * The d2-ui component used two props for this:
+     * * searchResults
+     * * highlightSearchResults
+     *
+     * Instead of activating/deactivating highlighting units,
+     * just provide the units or an empty array
+     */
+    highlighted: propTypes.arrayOf(orgUnitPathPropValidator),
+
+    /**
      * All units with ids (not paths!) provided
      * to "idsThatShouldBeReloaded" will be reloaded
      * In order to reload an id twice, the array must be changed
@@ -177,6 +194,7 @@ OrganisationUnitTree.defaultProps = {
     initiallyExpanded: [],
     orgUnitsPathsToInclude: [],
     idsThatShouldBeReloaded: [],
+    highlighted: [],
     openFirstLevel: true,
 }
 

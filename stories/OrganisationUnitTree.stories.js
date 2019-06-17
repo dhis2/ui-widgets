@@ -242,6 +242,16 @@ storiesOf('OrganisationUnitTree', module)
             initiallyExpanded={['/A0000000000']}
         />
     ))
+    .add('Highlighted', () => (
+        <OrganisationUnitTree
+            highlighted={['/A0000000000/A0000000001']}
+            name="Root org unit"
+            roots={['A0000000000']}
+            onChange={console.log.bind(null, 'onChange')}
+            selected={['/A0000000000/A0000000001']}
+            initiallyExpanded={['/A0000000000']}
+        />
+    ))
     .add('Force reload all', () => <ForceReloadAll delay={2000} />)
     .add('Force reload one unit', () => <ForceReloadIds delay={2000} />)
     .add('Replace roots', () => <ReplaceRoots delay={1000} />)

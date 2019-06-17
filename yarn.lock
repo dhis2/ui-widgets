@@ -1159,10 +1159,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/ui-core@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-3.1.0.tgz#cd6b075b3df68e05148fbd635dc4721a67f5773c"
-  integrity sha512-/GVnsqpBdbVExDUSdGbTCC7vj527HyFeyVNz69BVNAYg26epdI1MDJ/GssDRQQ/AuiYAp9GAflVR0n4U7BSj/A==
+"@dhis2/ui-core@3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-3.2.1.tgz#a2b52a3832a994d94c374a35bf8149688a200d52"
+  integrity sha512-9w5fJ9pCJjInc1y1irzCd7DTAbYBglC/Yg/dyMrkE5QLoBaI7feeI6wq1rEF0pL5B8pKc8j/ywcFr6KzDqS6Ng==
   dependencies:
     classnames "^2.2.6"
     styled-jsx "^3.2.1"

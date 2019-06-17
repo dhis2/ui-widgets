@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/dhis2/ui-widgets/compare/v1.0.4...v1.0.5) (2019-06-17)
+
+
+### Bug Fixes
+
+* the web-commons module is one step above the api ([#38](https://github.com/dhis2/ui-widgets/issues/38)) ([0d62012](https://github.com/dhis2/ui-widgets/commit/0d62012))
+
 ## [1.0.4](https://github.com/dhis2/ui-widgets/compare/v1.0.3...v1.0.4) (2019-06-05)
 
 

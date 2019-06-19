@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/ui-widgets",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
     "sideEffects": false,
@@ -43,7 +43,7 @@
         "@babel/preset-env": "^7.4.5",
         "@babel/preset-react": "^7.0.0",
         "@dhis2/app-runtime": "1.2.0",
-        "@dhis2/cli-style": "3.3.1",
+        "@dhis2/cli-style": "3.3.4",
         "@dhis2/d2-i18n-extract": "1.0.8",
         "@dhis2/d2-i18n-generate": "1.1.1",
         "@storybook/addon-notes": "5.0.11",
@@ -66,7 +66,7 @@
     },
     "dependencies": {
         "@dhis2/d2-i18n": "1.0.4",
-        "@dhis2/ui-core": "3.1.0",
+        "@dhis2/ui-core": "3.3.0",
         "classnames": "^2.2.6",
         "styled-jsx": "^3.2.1"
     },

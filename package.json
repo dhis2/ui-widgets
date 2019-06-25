@@ -50,7 +50,7 @@
         "@storybook/react": "5.1.9",
         "babel-loader": "^8.0.6",
         "fs-extra": "^8.0.1",
-        "husky": "^2.4.1",
+        "husky": "^2.5.0",
         "react": "^16.8.6",
         "react-dev-utils": "^9.0.1",
         "react-dom": "^16.8.6",

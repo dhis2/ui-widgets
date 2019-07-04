@@ -14,7 +14,7 @@ const customData = {
             keyUiLocale: 'en',
         },
     },
-    '../../dhis-web-commons/menu/getModules.action': {
+    '../dhis-web-commons/menu/getModules.action': {
         modules: [
             {
                 displayName: 'Dashboard',

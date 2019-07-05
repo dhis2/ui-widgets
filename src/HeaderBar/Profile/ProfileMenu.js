@@ -62,14 +62,23 @@ const list = [
     },
 ]
 
-const ProfileContents = ({ name, email, avatar }) => (
+const ProfileContents = ({ name, email, avatar, contextPath }) => (
     <Card>
         <div>
-            <ProfileHeader name={name} email={email} img={avatar} />
+            <ProfileHeader
+                name={name}
+                email={email}
+                img={avatar}
+                contextPath={contextPath}
+            />
             <Divider margin="13px 0 7px 0" />
             <ul>
                 {list.map(({ label, value, icon, link, target, nobase }) => (
-                    <a href={link} target={target} key={`h-p-${value}`}>
+                    <a
+                        href={nobase ? link : `${contextPath}${link}`}
+                        target={target}
+                        key={`h-p-${value}`}
+                    >
                         <MenuItem
                             key={`h-mi-${value}`}
                             label={label}
@@ -104,9 +113,14 @@ const ProfileContents = ({ name, email, avatar }) => (
     </Card>
 )
 
-export const ProfileMenu = ({ avatar, name, email }) => (
+export const ProfileMenu = ({ avatar, name, email, contextPath }) => (
     <div>
-        <ProfileContents name={name} email={email} avatar={avatar} />
+        <ProfileContents
+            name={name}
+            email={email}
+            avatar={avatar}
+            contextPath={contextPath}
+        />
         <style jsx>{`
             div {
                 z-index: 10000;

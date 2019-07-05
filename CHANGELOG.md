@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/dhis2/ui-widgets/compare/v1.0.6...v1.0.7) (2019-07-05)
+
+
+### Bug Fixes
+
+* **headerbar:** links and app icons ([#20](https://github.com/dhis2/ui-widgets/issues/20)) ([2758ce6](https://github.com/dhis2/ui-widgets/commit/2758ce6))
+
 ## [1.0.6](https://github.com/dhis2/ui-widgets/compare/v1.0.5...v1.0.6) (2019-06-19)
 
 

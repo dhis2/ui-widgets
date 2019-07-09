@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/dhis2/ui-widgets/compare/v1.0.7...v1.0.8) (2019-07-09)
+
+
+### Bug Fixes
+
+* adjust resource action path in headerbar ([#53](https://github.com/dhis2/ui-widgets/issues/53)) ([04fbdcd](https://github.com/dhis2/ui-widgets/commit/04fbdcd))
+
 ## [1.0.7](https://github.com/dhis2/ui-widgets/compare/v1.0.6...v1.0.7) (2019-07-05)
 
 

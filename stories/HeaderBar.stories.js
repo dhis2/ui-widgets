@@ -15,7 +15,7 @@ const customData = {
             keyUiLocale: 'en',
         },
     },
-    '../dhis-web-commons/menu/getModules.action': {
+    'action::menu/getModules': {
         modules: [
             {
                 name: 'dhis-web-dashboard',

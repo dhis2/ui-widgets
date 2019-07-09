@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { colors } from '@dhis2/ui-core'
@@ -34,6 +34,19 @@ export const HeaderBar = ({ appName, className }) => {
         },
     })
 
+    useEffect(() => {
+        const getPath = path =>
+            path.startsWith('http:') || path.startsWith('https:')
+                ? path
+                : `${data.systemInfo.contextPath}/api/${path}`
+
+        if (!loading && !error)
+            data.apps.modules.forEach(app => {
+                app.icon = getPath(app.icon)
+                app.defaultAction = getPath(app.defaultAction)
+            })
+    }, [data])
+
     if (!loading && !error) {
         // TODO: This will run every render which is probably wrong!  Also, setting the global locale shouldn't be done in the headerbar
         const locale = data.user.settings.keyUiLocale || 'en'
@@ -56,9 +69,16 @@ export const HeaderBar = ({ appName, className }) => {
                             data.notifications.unreadInterpretations
                         }
                         messages={data.notifications.unreadMessageConversations}
+                        contextPath={data.systemInfo.contextPath}
                     />
-                    <Apps apps={data.apps.modules} />
-                    <Profile user={data.user} />
+                    <Apps
+                        apps={data.apps.modules}
+                        contextPath={data.systemInfo.contextPath}
+                    />
+                    <Profile
+                        user={data.user}
+                        contextPath={data.systemInfo.contextPath}
+                    />
                 </>
             )}
 

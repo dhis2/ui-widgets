@@ -59,7 +59,7 @@
         "typeface-roboto": "^0.0.54"
     },
     "peerDependencies": {
-        "@dhis2/app-runtime": "^1.1.0",
+        "@dhis2/app-runtime": "^1.3.0",
         "prop-types": "^15",
         "react": "^16.8",
         "react-dom": "^16.8"

@@ -40,7 +40,7 @@
         "@dhis2/cli-style": "4.1.1",
         "@dhis2/d2-i18n-extract": "1.0.8",
         "@dhis2/d2-i18n-generate": "1.1.1",
-        "@storybook/addon-notes": "5.1.9",
+        "@storybook/addon-notes": "5.1.10",
         "@storybook/react": "5.1.9",
         "babel-eslint": "^10.0.2",
         "babel-loader": "^8.0.6",

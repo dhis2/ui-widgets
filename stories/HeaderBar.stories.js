@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { HeaderBar } from '../src'
 import { CustomDataProvider } from '@dhis2/app-runtime'
+import { DataProvider } from '@dhis2/app-runtime'
 
 const customData = {
     'system/info': {
@@ -124,4 +125,9 @@ storiesOf('HeaderBar', module)
         <CustomDataProvider data={{}}>
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
+    ))
+    .add('Test', () => (
+        <DataProvider baseUrl="https://debug.dhis2.org/dev" apiVersion="">
+            <HeaderBar appName="Example!" />
+        </DataProvider>
     ))

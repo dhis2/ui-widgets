@@ -34,6 +34,16 @@ export const HeaderBar = ({ appName, className }) => {
         },
     })
 
+    const {
+        loading: logoLoading,
+        error: logoError,
+        data: logoData,
+    } = useDataQuery({
+        customLogo: {
+            resource: 'staticContent/logo_banner',
+        },
+    })
+
     useEffect(() => {
         const getPath = path =>
             path.startsWith('http:') || path.startsWith('https:')
@@ -53,9 +63,15 @@ export const HeaderBar = ({ appName, className }) => {
         i18n.changeLanguage(locale)
     }
 
+    const logoSrc = logoLoading
+        ? ''
+        : logoError
+        ? ''
+        : 'api/staticContent/logo_banner'
+
     return (
         <header className={className}>
-            <Logo />
+            <Logo loading={logoLoading} logoSrc={logoSrc} />
 
             {!loading && !error && (
                 <>

@@ -8,7 +8,7 @@ import { LogoImage } from './LogoImage'
 export const Logo = ({ loading, logoSrc }) => (
     <div data-test-id="headerbar-logo">
         <a href="/">
-            <LogoImage src={`${process.env.PUBLIC_URL}/logo_banner.png`} />
+            <LogoImage src="/api/staticContent/logo_banner" />
         </a>
 
         <style jsx>{`

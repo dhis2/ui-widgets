@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import css from 'styled-jsx/css'
 
 import { LogoIconWhite } from '@dhis2/ui-core'
+import { LogoImage } from './LogoImage'
 
 const logotype = css.resolve`
     svg {
@@ -12,10 +13,13 @@ const logotype = css.resolve`
     }
 `
 
-export const Logo = () => (
+export const Logo = ({ loading, logoSrc }) => (
     <div data-test-id="headerbar-logo">
         <a href="/">
-            <LogoIconWhite className={logotype.className} />
+            {!loading && logoSrc && <LogoImage src={logoSrc} />}
+            {!loading && !logoSrc && (
+                <LogoIconWhite className={logotype.className} />
+            )}
         </a>
 
         {logotype.styles}
@@ -46,3 +50,8 @@ export const Logo = () => (
         `}</style>
     </div>
 )
+
+Logo.propTypes = {
+    loading: propTypes.bool,
+    logoSrc: propTypes.string,
+}

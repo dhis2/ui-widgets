@@ -52,6 +52,6 @@ export const Logo = ({ loading, logoSrc }) => (
 )
 
 Logo.propTypes = {
-    loading: propTypes.bool,
-    logoSrc: propTypes.string,
+    loading: PropTypes.bool,
+    logoSrc: PropTypes.string,
 }

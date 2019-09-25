@@ -5,10 +5,10 @@ import css from 'styled-jsx/css'
 import { LogoIconWhite } from '@dhis2/ui-core'
 import { LogoImage } from './LogoImage'
 
-export const Logo = ({ loading, logoSrc }) => (
+export const Logo = ({ baseUrl }) => (
     <div data-test-id="headerbar-logo">
         <a href="/">
-            <LogoImage src="/api/staticContent/logo_banner" />
+            <LogoImage src={`${baseUrl}/api/staticContent/logo_banner`} />
         </a>
 
         <style jsx>{`
@@ -33,6 +33,5 @@ export const Logo = ({ loading, logoSrc }) => (
 )
 
 Logo.propTypes = {
-    loading: PropTypes.bool,
-    logoSrc: PropTypes.string,
+    baseUrl: PropTypes.string.isRequired,
 }

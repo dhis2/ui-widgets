@@ -8,7 +8,7 @@ import Profile from './Profile'
 
 import css from 'styled-jsx/css'
 
-import { useDataQuery } from '@dhis2/app-runtime'
+import { useConfig, useDataQuery } from '@dhis2/app-runtime'
 
 import { Logo } from './Logo.js'
 import { Title } from './Title.js'
@@ -18,21 +18,24 @@ import { Notifications } from './Notifications.js'
 import '../locales'
 import i18n from '@dhis2/d2-i18n'
 
+const query = {
+    systemInfo: {
+        resource: 'system/info',
+    },
+    user: {
+        resource: 'me',
+    },
+    apps: {
+        resource: 'action::menu/getModules',
+    },
+    notifications: {
+        resource: 'me/dashboard',
+    },
+}
+
 export const HeaderBar = ({ appName, className }) => {
-    const { loading, error, data } = useDataQuery({
-        systemInfo: {
-            resource: 'system/info',
-        },
-        user: {
-            resource: 'me',
-        },
-        apps: {
-            resource: 'action::menu/getModules',
-        },
-        notifications: {
-            resource: 'me/dashboard',
-        },
-    })
+    const config = useConfig()
+    const { loading, error, data } = useDataQuery(query)
 
     useEffect(() => {
         const getPath = path =>
@@ -55,10 +58,9 @@ export const HeaderBar = ({ appName, className }) => {
 
     return (
         <header className={className}>
-            <Logo />
-
             {!loading && !error && (
                 <>
+                    <Logo baseUrl={data.systemInfo.contextPath} />
                     <Title
                         app={appName}
                         instance={data.systemInfo.systemName}

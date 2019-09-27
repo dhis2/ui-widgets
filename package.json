@@ -47,7 +47,7 @@
         "fs-extra": "^8.1.0",
         "react": "^16.9.0",
         "react-dev-utils": "^9.0.4",
-        "react-dom": "^16.9.0",
+        "react-dom": "^16.10.0",
         "storybook-addon-jsx": "^7.1.6",
         "storybook-addon-react-docgen": "^1.2.2",
         "typeface-roboto": "^0.0.75"

@@ -45,7 +45,7 @@
         "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
         "fs-extra": "^8.1.0",
-        "react": "^16.9.0",
+        "react": "^16.10.1",
         "react-dev-utils": "^9.0.4",
         "react-dom": "^16.10.1",
         "storybook-addon-jsx": "^7.1.6",

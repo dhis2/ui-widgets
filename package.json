@@ -30,7 +30,7 @@
 
         "start:testing": "STORYBOOK_INCLUDE_TESTING=1 yarn start --ci",
         "cypress:browser": "cypress open",
-        "cypress:ci": "NO_COLOR=1 cypress run -b chromium --config video=false",
+        "cypress:ci": "NO_COLOR=1 cypress run -b $BROWSER --config video=false",
         "cypress:open": "node scripts/cypress_open.js",
         "cypress:run": "node scripts/cypress_run.js"
     },

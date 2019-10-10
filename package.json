@@ -26,7 +26,9 @@
         "build-storybook": "build-storybook -c .storybook -o ./build/docs",
         "start-storybook": "start-storybook --port 5000",
         "prestart": "yarn localize",
-        "start": "yarn start-storybook"
+        "start": "yarn start-storybook",
+        "start:testing": "STORYBOOK_INCLUDE_TESTING=1 start-storybook -p 3000 --ci",
+        "cypress:open": "cypress open"
     },
     "devDependencies": {
         "@babel/cli": "^7.6.2",
@@ -44,6 +46,8 @@
         "@storybook/react": "5.2.3",
         "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
+        "cypress": "^3.4.1",
+        "cypress-cucumber-preprocessor": "^1.16.1",
         "fs-extra": "^8.1.0",
         "react": "^16.10.2",
         "react-dev-utils": "^9.1.0",
@@ -66,5 +70,8 @@
     },
     "files": [
         "build"
-    ]
+    ],
+    "cypress-cucumber-preprocessor": {
+        "nonGlobalStepDefinitions": true
+    }
 }

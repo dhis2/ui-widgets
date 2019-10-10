@@ -8,6 +8,19 @@ import { Before } from 'cypress-cucumber-preprocessor/steps'
  *   cy.fixture('HeaderBar/systemInfoBarbaz').as('systemInfoFixture')
  * })
  *
+ * or
+ *
+ * Given('foo bar baz', () => {
+ *   cy.fixture('HeaderBar/systemInfo')
+ *      then(response => ({
+ *          ...response,
+ *          foo: {
+ *              ...response.foo,
+ *              bar: 'baz'
+ *          }
+ *      })).as('systemInfoFixture')
+ * })
+ *
  */
 Before(() => {
     cy.fixture('HeaderBar/systemInfo').as('systemInfoFixture')

@@ -13,7 +13,7 @@ Cypress.Commands.add('visitStory', (namespace, storyName, options = {}) => {
      * for an explanation why this is currently necessay...
      */
     return cy.readFile('cypress/assets/unfetch.umd.js').then(content => {
-        return cy.visit(`localhost:3000/iframe.html?id=${id}`, {
+        return cy.visit(`localhost:5000/iframe.html?id=${id}`, {
             ...options,
             onBeforeLoad: win => {
                 delete win.fetch

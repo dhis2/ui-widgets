@@ -41,11 +41,11 @@ function icon(kind) {
     }
 }
 
-export const NotificationIcon = ({ count, href, kind }) => (
-    <a href={href} className={kind}>
+export const NotificationIcon = ({ count, href, kind, dataTestId }) => (
+    <a href={href} className={kind} data-test-id={dataTestId}>
         {icon(kind)}
 
-        {count > 0 && <span>{count}</span>}
+        {count > 0 && <span data-test-id={`${dataTestId}-count`}>{count}</span>}
 
         <style jsx>{`
             a {
@@ -82,4 +82,5 @@ NotificationIcon.propTypes = {
     kind: PropTypes.oneOf(['interpretation', 'message']),
     href: PropTypes.string.isRequired,
     count: PropTypes.number,
+    dataTestId: PropTypes.string,
 }

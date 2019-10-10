@@ -29,6 +29,7 @@ const list = [
         value: 'settings',
         link: `/dhis-web-user-profile/#/settings`,
         target: '_self',
+        dataTestId: 'headerbar-profile-menu-link-settings',
     },
     {
         icon: <Account className={iconStyle.className} />,
@@ -36,6 +37,7 @@ const list = [
         value: 'account',
         link: `/dhis-web-user-profile/#/account`,
         target: '_self',
+        dataTestId: 'headerbar-profile-menu-link-account',
     },
     {
         icon: <Help className={iconStyle.className} />,
@@ -45,6 +47,7 @@ const list = [
             'https://docs.dhis2.org/master/en/user/html/dhis2_user_manual_en.html',
         target: '_blank',
         nobase: true,
+        dataTestId: 'headerbar-profile-menu-link-help',
     },
     {
         icon: <Info className={iconStyle.className} />,
@@ -52,6 +55,7 @@ const list = [
         value: 'about',
         link: `/dhis-web-user-profile/#/aboutPage`,
         target: '_self',
+        dataTestId: 'headerbar-profile-menu-link-about',
     },
     {
         icon: <Exit className={iconStyle.className} />,
@@ -59,25 +63,46 @@ const list = [
         value: 'logout',
         link: `/dhis-web-commons-security/logout.action`,
         target: '_self',
+        dataTestId: 'headerbar-profile-menu-link-logout',
     },
 ]
 
-const ProfileContents = ({ name, email, avatar }) => (
+const ProfileContents = ({ name, email, avatar, contextPath }) => (
     <Card>
         <div>
-            <ProfileHeader name={name} email={email} img={avatar} />
+            <ProfileHeader
+                name={name}
+                email={email}
+                img={avatar}
+                contextPath={contextPath}
+            />
             <Divider margin="13px 0 7px 0" />
             <ul>
-                {list.map(({ label, value, icon, link, target, nobase }) => (
-                    <a href={link} target={target} key={`h-p-${value}`}>
-                        <MenuItem
-                            key={`h-mi-${value}`}
-                            label={label}
-                            value={value}
-                            icon={icon}
-                        />
-                    </a>
-                ))}
+                {list.map(
+                    ({
+                        label,
+                        value,
+                        icon,
+                        link,
+                        target,
+                        nobase,
+                        dataTestId,
+                    }) => (
+                        <a
+                            href={nobase ? link : `${contextPath}${link}`}
+                            target={target}
+                            key={`h-p-${value}`}
+                            data-test-id={dataTestId}
+                        >
+                            <MenuItem
+                                key={`h-mi-${value}`}
+                                label={label}
+                                value={value}
+                                icon={icon}
+                            />
+                        </a>
+                    )
+                )}
             </ul>
         </div>
 
@@ -99,14 +124,20 @@ const ProfileContents = ({ name, email, avatar }) => (
             a:active,
             a:visited {
                 text-decoration: none;
+                display: block;
             }
         `}</style>
     </Card>
 )
 
-export const ProfileMenu = ({ avatar, name, email }) => (
-    <div>
-        <ProfileContents name={name} email={email} avatar={avatar} />
+export const ProfileMenu = ({ avatar, name, email, contextPath }) => (
+    <div data-test-id="headerbar-profile-menu">
+        <ProfileContents
+            name={name}
+            email={email}
+            avatar={avatar}
+            contextPath={contextPath}
+        />
         <style jsx>{`
             div {
                 z-index: 10000;

@@ -1,3 +1,5 @@
+const optimizeForSpeed = process.env.NODE_ENV === 'production'
+
 module.exports = function(api) {
     api.cache.forever()
 
@@ -20,7 +22,7 @@ module.exports = function(api) {
         presets: defaultPresets.concat('@babel/preset-react'),
         plugins: [
             '@babel/plugin-proposal-class-properties',
-            'styled-jsx/babel',
+            ['styled-jsx/babel', { optimizeForSpeed }],
         ],
     }
 }

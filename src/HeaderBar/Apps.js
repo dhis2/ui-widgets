@@ -50,7 +50,7 @@ function TrailIcon({ onClick }) {
     )
 }
 
-function Search({ value, onChange, onIconClick }) {
+function Search({ value, onChange, onIconClick, contextPath }) {
     return (
         <div>
             <span>
@@ -67,7 +67,7 @@ function Search({ value, onChange, onIconClick }) {
             </span>
 
             <span>
-                <a href="/dhis-web-menu-management">
+                <a href={`${contextPath}/dhis-web-menu-management`}>
                     <Settings className={settingsIcon.className} />
                 </a>
             </span>
@@ -103,6 +103,7 @@ Search.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onIconClick: PropTypes.func,
+    contextPath: PropTypes.string.isRequired,
 }
 
 function Item({ name, path, img }) {
@@ -166,18 +167,18 @@ Item.propTypes = {
 
 function List({ apps, filter }) {
     return (
-        <div>
+        <div data-test-id="headerbar-apps-menu-list">
             {apps
                 .filter(({ displayName }) => {
                     return filter.length > 0
                         ? displayName.toLowerCase().match(filter.toLowerCase())
                         : true
                 })
-                .map(({ displayName, name, namespace, icon }, idx) => (
+                .map(({ displayName, name, defaultAction, icon }, idx) => (
                     <Item
                         key={`app-${name}-${idx}`}
                         name={displayName || name}
-                        path={namespace}
+                        path={defaultAction}
                         img={icon}
                     />
                 ))}
@@ -233,12 +234,13 @@ export default class Apps extends React.Component {
     onIconClick = () => this.setState({ filter: '' })
 
     AppMenu = apps => (
-        <div>
+        <div data-test-id="headerbar-apps-menu">
             <Card>
                 <Search
                     value={this.state.filter}
                     onChange={this.onChange}
                     onIconClick={this.onIconClick}
+                    contextPath={this.props.contextPath}
                 />
                 <List apps={apps} filter={this.state.filter} />
             </Card>
@@ -258,8 +260,11 @@ export default class Apps extends React.Component {
     render() {
         const apps = this.props.apps
         return (
-            <div ref={c => (this.elContainer = c)}>
-                <a onClick={this.onToggle}>
+            <div
+                ref={c => (this.elContainer = c)}
+                data-test-id="headerbar-apps"
+            >
+                <a onClick={this.onToggle} data-test-id="headerbar-apps-icon">
                     <AppsIcon className={appIcon.className} />
                 </a>
 
@@ -285,4 +290,5 @@ export default class Apps extends React.Component {
 
 Apps.propTypes = {
     apps: PropTypes.array.isRequired,
+    contextPath: PropTypes.string.isRequired,
 }

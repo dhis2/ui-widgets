@@ -3,19 +3,21 @@ import PropTypes from 'prop-types'
 
 import { NotificationIcon } from './NotificationIcon'
 
-export const Notifications = ({ interpretations, messages }) => (
-    <div>
+export const Notifications = ({ interpretations, messages, contextPath }) => (
+    <div data-test-id="headerbar-notifications">
         <NotificationIcon
             count={interpretations}
-            href={`/dhis-web-interpretation`}
+            href={`${contextPath}/dhis-web-interpretation`}
             kind="message"
+            dataTestId="headerbar-interpretations"
         />
 
         <NotificationIcon
             message="email"
             count={messages}
-            href={`/dhis-web-messaging`}
+            href={`${contextPath}/dhis-web-messaging`}
             kind="interpretation"
+            dataTestId="headerbar-messages"
         />
 
         <style jsx>{`

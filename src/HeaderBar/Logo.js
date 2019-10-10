@@ -13,7 +13,7 @@ const logotype = css.resolve`
 `
 
 export const Logo = () => (
-    <div>
+    <div data-test-id="headerbar-logo">
         <a href="/">
             <LogoIconWhite className={logotype.className} />
         </a>

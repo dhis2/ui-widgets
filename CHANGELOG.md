@@ -1,3 +1,31 @@
+## [1.0.8](https://github.com/dhis2/ui-widgets/compare/v1.0.7...v1.0.8) (2019-07-09)
+
+
+### Bug Fixes
+
+* adjust resource action path in headerbar ([#53](https://github.com/dhis2/ui-widgets/issues/53)) ([04fbdcd](https://github.com/dhis2/ui-widgets/commit/04fbdcd))
+
+## [1.0.7](https://github.com/dhis2/ui-widgets/compare/v1.0.6...v1.0.7) (2019-07-05)
+
+
+### Bug Fixes
+
+* **headerbar:** links and app icons ([#20](https://github.com/dhis2/ui-widgets/issues/20)) ([2758ce6](https://github.com/dhis2/ui-widgets/commit/2758ce6))
+
+## [1.0.6](https://github.com/dhis2/ui-widgets/compare/v1.0.5...v1.0.6) (2019-06-19)
+
+
+### Bug Fixes
+
+* force the optimize for speed flag for styled-jsx based on env ([#43](https://github.com/dhis2/ui-widgets/issues/43)) ([7202a0a](https://github.com/dhis2/ui-widgets/commit/7202a0a))
+
+## [1.0.5](https://github.com/dhis2/ui-widgets/compare/v1.0.4...v1.0.5) (2019-06-17)
+
+
+### Bug Fixes
+
+* the web-commons module is one step above the api ([#38](https://github.com/dhis2/ui-widgets/issues/38)) ([0d62012](https://github.com/dhis2/ui-widgets/commit/0d62012))
+
 ## [1.0.4](https://github.com/dhis2/ui-widgets/compare/v1.0.3...v1.0.4) (2019-06-05)
 
 

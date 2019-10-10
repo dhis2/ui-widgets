@@ -8,12 +8,12 @@ import { ProfileMenu } from './ProfileMenu.js'
 import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
 
-function avatarPath(avatar) {
+function avatarPath(avatar, contextPath) {
     if (!avatar) {
         return null
     }
 
-    return `/api/fileResources/${avatar.id}/data`
+    return `${contextPath}/api/fileResources/${avatar.id}/data`
 }
 
 export default class Profile extends React.Component {
@@ -37,28 +37,44 @@ export default class Profile extends React.Component {
 
     onToggle = () => this.setState({ show: !this.state.show })
 
-    userIcon(me) {
-        const avatar = avatarPath(me.avatar)
+    userIcon(me, contextPath) {
+        const avatar = avatarPath(me.avatar, contextPath)
 
         if (avatar) {
-            return <ImageIcon src={avatar} onClick={this.onToggle} />
+            return (
+                <ImageIcon
+                    src={avatar}
+                    onClick={this.onToggle}
+                    dataTestId="headerbar-profile-icon-image"
+                />
+            )
         }
 
-        return <TextIcon name={me.name} onClick={this.onToggle} />
+        return (
+            <TextIcon
+                name={me.name}
+                onClick={this.onToggle}
+                dataTestId="headerbar-profile-icon-text"
+            />
+        )
     }
 
     render() {
-        const user = this.props.user
+        const { user, contextPath } = this.props
 
         return (
-            <div ref={c => (this.elContainer = c)}>
-                {this.userIcon(user)}
+            <div
+                ref={c => (this.elContainer = c)}
+                data-test-id="headerbar-profile"
+            >
+                {this.userIcon(user, contextPath)}
 
                 {this.state.show ? (
                     <ProfileMenu
-                        avatar={avatarPath(user.avatar)}
+                        avatar={avatarPath(user.avatar, contextPath)}
                         name={user.name}
                         email={user.email}
+                        contextPath={contextPath}
                     />
                 ) : null}
 
@@ -77,4 +93,5 @@ export default class Profile extends React.Component {
 
 Profile.propTypes = {
     user: PropTypes.object.isRequired,
+    contextPath: PropTypes.string.isRequired,
 }

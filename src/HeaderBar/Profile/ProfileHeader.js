@@ -8,7 +8,7 @@ import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
 
 const ProfileName = ({ children }) => (
-    <div>
+    <div data-test-id="headerbar-profile-username">
         {children}
 
         <style jsx>{`
@@ -22,7 +22,7 @@ const ProfileName = ({ children }) => (
 )
 
 const ProfileEmail = ({ children }) => (
-    <div>
+    <div data-test-id="headerbar-profile-user-email">
         {children}
 
         <style jsx>{`
@@ -35,8 +35,11 @@ const ProfileEmail = ({ children }) => (
     </div>
 )
 
-const ProfileEdit = ({ children }) => (
-    <a href={`/dhis-web-user-profile/#/profile`}>
+const ProfileEdit = ({ children, contextPath }) => (
+    <a
+        href={`${contextPath}/dhis-web-user-profile/#/profile`}
+        data-test-id="headerbar-profile-edit-profile-link"
+    >
         {children}
 
         <style jsx>{`
@@ -51,11 +54,13 @@ const ProfileEdit = ({ children }) => (
     </a>
 )
 
-const ProfileDetails = ({ name, email }) => (
+const ProfileDetails = ({ name, email, contextPath }) => (
     <div>
         <ProfileName>{name}</ProfileName>
         <ProfileEmail>{email}</ProfileEmail>
-        <ProfileEdit>{i18n.t('Edit profile')}</ProfileEdit>
+        <ProfileEdit contextPath={contextPath}>
+            {i18n.t('Edit profile')}
+        </ProfileEdit>
 
         <style jsx>{`
             div {
@@ -70,11 +75,11 @@ const ProfileDetails = ({ name, email }) => (
     </div>
 )
 
-export const ProfileHeader = ({ name, email, img }) => (
+export const ProfileHeader = ({ name, email, img, contextPath }) => (
     <div>
         {img ? <ImageIcon src={img} /> : <TextIcon name={name} />}
 
-        <ProfileDetails name={name} email={email} />
+        <ProfileDetails name={name} email={email} contextPath={contextPath} />
 
         <style jsx>{`
             div {
@@ -91,4 +96,5 @@ ProfileHeader.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     img: PropTypes.string,
+    contextPath: PropTypes.string.isRequired,
 }

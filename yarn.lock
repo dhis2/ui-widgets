@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.6.2":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.6.2.tgz#4ce8b5b4b2e4b4c1b7bd841cec62085e2dfc4465"
-  integrity sha512-JDZ+T/br9pPfT2lmAMJypJDTTTHM9ePD/ED10TRjRzJVdEVy+JB3iRlhzYmTt5YkNgHvxWGlUVnLtdv6ruiDrQ==
+"@babel/cli@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.6.3.tgz#1b0c62098c8a5e01e4a4a59a52cba9682e7e0906"
+  integrity sha512-kWKOEeuylpa781yCeA5//eEx1u3WtLZqbi2VWXLKmb3QDPb5T2f7Yk311MK7bvvjR70dluAeiu4VXXsG1WwJsw==
   dependencies:
     commander "^2.8.1"
     convert-source-map "^1.1.0"
@@ -15,7 +15,7 @@
     mkdirp "^0.5.1"
     output-file-sync "^2.0.0"
     slash "^2.0.0"
-    source-map "^0.5.0"
+    source-map "^0.6.1"
   optionalDependencies:
     chokidar "^2.1.8"
 
@@ -751,10 +751,10 @@
     "@babel/helper-annotate-as-pure" "^7.0.0"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-transform-react-constant-elements@^7.0.0", "@babel/plugin-transform-react-constant-elements@^7.2.0", "@babel/plugin-transform-react-constant-elements@^7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-constant-elements/-/plugin-transform-react-constant-elements-7.6.0.tgz#13b8434fb817d30feebd811256eb402c9a245c9e"
-  integrity sha512-np/nPuII8DHOZWB3u8u+NSeKlEz0eBrOlnVksIQog4C9NGVzXO+NLxMcXn4Eu4GMFzOw2W6Tyo6L3+Wv8z9Y5w==
+"@babel/plugin-transform-react-constant-elements@^7.0.0", "@babel/plugin-transform-react-constant-elements@^7.2.0", "@babel/plugin-transform-react-constant-elements@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-constant-elements/-/plugin-transform-react-constant-elements-7.6.3.tgz#9fc9ea060b983c7c035acbe481cbe1fb1245bfff"
+  integrity sha512-1/YogSSU7Tby9rq2VCmhuRg+6pxsHy2rI7w/oo8RKoBt6uBUFG+mk6x13kK+FY1/ggN92HAfg7ADd1v1+NCOKg==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.0.0"
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -1051,10 +1051,21 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-flow-strip-types" "^7.0.0"
 
-"@babel/preset-react@7.0.0", "@babel/preset-react@^7.0.0":
+"@babel/preset-react@7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0.tgz#e86b4b3d99433c7b3e9e91747e2653958bc6b3c0"
   integrity sha512-oayxyPS4Zj+hF6Et11BwuBkmpgT/zMxyuZgFrMeZID6Hdh3dGlk4sHCAhdBCpuCKW2ppBfl2uCCetlrUIJRY3w==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-transform-react-display-name" "^7.0.0"
+    "@babel/plugin-transform-react-jsx" "^7.0.0"
+    "@babel/plugin-transform-react-jsx-self" "^7.0.0"
+    "@babel/plugin-transform-react-jsx-source" "^7.0.0"
+
+"@babel/preset-react@^7.0.0", "@babel/preset-react@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.6.3.tgz#d5242c828322520205ae4eda5d4f4f618964e2f6"
+  integrity sha512-07yQhmkZmRAfwREYIQgW0HEwMY9GBJVuPY4Q12UC72AbfaawuupVWa8zQs2tlL+yun45Nv/1KreII/0PLfEsgA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-react-display-name" "^7.0.0"

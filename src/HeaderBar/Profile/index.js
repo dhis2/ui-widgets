@@ -41,17 +41,32 @@ export default class Profile extends React.Component {
         const avatar = avatarPath(me.avatar, contextPath)
 
         if (avatar) {
-            return <ImageIcon src={avatar} onClick={this.onToggle} />
+            return (
+                <ImageIcon
+                    src={avatar}
+                    onClick={this.onToggle}
+                    dataTestId="headerbar-profile-icon-image"
+                />
+            )
         }
 
-        return <TextIcon name={me.name} onClick={this.onToggle} />
+        return (
+            <TextIcon
+                name={me.name}
+                onClick={this.onToggle}
+                dataTestId="headerbar-profile-icon-text"
+            />
+        )
     }
 
     render() {
         const { user, contextPath } = this.props
 
         return (
-            <div ref={c => (this.elContainer = c)}>
+            <div
+                ref={c => (this.elContainer = c)}
+                data-test-id="headerbar-profile"
+            >
                 {this.userIcon(user, contextPath)}
 
                 {this.state.show ? (

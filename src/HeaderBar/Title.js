@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export const Title = ({ app, instance }) => (
-    <div>
+    <div data-test-id="headerbar-title">
         {app ? `${instance} - ${app}` : `${instance}`}
 
         <style jsx>{`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import css from 'styled-jsx/css'
 
-export const TextIcon = ({ name, onClick }) => {
+export const TextIcon = ({ name, onClick, dataTestId }) => {
     let title = name[0]
 
     if (name.indexOf(' ') > 0) {
@@ -11,7 +11,7 @@ export const TextIcon = ({ name, onClick }) => {
     }
 
     return (
-        <div onClick={onClick}>
+        <div onClick={onClick} data-test-id={dataTestId}>
             <p>{title}</p>
 
             <style jsx>{`
@@ -47,4 +47,5 @@ TextIcon.defaultProps = {
 TextIcon.propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    dataTestId: PropTypes.string,
 }

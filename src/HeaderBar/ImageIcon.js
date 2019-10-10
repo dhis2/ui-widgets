@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import css from 'styled-jsx/css'
 
-export const ImageIcon = ({ src, onClick }) => (
-    <div onClick={onClick}>
+export const ImageIcon = ({ src, onClick, dataTestId }) => (
+    <div onClick={onClick} data-test-id={dataTestId}>
         <img src={src} alt="user avatar" />
 
         <style jsx>{`
@@ -28,4 +28,5 @@ ImageIcon.defaultProps = {
 ImageIcon.propTypes = {
     src: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    dataTestId: PropTypes.string,
 }

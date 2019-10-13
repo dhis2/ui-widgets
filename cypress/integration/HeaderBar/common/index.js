@@ -34,29 +34,28 @@ Given('the HeaderBar loads without an error', () => {
 
     cy.get('@systemInfoFixture').then(fx => {
         cy.route({
-            url: 'https://play.dhis2.org/dev/api/system/info',
+            url: 'https://domain.tld/api/system/info',
             response: fx,
         }).as('systemInfo')
     })
 
     cy.get('@meFixture').then(fx => {
         cy.route({
-            url: 'https://play.dhis2.org/dev/api/me',
+            url: 'https://domain.tld/api/me',
             response: fx,
         }).as('systemInfo')
     })
 
     cy.get('@modulesFixture').then(fx => {
         cy.route({
-            url:
-                'https://play.dhis2.org/dev/dhis-web-commons/menu/getModules.action',
+            url: 'https://domain.tld/dhis-web-commons/menu/getModules.action',
             response: fx,
         }).as('modules')
     })
 
     cy.get('@dashboardFixture').then(fx => {
         cy.route({
-            url: 'https://play.dhis2.org/dev/api/me/dashboard',
+            url: 'https://domain.tld/api/me/dashboard',
             response: fx,
         }).as('dashboard')
     })

@@ -27,7 +27,6 @@
         "start-storybook": "start-storybook --port 5000",
         "prestart": "yarn localize",
         "start": "yarn start-storybook",
-
         "start:testing": "STORYBOOK_INCLUDE_TESTING=1 yarn start --ci",
         "cypress:browser": "cypress open",
         "cypress:ci": "NO_COLOR=1 cypress run -b $BROWSER --config video=false",
@@ -70,6 +69,7 @@
         "@dhis2/d2-i18n": "1.0.5",
         "@dhis2/ui-core": "3.12.0",
         "classnames": "^2.2.6",
+        "object-path-immutable": "^4.0.2",
         "styled-jsx": "^3.2.2"
     },
     "files": [

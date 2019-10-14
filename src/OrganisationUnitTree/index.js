@@ -1,15 +1,12 @@
-import { Checkbox, Tree } from '@dhis2/ui-core'
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import propTypes from 'prop-types'
 
-import {
-    expandUnit,
-    collapseUnit,
-    getIdFromPath,
-    orgUnitIdPropValidator,
-    orgUnitPathPropValidator,
-} from './helper'
-import { OrgUnitTree } from './OrgUnitTree'
+import { orgUnitPathPropValidator, orgUnitIdPropValidator } from './propTypes'
+import { getIdFromPath } from './helper'
+import { OrgUnitTree } from './OrgUnitTreePure'
+import { useReloadId } from './useReloadId'
+import { useExpand } from './useExpand'
+import { useOrgData } from './useOrgData'
 
 const OrganisationUnitTree = ({
     roots,
@@ -28,41 +25,40 @@ const OrganisationUnitTree = ({
     onUnitLoaded,
     onUnitUnloaded,
 }) => {
-    const [expanded, setExpanded] = useState(initiallyExpanded)
-    const handleExpand = useCallback(
-        expandUnit(expanded, setExpanded, onExpand),
-        [expanded, onExpand]
-    )
-    const handleCollapse = useCallback(
-        collapseUnit(expanded, setExpanded, onCollapse),
-        [expanded, onCollapse]
-    )
-    const [reloadId, setReloadId] = useState(0)
-
-    useEffect(() => {
-        forceReload === true && setReloadId(reloadId + 1)
-    }, [forceReload])
+    const rootUnits = Array.isArray(roots) ? roots : [roots]
+    const reloadId = useReloadId(forceReload)
+    const { tree, loadChildrenForPath } = useOrgData({
+        rootUnits,
+        idsThatShouldBeReloaded,
+        forceReload,
+        onForceReloadDone,
+    })
+    const { expanded, handleExpand, handleCollapse } = useExpand({
+        initiallyExpanded,
+        loadChildrenForPath,
+        tree,
+        openFirstLevel,
+        rootUnits,
+    })
 
     return (
         <div key={reloadId}>
-            {(Array.isArray(roots) ? roots : [roots]).map(root =>
+            {rootUnits.map(root =>
                 !orgUnitsPathsToInclude.length ||
                 orgUnitsPathsToInclude.some(path => path.match(root)) ? (
                     <OrgUnitTree
                         key={root}
                         path={`/${root}`}
+                        tree={tree}
                         onChange={onChange}
-                        expanded={expanded}
                         selected={selected}
+                        expanded={expanded}
                         highlighted={highlighted}
-                        disableSelection={disableSelection}
-                        singleSelectionOnly={singleSelectionOnly}
                         orgUnitsPathsToInclude={orgUnitsPathsToInclude}
-                        idsThatShouldBeReloaded={idsThatShouldBeReloaded}
+                        singleSelectionOnly={singleSelectionOnly}
+                        disableSelection={disableSelection}
                         onExpand={handleExpand}
                         onCollapse={handleCollapse}
-                        onUnitLoaded={onUnitLoaded}
-                        onUnitUnloaded={onUnitUnloaded}
                     />
                 ) : null
             )}
@@ -176,17 +172,11 @@ OrganisationUnitTree.propTypes = {
     onCollapse: propTypes.func,
 
     /**
-     * Called with { path: string; forced: boolean; }
-     * after a unit's data has been loaded
+     * Called after all previously loaded units
+     * have been reloaded after setting "forceReload"
+     * to true
      */
-    onUnitLoaded: propTypes.func,
-
-    /**
-     * Called with { path: string }
-     * after a unit's data has been unloaded
-     * and the component unmounts
-     */
-    onUnitUnloaded: propTypes.func,
+    onForceReloadDone: propTypes.func,
 }
 
 OrganisationUnitTree.defaultProps = {

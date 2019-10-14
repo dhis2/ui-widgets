@@ -8476,6 +8476,13 @@ object-keys@^1.0.12:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
+object-path-immutable@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/object-path-immutable/-/object-path-immutable-4.0.2.tgz#f20241d116c549e66ada81ae522a7dc840270b6b"
+  integrity sha512-JP2gvb7d14tioXL5M86x4258jX+5aJhlAeiWD9t8yvjVhuGmcJEFHsyo2NtlxYhaiMjAI3P4FCTmNm2SMZYRRg==
+  dependencies:
+    is-plain-object "^3.0.0"
+
 object-visit@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/object-visit/-/object-visit-1.0.1.tgz#f79c4493af0c5377b59fe39d395e41042dd045bb"

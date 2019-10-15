@@ -102,7 +102,7 @@ const Label = ({
     singleSelectionOnly,
     hasSelectedDescendants,
 }) => {
-    const label = loading ? 'Loading...' : displayName
+    const label = loading || !displayName ? 'Loading...' : displayName
     const onClick = event => {
         const newChecked = event.target.checked
         !loading && onChange({ id, path, checked: newChecked }, event)

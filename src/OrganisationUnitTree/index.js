@@ -1,12 +1,11 @@
-import React from 'react'
+import { useDataEngine } from '@dhis2/app-runtime'
+import React, { useEffect } from 'react'
 import propTypes from 'prop-types'
 
 import { orgUnitPathPropValidator, orgUnitIdPropValidator } from './propTypes'
-import { getIdFromPath } from './helper'
-import { OrgUnitTree } from './OrgUnitTreePure'
-import { useReloadId } from './useReloadId'
+import { OrgUnitTree } from './OrgUnitTree'
 import { useExpand } from './useExpand'
-import { useOrgData } from './useOrgData'
+import { loadChildrenForIds, useOrgData } from './useOrgData'
 
 const OrganisationUnitTree = ({
     roots,
@@ -24,10 +23,15 @@ const OrganisationUnitTree = ({
     onCollapse,
     onUnitLoaded,
     onUnitUnloaded,
+    onForceReloadDone,
 }) => {
+    useEffect(() => {
+        console.clear()
+    }, [])
+
+    const engine = useDataEngine()
     const rootUnits = Array.isArray(roots) ? roots : [roots]
-    const reloadId = useReloadId(forceReload)
-    const { tree, loadChildrenForPath } = useOrgData({
+    const { tree, loadChildrenFor, loadChildrenForPath } = useOrgData({
         rootUnits,
         idsThatShouldBeReloaded,
         forceReload,
@@ -39,10 +43,22 @@ const OrganisationUnitTree = ({
         tree,
         openFirstLevel,
         rootUnits,
+        onExpand,
+        onCollapse,
     })
 
+    /**
+     * Load root unit data initially
+     */
+    useEffect(() => {
+        const rootPaths = rootUnits.map(id => `/${id}`)
+        loadChildrenFor(rootUnits).then(loadedRoots =>
+            loadedRoots.forEach(({ children }) => loadChildrenFor(children))
+        )
+    }, [])
+
     return (
-        <div key={reloadId}>
+        <div>
             {rootUnits.map(root =>
                 !orgUnitsPathsToInclude.length ||
                 orgUnitsPathsToInclude.some(path => path.match(root)) ? (
@@ -187,12 +203,5 @@ OrganisationUnitTree.defaultProps = {
     highlighted: [],
     openFirstLevel: true,
 }
-
-/**
- * ========================
- * Exposed helper functions
- * ========================
- */
-OrganisationUnitTree.getIdFromPath = getIdFromPath
 
 export { OrganisationUnitTree }

@@ -1,4 +1,4 @@
-const optimizeForSpeed = process.env.NODE_ENV === 'production'
+const optimizeForSpeed = true // process.env.NODE_ENV === 'production'
 
 module.exports = function(api) {
     api.cache.forever()

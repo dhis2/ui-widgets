@@ -1,4 +1,3 @@
-import { useDataQuery } from '@dhis2/app-runtime'
 import React, {
     Component,
     Fragment,
@@ -9,18 +8,14 @@ import React, {
 } from 'react'
 import propTypes from 'prop-types'
 
+import { orgUnitPathPropValidator, orgUnitIdPropValidator } from './propTypes'
 import { Checkbox, Node } from '@dhis2/ui-core'
-import {
-    findDescendantSelectedPaths,
-    getIdFromPath,
-    isUnitSelected,
-    orgUnitPathPropValidator,
-    orgUnitIdPropValidator,
-    useOrgData,
-    useSelectedDescendants,
-    useChildIds,
-    toggleOpen,
-} from './helper'
+import { useIsUnitSelected } from './useIsUnitSelected'
+import { useDisplayChildren } from './useDisplayChildren'
+import { useHasSelectedDescendants } from './useHasSelectedDescendants'
+import { useIsOpen } from './useIsOpen'
+import { useIsHighlighted } from './useIsHighlighted'
+import { useToggleOpen } from './useToggleOpen'
 import { Label } from './Label'
 
 const OrgUnitTree = props => {
@@ -28,65 +23,44 @@ const OrgUnitTree = props => {
         disableSelection,
         expanded,
         highlighted,
-        idsThatShouldBeReloaded,
         onChange,
         onCollapse,
         onExpand,
-        onUnitLoaded,
-        onUnitUnloaded,
         orgUnitsPathsToInclude,
         path,
         selected,
         singleSelectionOnly,
+        tree,
     } = props
 
-    const id = useMemo(() => getIdFromPath(path), path)
-    const [open, setOpen] = useState(expanded.indexOf(path) !== -1)
-    const { loading, error, data = { node: { children: [] } } } = useOrgData(id)
-    const { displayName = '' } = data.node
-    const children = data.node.children.filter(
-        child =>
-            !orgUnitsPathsToInclude.length ||
-            orgUnitsPathsToInclude.some(
-                pathToInclude => !!pathToInclude.match(`${path}/${child.id}`)
-            )
-    )
-    const childIds = useChildIds(children, idsThatShouldBeReloaded)
-    const checked = isUnitSelected(path, selected, singleSelectionOnly)
-    const hasSelectedDescendants = !!useSelectedDescendants(path, selected)
-        .length
-    const onToggleOpen = useCallback(
-        toggleOpen(open, path, children, onExpand, onCollapse, setOpen),
-        [open, path, children, onExpand, onCollapse, setOpen]
-    )
-    const isHighlighted = useMemo(() => highlighted.indexOf(path) !== -1, [
-        highlighted,
-    ])
+    const { id, displayName, children, loading, error } = tree[path]
+    const checked = useIsUnitSelected(path, selected)
+    const hasSelectedDescendants = useHasSelectedDescendants(path, selected)
+    const open = useMemo(() => expanded.indexOf(path) !== -1, [expanded, path])
+    const isHighlighted = useIsHighlighted(highlighted, path)
+    const onToggleOpen = useToggleOpen({ open, path, onExpand, onCollapse })
+    const childrenTest = useMemo(() => {
+        return children.filter(path => {
+            if (!orgUnitsPathsToInclude.length) return true
+            return orgUnitsPathsToInclude.indexOf(path) !== -1
+        })
+    }, [path, children, orgUnitsPathsToInclude])
 
-    useEffect(() => {
-        !loading &&
-            onUnitLoaded &&
-            onUnitLoaded({
-                path,
-                forced: idsThatShouldBeReloaded.indexOf(id) !== -1,
-            })
-        return () => !loading && onUnitUnloaded && onUnitUnloaded({ path })
-    }, [loading, id, path])
-
-    const showChildren = !loading && !error && open
     const content =
-        !!children.length &&
-        (showChildren ? (
-            children.map(child => (
-                <OrgUnitTree
-                    {...props}
-                    key={child.id + childIds[child.id]}
-                    path={`${path}/${child.id}`}
-                />
-            ))
-        ) : (
+        !!childrenTest.length && open ? (
+            childrenTest.map(childPath => {
+                // @TODO
+                if (tree[childPath].error) {
+                    return null
+                }
+
+                return (
+                    <OrgUnitTree {...props} key={childPath} path={childPath} />
+                )
+            })
+        ) : childrenTest.length ? (
             <span />
-        ))
+        ) : null
 
     return (
         <Node
@@ -95,17 +69,20 @@ const OrgUnitTree = props => {
             onClose={onToggleOpen}
             component={
                 <Label
-                    {...props}
-                    checked={checked}
-                    displayName={displayName}
-                    error={error}
-                    hasChildren={!!children.length}
-                    hasSelectedDescendants={hasSelectedDescendants}
-                    highlighted={isHighlighted}
                     id={id}
-                    loading={loading}
-                    onToggleOpen={onToggleOpen}
+                    path={path}
                     open={open}
+                    displayName={displayName}
+                    loading={loading}
+                    hasChildren={!!childrenTest.length}
+                    onChange={onChange}
+                    onToggleOpen={onToggleOpen}
+                    error={error}
+                    checked={checked}
+                    highlighted={highlighted}
+                    disableSelection={disableSelection}
+                    singleSelectionOnly={singleSelectionOnly}
+                    hasSelectedDescendants={hasSelectedDescendants}
                 />
             }
         >
@@ -117,21 +94,18 @@ const OrgUnitTree = props => {
 OrgUnitTree.propTypes = {
     path: orgUnitPathPropValidator,
     onChange: propTypes.func.isRequired,
+    tree: propTypes.object.isRequired,
 
     selected: propTypes.arrayOf(orgUnitPathPropValidator),
     expanded: propTypes.arrayOf(orgUnitPathPropValidator),
     highlighted: propTypes.arrayOf(orgUnitPathPropValidator),
     orgUnitsPathsToInclude: propTypes.arrayOf(orgUnitPathPropValidator),
 
-    idsThatShouldBeReloaded: propTypes.arrayOf(orgUnitIdPropValidator),
-
     singleSelectionOnly: propTypes.bool,
     disableSelection: propTypes.bool,
 
     onExpand: propTypes.func,
     onCollapse: propTypes.func,
-    onUnitLoaded: propTypes.func,
-    onUnitUnloaded: propTypes.func,
 }
 
 export { OrgUnitTree }

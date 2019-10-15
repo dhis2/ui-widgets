@@ -10,7 +10,7 @@ export const expandUnit = ({
     const { path } = args
     const pathIndex = expanded.indexOf(path)
 
-    if (pathIndex === -1) {
+    if (pathIndex !== -1) {
         setExpanded([...expanded, path])
 
         if (!tree[path].childrenLoading && !tree[path].childrenLoaded) {
@@ -45,6 +45,8 @@ export const useExpand = ({
     tree,
     openFirstLevel,
     rootUnits,
+    onExpand,
+    onCollapse,
 }) => {
     const reallyInitiallyExpanded = openFirstLevel
         ? rootUnits.reduce((paths, rootId) => {
@@ -60,7 +62,13 @@ export const useExpand = ({
     const [expanded, setExpanded] = useState(reallyInitiallyExpanded)
 
     const handleExpand = useCallback(
-        expandUnit(expanded, setExpanded, onExpand, loadChildrenForPath, tree),
+        expandUnit({
+            expanded,
+            setExpanded,
+            onExpand,
+            loadChildrenForPath,
+            tree,
+        }),
         [expanded, setExpanded, onExpand, loadChildrenForPath, tree]
     )
 

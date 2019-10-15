@@ -12,7 +12,7 @@ const createEmptyChild = path => ({
 })
 
 const createLoadIndiviualChildrenAction = ids => ({
-    type: 'LOAD_INVIDIVUAL_CHILDREN',
+    type: 'LOAD_INDIVIDUAL_CHILDREN',
     payload: { ids },
 })
 
@@ -21,9 +21,9 @@ const createLoadChildrenAction = (path, ids) => ({
     payload: { path, ids },
 })
 
-const createAddChildAction = (path, data, children) => ({
+const createAddChildAction = (id, data, children) => ({
     type: 'ADD_CHILD',
-    payload: { path, data, children },
+    payload: { id, data, children },
 })
 
 const createAllChildrenLoadedAction = path => ({
@@ -33,7 +33,7 @@ const createAllChildrenLoadedAction = path => ({
 
 const treeReducer = (tree, action) => {
     const { type, payload } = action
-    const { ids, path, data, children } = payload
+    const { id, ids, path, data, children } = payload
 
     if (type === 'LOAD_CHILDREN') {
         const paths = ids.map(id => `${path}/${id}`)
@@ -56,6 +56,7 @@ const treeReducer = (tree, action) => {
             .filter(([path, { id }]) => ids.indexOf(id) !== -1)
             .reduce(
                 (updates, [curPath]) => ({
+                    ...updates,
                     [curPath]: { ...tree[curPath], loading: true },
                 }),
                 {}
@@ -68,21 +69,36 @@ const treeReducer = (tree, action) => {
     }
 
     if (type === 'ADD_CHILD') {
-        const childrenLeafes = children.reduce((leafes, curChild) => {
-            const { path: curPath } = curChild
-            return { ...leafes, [curPath]: createEmptyChild(curPath) }
-        }, {})
+        const nodesToUpdate = Object.entries(tree).filter(
+            ([curPath, { id: curId }]) => curId === id
+        )
 
-        return {
-            ...tree,
-            ...childrenLeafes,
-            [path]: {
-                ...tree[path],
+        return nodesToUpdate.reduce((curTree, [curPath, curNode]) => {
+            const missingChildrenLeafes = children
+                .filter(
+                    childId => !curTree.hasOwnProperty(`${curPath}/${childId}`)
+                )
+                .reduce((leafes, childId) => {
+                    const childPath = `${curPath}/${childId}`
+                    return {
+                        ...leafes,
+                        [childPath]: createEmptyChild(childPath),
+                    }
+                }, {})
+
+            const updatedPath = {
+                ...curNode,
                 ...data,
-                children: children.map(({ path }) => path),
+                children: children.map(id => `${curPath}/${id}`),
                 loading: false,
-            },
-        }
+            }
+
+            return {
+                ...curTree,
+                ...missingChildrenLeafes,
+                [curPath]: updatedPath,
+            }
+        }, tree)
     }
 
     if (type === 'ALL_CHILDREN_LOADED') {
@@ -99,7 +115,7 @@ const treeReducer = (tree, action) => {
     return tree
 }
 
-const useTreeState = rootUnits => {
+export const useTreeState = rootUnits => {
     const [tree, dispatch] = useReducer(
         treeReducer,
         rootUnits.reduce(
@@ -112,7 +128,7 @@ const useTreeState = rootUnits => {
     )
 
     const loadChildren = useCallback(
-        (path, ids) => dispatch(createLoadChildAction(path, ids)),
+        (path, ids) => dispatch(createLoadChildrenAction(path, ids)),
         [createLoadChildrenAction]
     )
 
@@ -122,7 +138,8 @@ const useTreeState = rootUnits => {
     )
 
     const addChild = useCallback(
-        (path, child) => dispatch(createAddChildAction(path, child)),
+        (id, data, children) =>
+            dispatch(createAddChildAction(id, data, children)),
         [createAddChildAction]
     )
 

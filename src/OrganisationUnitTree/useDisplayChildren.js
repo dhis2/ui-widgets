@@ -3,12 +3,9 @@ import { useMemo } from 'react'
 export const useDisplayChildren = (path, children, orgUnitsPathsToInclude) =>
     useMemo(
         () =>
-            children.filter(childId => {
+            children.filter(path => {
                 if (!orgUnitsPathsToInclude.length) return true
-
-                return orgUnitsPathsToInclude.some(
-                    pathToInclude => !!pathToInclude.match(`${path}/${childId}`)
-                )
+                return orgUnitsPathsToInclude.indexOf(path) !== -1
             }),
         [path, children, orgUnitsPathsToInclude]
     )

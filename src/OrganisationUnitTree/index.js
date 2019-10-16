@@ -51,10 +51,68 @@ const OrganisationUnitTree = ({
      * Load root unit data initially
      */
     useEffect(() => {
-        const rootPaths = rootUnits.map(id => `/${id}`)
-        loadChildrenFor(rootUnits).then(loadedRoots =>
-            loadedRoots.forEach(({ children }) => loadChildrenFor(children))
+        const pathsToBePreloaded = initiallyExpanded.reduce((grouped, path) => {
+            const parts = path.replace(/^\//, '').split('/')
+
+            return parts.reduce((curGrouped, part, depth) => {
+                if (!curGrouped[depth]) {
+                    curGrouped[depth] = []
+                }
+
+                //const curPath = `/${parts.slice(0, depth + 1).join('/')}`
+                const curPath = part
+
+                if (curGrouped[depth].indexOf(curPath) !== -1) {
+                    return curGrouped
+                }
+
+                return [
+                    ...curGrouped.slice(0, depth),
+                    [...curGrouped[depth], curPath],
+                    ...curGrouped.slice(depth + 1),
+                ]
+            }, grouped)
+        }, [])
+
+        // group for child ids of deepest group
+        pathsToBePreloaded.push([])
+
+        pathsToBePreloaded.reduce(
+            (promise, depthGroup, depth) =>
+                promise.then(() => {
+                    return (
+                        loadChildrenFor(depthGroup)
+                            // add all children ids of paths to be opened
+                            // so we can display their names and children count as well
+                            .then(responses => {
+                                const nextDepthIds = responses
+                                    .map(({ children }) => children)
+                                    .reduce(
+                                        (flattened, children) => [
+                                            ...flattened,
+                                            ...children,
+                                        ],
+                                        []
+                                    )
+
+                                const nextDepth = depth + 1
+                                const nextDepthGroup =
+                                    pathsToBePreloaded[nextDepth]
+
+                                nextDepthIds.forEach(id => {
+                                    if (nextDepthGroup.indexOf(id) === -1) {
+                                        nextDepthGroup.push(id)
+                                    }
+                                })
+                            })
+                    )
+                }),
+            Promise.resolve()
         )
+
+        //loadChildrenFor(rootUnits).then(loadedRoots =>
+        //    loadedRoots.forEach(({ children }) => loadChildrenFor(children))
+        //)
     }, [])
 
     return (

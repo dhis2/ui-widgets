@@ -172,7 +172,7 @@ storiesOf('OrganisationUnitTree', module)
             name="Root org unit"
             roots={['A0000000000']}
             onChange={console.log.bind(null, 'onChange')}
-            initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
+            initiallyExpanded={['/A0000000000/A0000000001']}
         />
     ))
     .add('Multiple roots', () => (

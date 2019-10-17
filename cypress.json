@@ -1,3 +1,6 @@
 {
-    "testFiles": "**/*.feature"
+    "testFiles": "**/*.feature",
+    "screenshots": {
+        "screenshotOnRunFailure": false
+    }
 }

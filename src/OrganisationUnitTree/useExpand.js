@@ -43,7 +43,6 @@ export const useExpand = ({
     initiallyExpanded,
     loadChildrenForPath,
     tree,
-    openFirstLevel,
     rootUnits,
     onExpand,
     onCollapse,

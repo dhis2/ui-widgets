@@ -71,7 +71,6 @@ const onChange = (selected, setSelected, singleSelectionOnly) => ({ path }) => {
 
 const Test = props => {
     const [selected, setSelected] = useState([])
-    console.log('selected', selected)
 
     return (
         <OrganisationUnitTree
@@ -84,10 +83,6 @@ const Test = props => {
                 props.singleSelectionOnly
             )}
             initiallyExpanded={['A0000000001/A0000000002']}
-            // onExpand={console.log.bind(null, 'onExpand')}
-            // onCollapse={console.log.bind(null, 'onCollapse')}
-            // onUnitLoaded={console.log.bind(null, 'onUnitLoaded')}
-            // onUnitUnloaded={console.log.bind(null, 'onUnitUnloaded')}
             {...props}
         />
     )

@@ -13,7 +13,6 @@ const OrganisationUnitTree = ({
     onChange,
     forceReload,
     highlighted,
-    openFirstLevel,
     disableSelection,
     initiallyExpanded,
     singleSelectionOnly,
@@ -25,10 +24,6 @@ const OrganisationUnitTree = ({
     onUnitUnloaded,
     onForceReloadDone,
 }) => {
-    useEffect(() => {
-        console.clear()
-    }, [])
-
     const engine = useDataEngine()
     const rootUnits = Array.isArray(roots) ? roots : [roots]
     const { tree, loadChildrenFor, loadChildrenForPath } = useOrgData({
@@ -41,7 +36,6 @@ const OrganisationUnitTree = ({
         initiallyExpanded,
         loadChildrenForPath,
         tree,
-        openFirstLevel,
         rootUnits,
         onExpand,
         onCollapse,
@@ -109,10 +103,6 @@ const OrganisationUnitTree = ({
                 }),
             Promise.resolve()
         )
-
-        //loadChildrenFor(rootUnits).then(loadedRoots =>
-        //    loadedRoots.forEach(({ children }) => loadChildrenFor(children))
-        //)
     }, [])
 
     return (
@@ -160,11 +150,6 @@ OrganisationUnitTree.propTypes = {
     onChange: propTypes.func.isRequired,
 
     /**
-     * Should the first level be expanded
-     */
-    openFirstLevel: propTypes.bool,
-
-    /**
      * When set, no checkboxes will be displayed
      * and only the first selected path in `selected` will be highlighted
      */
@@ -196,6 +181,10 @@ OrganisationUnitTree.propTypes = {
      *
      * The path of an OU is the UIDs of the OU
      * and all its parent OUs separated by slashes (/)
+     *
+     * If the root levels should be expanded initially,
+     * they should be included here. The "openFirstLevel"
+     * prop has been omitted as it's redundant
      */
     initiallyExpanded: propTypes.arrayOf(orgUnitPathPropValidator),
 
@@ -259,7 +248,6 @@ OrganisationUnitTree.defaultProps = {
     orgUnitsPathsToInclude: [],
     idsThatShouldBeReloaded: [],
     highlighted: [],
-    openFirstLevel: true,
 }
 
 export { OrganisationUnitTree }

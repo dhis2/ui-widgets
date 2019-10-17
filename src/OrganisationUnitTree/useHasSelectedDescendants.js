@@ -1,16 +1,9 @@
 import { useMemo } from 'react'
 
-export const findDescendantSelectedPaths = (path, selected) =>
-    selected.reduce(
-        (selectedDescendantPaths, curPath) =>
-            curPath.slice(0, path.length) === path
-                ? selectedDescendantPaths.push(curPath)
-                : selectedDescendantPaths,
-        []
-    )
+export const hasDescendantSelectedPaths = (path, selected) =>
+    selected.reduce((hasSelectedDescendantPaths, curPath) => {
+        return hasSelectedDescendantPaths || curPath.indexOf(path) !== -1
+    }, false)
 
 export const useHasSelectedDescendants = (path, selected) =>
-    useMemo(() => !!findDescendantSelectedPaths(path, selected).length, [
-        path,
-        selected,
-    ])
+    useMemo(() => hasDescendantSelectedPaths(path, selected), [path, selected])

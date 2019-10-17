@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { OrganisationUnitTree } from '../src/OrganisationUnitTree'
 import { CustomDataProvider } from '@dhis2/app-runtime'
@@ -90,9 +90,8 @@ const Test = props => {
 
 const ForceReloadAll = ({ delay }) => {
     const [forceReload, setForceReload] = useState(false)
-
-    useEffect(() => {
-        setTimeout(() => setForceReload(true), delay)
+    const onInitialLoadingDone = useCallback(() => {
+        setTimeout(() => setForceReload(true), 1000)
     }, [])
 
     return (
@@ -103,6 +102,7 @@ const ForceReloadAll = ({ delay }) => {
             onChange={console.log.bind(null, 'onChange')}
             initiallyExpanded={['/A0000000000', '/A0000000000/A0000000001']}
             selected={['/A0000000000/A0000000001/A0000000003']}
+            onInitialLoadingDone={onInitialLoadingDone}
         />
     )
 }

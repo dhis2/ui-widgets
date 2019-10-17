@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 export const expandUnit = ({
     expanded,
@@ -47,16 +47,22 @@ export const useExpand = ({
     onExpand,
     onCollapse,
 }) => {
-    const reallyInitiallyExpanded = openFirstLevel
-        ? rootUnits.reduce((paths, rootId) => {
-              const rootPath = `/${rootId}`
-              if (paths.indexOf(rootPath) === -1) {
-                  return [...paths, rootPath]
-              }
+    const reallyInitiallyExpanded = useMemo(() => {
+        const all = [...initiallyExpanded]
+        initiallyExpanded.forEach(path => {
+            const segments = path.replace(/^\//, '').split('/')
 
-              return paths
-          }, initiallyExpanded)
-        : initiallyExpanded
+            segments.forEach((segment, index) => {
+                const curPath = `/${segments.slice(0, index + 1).join('/')}`
+
+                if (all.indexOf(curPath) === -1) {
+                    all.push(curPath)
+                }
+            })
+        })
+
+        return all
+    }, [initiallyExpanded])
 
     const [expanded, setExpanded] = useState(reallyInitiallyExpanded)
 

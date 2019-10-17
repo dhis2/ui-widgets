@@ -1,6 +1,89 @@
 import { useDataEngine } from '@dhis2/app-runtime'
-import { useEffect, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { useTreeState } from './useTreeState'
+
+export const loadInitialData = ({
+    initiallyExpanded,
+    rootUnits,
+    loadChildrenFor,
+    onDone,
+}) => {
+    const initialLoading = useMemo(() => {
+        const pathsToBePreloaded = initiallyExpanded.reduce((grouped, path) => {
+            const parts = path.replace(/^\//, '').split('/')
+
+            return parts.reduce((curGrouped, part, depth) => {
+                if (!curGrouped[depth]) {
+                    curGrouped[depth] = []
+                }
+
+                //const curPath = `/${parts.slice(0, depth + 1).join('/')}`
+                const curPath = part
+
+                if (curGrouped[depth].indexOf(curPath) !== -1) {
+                    return curGrouped
+                }
+
+                return [
+                    ...curGrouped.slice(0, depth),
+                    [...curGrouped[depth], curPath],
+                    ...curGrouped.slice(depth + 1),
+                ]
+            }, grouped)
+        }, [])
+
+        // group for child ids of deepest group
+        pathsToBePreloaded.push([])
+
+        // always load data for root ids
+        rootUnits.forEach(id => {
+            if (pathsToBePreloaded[0].indexOf(id) === -1) {
+                pathsToBePreloaded[0].push(id)
+            }
+        })
+
+        return pathsToBePreloaded.reduce(
+            (promise, depthGroup, depth) =>
+                promise.then(() => {
+                    return (
+                        loadChildrenFor(depthGroup)
+                            // add all children ids of paths to be opened
+                            // so we can display their names and children count as well
+                            .then(responses => {
+                                const nextDepth = depth + 1
+                                const nextDepthGroup =
+                                    pathsToBePreloaded[nextDepth]
+
+                                if (!nextDepthGroup) {
+                                    return Promise.resolve()
+                                }
+
+                                const nextDepthIds = responses
+                                    .map(({ children }) => children)
+                                    .reduce(
+                                        (flattened, children) => [
+                                            ...flattened,
+                                            ...children,
+                                        ],
+                                        []
+                                    )
+
+                                nextDepthIds.forEach(id => {
+                                    if (nextDepthGroup.indexOf(id) === -1) {
+                                        nextDepthGroup.push(id)
+                                    }
+                                })
+                            })
+                    )
+                }),
+            Promise.resolve()
+        )
+    }, [])
+
+    useEffect(() => {
+        initialLoading.then(onDone)
+    }, [])
+}
 
 export const loadChildrenForIds = ({
     ids,
@@ -61,7 +144,10 @@ export const useOrgData = ({
     idsThatShouldBeReloaded,
     forceReload,
     onForceReloadDone,
+    initiallyExpanded,
+    onInitialLoadingDone,
 }) => {
+    const [initialLoadingDone, setInitialLoadingDone] = useState(false)
     const engine = useDataEngine()
     const {
         tree,
@@ -103,22 +189,15 @@ export const useOrgData = ({
      * Reload all ids
      */
     useEffect(() => {
-        if (forceReload) {
+        if (initialLoadingDone && forceReload) {
             const allIds = Object.values(tree).map(({ id }) => id)
             const requests = loadChildrenFor(allIds)
 
             if (onForceReloadDone) {
-                Promise.all(requests).then(() => onForceReloadDone())
+                requests.then(() => onForceReloadDone())
             }
         }
-    }, [
-        loadIndividualChildren,
-        loadChildrenFor,
-        forceReload,
-        addChild,
-        engine,
-        tree,
-    ])
+    }, [forceReload])
 
     /**
      * Load children of a path
@@ -138,6 +217,22 @@ export const useOrgData = ({
             tree,
         ]
     )
+
+    /**
+     * Load root unit data initially
+     */
+    loadInitialData({
+        initiallyExpanded,
+        rootUnits,
+        loadChildrenFor,
+        onDone: () => {
+            setInitialLoadingDone(true)
+
+            if (onInitialLoadingDone) {
+                onInitialLoadingDone()
+            }
+        },
+    })
 
     return { tree, loadChildrenFor, loadChildrenForPath }
 }

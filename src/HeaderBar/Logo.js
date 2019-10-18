@@ -2,22 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import css from 'styled-jsx/css'
 
-import { LogoIconWhite } from '@dhis2/ui-core'
 import { LogoImage } from './LogoImage'
 
 export const Logo = ({ baseUrl }) => (
     <div data-test-id="headerbar-logo">
-        <a href="/">
-            <LogoImage src={`${baseUrl}/api/staticContent/logo_banner`} />
+        <a href={baseUrl}>
+            <LogoImage />
         </a>
 
         <style jsx>{`
             div {
                 box-sizing: border-box;
                 min-width: 48px;
-                height: 48px;
+                max-height: 48px;
                 margin: 0 12px 0 0;
-                text-align: center;
+                border-right: 1px solid rgba(32, 32, 32, 0.15);
             }
 
             a,
@@ -25,7 +24,6 @@ export const Logo = ({ baseUrl }) => (
             a:focus,
             a:active,
             a:visited {
-                display: flex;
                 user-select: none;
             }
         `}</style>

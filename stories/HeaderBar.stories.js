@@ -110,9 +110,21 @@ const customData = {
     },
 }
 
+const customLogo = {
+    ...customData,
+    'staticContent/custom_logo': {
+        path: 'https://via.placeholder.com/150x27',
+    },
+}
+
 storiesOf('HeaderBar', module)
     .add('Default', () => (
         <CustomDataProvider data={customData}>
+            <HeaderBar appName="Example!" />
+        </CustomDataProvider>
+    ))
+    .add('Custom Logo', () => (
+        <CustomDataProvider data={customLogo}>
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))

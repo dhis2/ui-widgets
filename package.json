@@ -24,15 +24,14 @@
         "build": "NODE_ENV=production yarn build:commonjs && NODE_ENV=production yarn build:modules",
         "postbuild": "NODE_ENV=production yarn build-storybook",
         "build-storybook": "build-storybook -c .storybook -o ./build/docs",
-        "start-storybook": "start-storybook --port 5000",
+        "start-storybook": "start-storybook",
         "prestart": "yarn localize",
-        "start": "yarn start-storybook",
-
-        "start:testing": "STORYBOOK_INCLUDE_TESTING=1 yarn start --ci",
-        "cypress:browser": "cypress open",
-        "cypress:ci": "NO_COLOR=1 cypress run -b $BROWSER --config video=false",
-        "cypress:open": "node scripts/cypress_open.js",
-        "cypress:run": "node scripts/cypress_run.js"
+        "start": "yarn start-storybook --port 5000",
+        "start:testing": "STORYBOOK_INCLUDE_TESTING=1 yarn start --port $PORT --ci",
+        "cypress:browser": "cypress open --config baseUrl=http://localhost:$PORT --env PORT=$PORT",
+        "cypress:ci": "NO_COLOR=1 cypress run -b $BROWSER --config baseUrl=http://localhost:$PORT --env PORT=$PORT",
+        "cypress:open": "PORT=12345 concurrently --kill-others -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:$PORT && yarn cypress:browser'",
+        "cypress:run": "PORT=12345 concurrently --kill-others --success first -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:$PORT && yarn cypress:ci'"
     },
     "devDependencies": {
         "@babel/cli": "^7.6.4",
@@ -70,7 +69,9 @@
         "@dhis2/d2-i18n": "1.0.5",
         "@dhis2/ui-core": "3.12.0",
         "classnames": "^2.2.6",
-        "styled-jsx": "^3.2.2"
+        "concurrently": "^5.0.0",
+        "styled-jsx": "^3.2.2",
+        "wait-on": "^3.3.0"
     },
     "files": [
         "build"

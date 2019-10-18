@@ -1,3 +1,12 @@
+/**
+ * See
+ *
+ * * https://github.com/cypress-io/cypress/issues/95
+ * * https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__window-fetch
+ * * https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/stubbing-spying__window-fetch/cypress/integration/polyfill-fetch-from-tests-spec.js
+ *
+ * for an explanation why this is currently necessary...
+ */
 !(function(e, n) {
     'object' == typeof exports && 'undefined' != typeof module
         ? (module.exports = n())

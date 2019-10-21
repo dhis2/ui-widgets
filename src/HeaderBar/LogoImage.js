@@ -14,7 +14,7 @@ const defaultLogo = css.resolve`
 
 const query = {
     customLogo: {
-        resource: 'staticContent/custom_logo',
+        resource: 'staticContent/logo_banner',
     },
 }
 
@@ -28,7 +28,7 @@ export const LogoImage = () => {
             {error ? (
                 <LogoIconWhite className={defaultLogo.className} />
             ) : (
-                <img alt="Headerbar Logo" src={data.customLogo.path} />
+                <img alt="Headerbar Logo" src={data.customLogo.images.png} />
             )}
 
             {defaultLogo.styles}

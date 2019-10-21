@@ -13,7 +13,7 @@ export const Logo = ({ baseUrl }) => (
         <style jsx>{`
             div {
                 box-sizing: border-box;
-                min-width: 48px;
+                min-width: 49px;
                 max-height: 48px;
                 margin: 0 12px 0 0;
                 border-right: 1px solid rgba(32, 32, 32, 0.15);

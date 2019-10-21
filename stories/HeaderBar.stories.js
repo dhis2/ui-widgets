@@ -112,8 +112,10 @@ const customData = {
 
 const customLogo = {
     ...customData,
-    'staticContent/custom_logo': {
-        path: 'https://via.placeholder.com/150x27',
+    'staticContent/logo_banner': {
+        images: {
+            png: 'https://via.placeholder.com/150x27',
+        },
     },
 }
 

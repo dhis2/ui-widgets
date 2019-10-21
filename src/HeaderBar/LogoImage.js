@@ -34,19 +34,21 @@ export const LogoImage = () => {
             {defaultLogo.styles}
             <style jsx>{`
                 div {
-                    padding: 0 12px 0 12px;
+                    padding: 4px 0px;
                     min-width: 48px;
+                    max-width: 250px;
                     height: 48px;
 
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    overflow-x: hidden;
                 }
 
                 img {
                     max-height: 100%;
                     min-height: auto;
-                    min-width: auto;
+                    width: auto;
                 }
             `}</style>
         </div>

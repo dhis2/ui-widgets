@@ -114,7 +114,7 @@ const customLogo = {
     ...customData,
     'staticContent/logo_banner': {
         images: {
-            png: 'https://via.placeholder.com/150x27',
+            png: 'https://via.placeholder.com/150x50',
         },
     },
 }
@@ -125,7 +125,7 @@ storiesOf('HeaderBar', module)
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))
-    .add('Custom Logo', () => (
+    .add('Custom Logo (wide dimension)', () => (
         <CustomDataProvider data={customLogo}>
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
@@ -139,9 +139,4 @@ storiesOf('HeaderBar', module)
         <CustomDataProvider data={{}}>
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
-    ))
-    .add('Test', () => (
-        <DataProvider baseUrl="https://debug.dhis2.org/dev" apiVersion="">
-            <HeaderBar appName="Example!" />
-        </DataProvider>
     ))

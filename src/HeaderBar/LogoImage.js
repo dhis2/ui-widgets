@@ -34,7 +34,7 @@ export const LogoImage = () => {
             {defaultLogo.styles}
             <style jsx>{`
                 div {
-                    padding: 4px 0px;
+                    padding: 4px;
                     min-width: 48px;
                     max-width: 250px;
                     height: 48px;

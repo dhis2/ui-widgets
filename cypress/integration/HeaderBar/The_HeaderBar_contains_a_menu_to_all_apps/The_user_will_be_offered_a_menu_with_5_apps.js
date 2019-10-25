@@ -13,22 +13,6 @@ When('the user clicks on the menu icons', () => {
     cy.get('[data-test-id="headerbar-apps-icon"]').click()
 })
 
-When('the user opens the menu', () => {
-    cy.get('[data-test-id="headerbar-apps-icon"]').click()
-})
-
-When('the user clicks outside of the menu', () => {
-    cy.get('[data-test-id="headerbar-title"]').click()
-})
-
-Then('the HeaderBar displays a menu icon', () => {
-    cy.get('[data-test-id="headerbar-apps-icon"]').should('exist')
-})
-
-Then('the HeaderBar dos not display the app menu', () => {
-    cy.get('[data-test-id="headerbar-apps-menu"]').should('not.exist')
-})
-
 Then('the menu opens', () => {
     cy.get('[data-test-id="headerbar-apps-menu"]').should('be.visible')
 })

@@ -8,7 +8,7 @@ import Profile from './Profile'
 
 import css from 'styled-jsx/css'
 
-import { useConfig, useDataQuery } from '@dhis2/app-runtime'
+import { useDataQuery } from '@dhis2/app-runtime'
 
 import { Logo } from './Logo.js'
 import { Title } from './Title.js'
@@ -34,7 +34,6 @@ const query = {
 }
 
 export const HeaderBar = ({ appName, className }) => {
-    const config = useConfig()
     const { loading, error, data } = useDataQuery(query)
 
     useEffect(() => {

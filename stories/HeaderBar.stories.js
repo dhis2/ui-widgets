@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { HeaderBar } from '../src'
 import { CustomDataProvider } from '@dhis2/app-runtime'
-import { DataProvider } from '@dhis2/app-runtime'
+import { Provider } from '@dhis2/app-runtime'
 
 const customData = {
     'system/info': {
@@ -140,3 +140,18 @@ storiesOf('HeaderBar', module)
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))
+
+/*
+ * Uncomment this story to test against a real API
+ */
+
+/*
+    .add('Real API', () => (
+        <Provider config={{
+            apiVersion: '33',
+            baseUrl: 'https://dhis2.vardevs.se/dev',
+        }}>
+            <HeaderBar appName="Real API" />
+        </Provider>
+    ))
+    */

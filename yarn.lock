@@ -10801,10 +10801,10 @@ store2@^2.7.1:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.7.1.tgz#22070b7dc04748a792fc6912a58ab99d3a21d788"
   integrity sha512-zzzP5ZY6QWumnAFV6kBRbS44pUMcpZBNER5DWUe1HETlaKXqLcCQxbNu6IHaKr1pUsjuhUGBdOy8sWKmMkL6pQ==
 
-storybook-addon-jsx@^7.1.12:
-  version "7.1.12"
-  resolved "https://registry.yarnpkg.com/storybook-addon-jsx/-/storybook-addon-jsx-7.1.12.tgz#f8d5ecd463f8ebf952c398763e631ad6413bc197"
-  integrity sha512-Eli8CkooBlHV68ZPdJLXexwIENZcMd38Ca/hhRKXPspX9VQoSo4bsYfp9sPa8RAiVtK7Ur+AcyJKskXv2joiKA==
+storybook-addon-jsx@^7.1.13:
+  version "7.1.13"
+  resolved "https://registry.yarnpkg.com/storybook-addon-jsx/-/storybook-addon-jsx-7.1.13.tgz#1bc18a64bd9053b0c2f9669d398697ec6fdb6b36"
+  integrity sha512-JHWbVUzpkyIMiGeFWFkxg6qNkR0fLeT++v1Q4IN9s7JfxrHksPskMnCkDra+rmx/Mtdq4uk5XKREJNIl0H8d/w==
   dependencies:
     "@storybook/components" "^5.2.5"
     copy-to-clipboard "^3.0.8"

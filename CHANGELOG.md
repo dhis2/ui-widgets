@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/dhis2/ui-widgets/compare/v1.0.8...v2.0.0) (2019-10-28)
+
+
+### Features
+
+* **header bar:** dynamic header bar logo ([#125](https://github.com/dhis2/ui-widgets/issues/125)) ([697c642](https://github.com/dhis2/ui-widgets/commit/697c6420d3c6af4f1aaa3a8c96b31af1ce1f9e19))
+
+
+### BREAKING CHANGES
+
+* **header bar:** Upgrade code to align with @dhis2/app-runtime@2.x, so the host application that uses this must have the 2.x major version of the @dhis2/app-runtime.
+
 ## [1.0.8](https://github.com/dhis2/ui-widgets/compare/v1.0.7...v1.0.8) (2019-07-09)
 
 

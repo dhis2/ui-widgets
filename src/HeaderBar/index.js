@@ -18,21 +18,23 @@ import { Notifications } from './Notifications.js'
 import '../locales'
 import i18n from '@dhis2/d2-i18n'
 
+const query = {
+    systemInfo: {
+        resource: 'system/info',
+    },
+    user: {
+        resource: 'me',
+    },
+    apps: {
+        resource: 'action::menu/getModules',
+    },
+    notifications: {
+        resource: 'me/dashboard',
+    },
+}
+
 export const HeaderBar = ({ appName, className }) => {
-    const { loading, error, data } = useDataQuery({
-        systemInfo: {
-            resource: 'system/info',
-        },
-        user: {
-            resource: 'me',
-        },
-        apps: {
-            resource: 'action::menu/getModules',
-        },
-        notifications: {
-            resource: 'me/dashboard',
-        },
-    })
+    const { loading, error, data } = useDataQuery(query)
 
     useEffect(() => {
         const getPath = path =>
@@ -55,10 +57,9 @@ export const HeaderBar = ({ appName, className }) => {
 
     return (
         <header className={className}>
-            <Logo />
-
             {!loading && !error && (
                 <>
+                    <Logo baseUrl={data.systemInfo.contextPath} />
                     <Title
                         app={appName}
                         instance={data.systemInfo.systemName}

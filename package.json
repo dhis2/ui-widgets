@@ -41,7 +41,7 @@
         "@babel/plugin-transform-react-constant-elements": "^7.6.3",
         "@babel/preset-env": "^7.6.3",
         "@babel/preset-react": "^7.6.3",
-        "@dhis2/app-runtime": "1.3.0",
+        "@dhis2/app-runtime": "^2.0.1",
         "@dhis2/cli-style": "4.2.0",
         "@dhis2/d2-i18n-extract": "1.0.8",
         "@dhis2/d2-i18n-generate": "1.1.1",
@@ -60,7 +60,7 @@
         "typeface-roboto": "^0.0.75"
     },
     "peerDependencies": {
-        "@dhis2/app-runtime": "^1.3",
+        "@dhis2/app-runtime": "^2",
         "prop-types": "^15",
         "react": "^16.8",
         "react-dom": "^16.8"

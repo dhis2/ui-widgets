@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { HeaderBar } from '../src'
 import { CustomDataProvider } from '@dhis2/app-runtime'
+import { Provider } from '@dhis2/app-runtime'
 
 const customData = {
     'system/info': {
@@ -109,9 +110,23 @@ const customData = {
     },
 }
 
+const customLogo = {
+    ...customData,
+    'staticContent/logo_banner': {
+        images: {
+            png: 'https://via.placeholder.com/150x50',
+        },
+    },
+}
+
 storiesOf('HeaderBar', module)
     .add('Default', () => (
         <CustomDataProvider data={customData}>
+            <HeaderBar appName="Example!" />
+        </CustomDataProvider>
+    ))
+    .add('Custom Logo (wide dimension)', () => (
+        <CustomDataProvider data={customLogo}>
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))
@@ -125,3 +140,18 @@ storiesOf('HeaderBar', module)
             <HeaderBar appName="Example!" />
         </CustomDataProvider>
     ))
+
+/*
+ * Uncomment this story to test against a real API
+ */
+
+/*
+    .add('Real API', () => (
+        <Provider config={{
+            apiVersion: '33',
+            baseUrl: 'https://dhis2.vardevs.se/dev',
+        }}>
+            <HeaderBar appName="Real API" />
+        </Provider>
+    ))
+    */

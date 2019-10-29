@@ -3,19 +3,19 @@ import PropTypes from 'prop-types'
 
 import { colors } from '@dhis2/ui-core'
 
-import Apps from './Apps'
-import Profile from './Profile'
+import Apps from './HeaderBar/Apps.js'
+import Profile from './HeaderBar/Profile.js'
 
 import css from 'styled-jsx/css'
 
 import { useDataQuery } from '@dhis2/app-runtime'
 
-import { Logo } from './Logo.js'
-import { Title } from './Title.js'
+import { Logo } from './HeaderBar/Logo.js'
+import { Title } from './HeaderBar/Title.js'
 
-import { Notifications } from './Notifications.js'
+import { Notifications } from './HeaderBar/Notifications.js'
 
-import '../locales'
+import './locales'
 import i18n from '@dhis2/d2-i18n'
 
 const query = {

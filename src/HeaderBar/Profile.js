@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 import css from 'styled-jsx/css'
 
-import { ProfileMenu } from './ProfileMenu.js'
+import { ProfileMenu } from './Profile/ProfileMenu.js'
 
-import { TextIcon } from '../TextIcon.js'
-import { ImageIcon } from '../ImageIcon.js'
+import { TextIcon } from './TextIcon.js'
+import { ImageIcon } from './ImageIcon.js'
 
 function avatarPath(avatar, contextPath) {
     if (!avatar) {

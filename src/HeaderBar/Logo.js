@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import css from 'styled-jsx/css'
 
-import { LogoImage } from './LogoImage'
+import { LogoImage } from './LogoImage.js'
 
 export const Logo = ({ baseUrl }) => (
     <div data-test-id="headerbar-logo">

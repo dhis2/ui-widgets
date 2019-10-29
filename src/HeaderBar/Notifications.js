@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { NotificationIcon } from './NotificationIcon'
+import { NotificationIcon } from './NotificationIcon.js'
 
 export const Notifications = ({ interpretations, messages, contextPath }) => (
     <div data-test-id="headerbar-notifications">

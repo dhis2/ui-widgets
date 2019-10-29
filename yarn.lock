@@ -1310,10 +1310,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@dhis2/app-runtime@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-2.0.1.tgz#a230924116b43352bf07a46f5085f76be36d0707"
-  integrity sha512-+Rmw+QshbgiBielN7UH4VXfEeSnSj1N3d4HGqf3iekyUXCNdpZX2bD9QrH43KvdfH+lDp71Uh7y3FKEhzSbRLA==
+"@dhis2/app-runtime@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@dhis2/app-runtime/-/app-runtime-2.0.3.tgz#ababc8494420b4f16cbfdc3fef8f9a2707008a4c"
+  integrity sha512-h1UZ5r1izLWJrncvK6pcYlQvGP6CTEQFbzVLHlZ/s1yPMbQaNTOprZPvJU4jCxyfa5XBY9Tcs5FAeDxzdsxQGg==
 
 "@dhis2/cli-helpers-engine@1.4.2":
   version "1.4.2"

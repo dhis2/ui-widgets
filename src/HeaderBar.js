@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { colors } from '@dhis2/ui-core'
-
 import Apps from './HeaderBar/Apps.js'
 import Profile from './HeaderBar/Profile.js'
 
+import cx from 'classnames'
 import css from 'styled-jsx/css'
 
 import { useDataQuery } from '@dhis2/app-runtime'
@@ -56,7 +55,7 @@ export const HeaderBar = ({ appName, className }) => {
     }
 
     return (
-        <header className={className}>
+        <header className={cx('headerbar', className)}>
             {!loading && !error && (
                 <>
                     <Logo baseUrl={data.systemInfo.contextPath} />
@@ -84,7 +83,7 @@ export const HeaderBar = ({ appName, className }) => {
             )}
 
             <style jsx>{`
-                header {
+                .headerbar {
                     background-color: #2c6693;
                     display: flex;
                     flex-direction: row;
@@ -92,7 +91,6 @@ export const HeaderBar = ({ appName, className }) => {
                     justify-content: space-between;
                     height: 48px;
                     border-bottom: 1px solid rgba(32, 32, 32, 0.15);
-                    color: ${colors.white};
                 }
                 .right-control-spacer {
                     margin-left: auto;

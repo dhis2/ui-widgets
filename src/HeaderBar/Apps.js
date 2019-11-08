@@ -34,7 +34,7 @@ const trailIcon = css.resolve`
 
 const settingsIcon = css.resolve`
     svg {
-        margin: 8px 8px 0 16px;
+        margin: 8px 8px 0 8px;
         color: ${colors.grey900};
         height: 24px;
         width: 24px;
@@ -59,9 +59,7 @@ function Search({ value, onChange, onIconClick, contextPath }) {
                     name="filter"
                     label={i18n.t('Search apps')}
                     onChange={onChange}
-                    trailIcon={<TrailIcon onClick={onIconClick} />}
-                    focus
-                    filled
+                    initialFocus
                     dense
                 />
             </span>
@@ -79,7 +77,7 @@ function Search({ value, onChange, onIconClick, contextPath }) {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: nowrap;
-                    height: 52px;
+                    height: 56px;
                     margin: 8px;
                 }
 
@@ -89,6 +87,7 @@ function Search({ value, onChange, onIconClick, contextPath }) {
 
                 span:last-child {
                     flex: 1 auto;
+                    align-self: end;
                 }
             `}</style>
         </div>

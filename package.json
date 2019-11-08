@@ -45,6 +45,7 @@
         "@dhis2/cli-style": "4.2.0",
         "@dhis2/d2-i18n-extract": "1.0.8",
         "@dhis2/d2-i18n-generate": "1.1.1",
+        "@dhis2/ui-core": "^4.0.0-beta.1",
         "@storybook/addon-notes": "5.2.5",
         "@storybook/react": "5.2.5",
         "babel-eslint": "^10.0.3",
@@ -61,13 +62,13 @@
     },
     "peerDependencies": {
         "@dhis2/app-runtime": "^2",
+        "@dhis2/ui-core": "^4",
         "prop-types": "^15",
         "react": "^16.8",
         "react-dom": "^16.8"
     },
     "dependencies": {
         "@dhis2/d2-i18n": "1.0.6",
-        "@dhis2/ui-core": "^4.0.0-beta.1",
         "classnames": "^2.2.6",
         "concurrently": "^5.0.0",
         "styled-jsx": "^3.2.3",

@@ -18,18 +18,27 @@ const query = {
     },
 }
 
+const pathExists = data =>
+    data &&
+    data.customLogo &&
+    data.customLogo.images &&
+    data.customLogo.images.png
+
 export const LogoImage = () => {
     const { loading, error, data } = useDataQuery(query)
 
     if (loading) return null
 
+    let Logo
+    if (!error && pathExists(data)) {
+        Logo = <img alt="Headerbar Logo" src={data.customLogo.images.png} />
+    } else {
+        Logo = <LogoIconWhite className={defaultLogo.className} />
+    }
+
     return (
         <div>
-            {error ? (
-                <LogoIconWhite className={defaultLogo.className} />
-            ) : (
-                <img alt="Headerbar Logo" src={data.customLogo.images.png} />
-            )}
+            {Logo}
 
             {defaultLogo.styles}
             <style jsx>{`
@@ -42,7 +51,7 @@ export const LogoImage = () => {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    overflow-x: hidden;
+                    overflow: hidden;
                 }
 
                 img {

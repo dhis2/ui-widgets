@@ -5,7 +5,7 @@ import css from 'styled-jsx/css'
 import { useDataQuery } from '@dhis2/app-runtime'
 import { LogoIconWhite } from '@dhis2/ui-core'
 
-const defaultLogo = css.resolve`
+const logoStyles = css.resolve`
     svg {
         height: 25px;
         width: 27px;
@@ -41,18 +41,18 @@ export const LogoImage = () => {
             <img
                 alt="Headerbar Logo"
                 src={data.customLogo.images.png}
-                className={defaultLogo.className}
+                className={logoStyles.className}
             />
         )
     } else {
-        Logo = <LogoIconWhite className={defaultLogo.className} />
+        Logo = <LogoIconWhite className={logoStyles.className} />
     }
 
     return (
         <div>
             {Logo}
 
-            {defaultLogo.styles}
+            {logoStyles.styles}
             <style jsx>{`
                 div {
                     padding: 4px;

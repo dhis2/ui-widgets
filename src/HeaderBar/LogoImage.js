@@ -10,6 +10,12 @@ const defaultLogo = css.resolve`
         height: 25px;
         width: 27px;
     }
+
+    img {
+        max-height: 100%;
+        min-height: auto;
+        width: auto;
+    }
 `
 
 const query = {
@@ -31,7 +37,13 @@ export const LogoImage = () => {
 
     let Logo
     if (!error && pathExists(data)) {
-        Logo = <img alt="Headerbar Logo" src={data.customLogo.images.png} />
+        Logo = (
+            <img
+                alt="Headerbar Logo"
+                src={data.customLogo.images.png}
+                className={defaultLogo.className}
+            />
+        )
     } else {
         Logo = <LogoIconWhite className={defaultLogo.className} />
     }
@@ -52,12 +64,6 @@ export const LogoImage = () => {
                     justify-content: center;
                     align-items: center;
                     overflow: hidden;
-                }
-
-                img {
-                    max-height: 100%;
-                    min-height: auto;
-                    width: auto;
                 }
             `}</style>
         </div>

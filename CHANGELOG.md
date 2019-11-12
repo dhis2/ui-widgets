@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/dhis2/ui-widgets/compare/v2.0.0...v2.0.1) (2019-11-12)
+
+
+### Bug Fixes
+
+* **headerbar:** fallback when api responds with blob ([#200](https://github.com/dhis2/ui-widgets/issues/200)) ([a45c3e5](https://github.com/dhis2/ui-widgets/commit/a45c3e5aeb29c2b71dac5c945187a5cd74e70a3d))
+
 # [2.0.0](https://github.com/dhis2/ui-widgets/compare/v1.0.8...v2.0.0) (2019-10-28)
 
 

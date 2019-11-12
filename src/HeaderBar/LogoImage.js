@@ -5,10 +5,16 @@ import css from 'styled-jsx/css'
 import { useDataQuery } from '@dhis2/app-runtime'
 import { LogoIconWhite } from '@dhis2/ui-core'
 
-const defaultLogo = css.resolve`
+const logoStyles = css.resolve`
     svg {
         height: 25px;
         width: 27px;
+    }
+
+    img {
+        max-height: 100%;
+        min-height: auto;
+        width: auto;
     }
 `
 
@@ -18,20 +24,35 @@ const query = {
     },
 }
 
+const pathExists = data =>
+    data &&
+    data.customLogo &&
+    data.customLogo.images &&
+    data.customLogo.images.png
+
 export const LogoImage = () => {
     const { loading, error, data } = useDataQuery(query)
 
     if (loading) return null
 
+    let Logo
+    if (!error && pathExists(data)) {
+        Logo = (
+            <img
+                alt="Headerbar Logo"
+                src={data.customLogo.images.png}
+                className={logoStyles.className}
+            />
+        )
+    } else {
+        Logo = <LogoIconWhite className={logoStyles.className} />
+    }
+
     return (
         <div>
-            {error ? (
-                <LogoIconWhite className={defaultLogo.className} />
-            ) : (
-                <img alt="Headerbar Logo" src={data.customLogo.images.png} />
-            )}
+            {Logo}
 
-            {defaultLogo.styles}
+            {logoStyles.styles}
             <style jsx>{`
                 div {
                     padding: 4px;
@@ -42,13 +63,7 @@ export const LogoImage = () => {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    overflow-x: hidden;
-                }
-
-                img {
-                    max-height: 100%;
-                    min-height: auto;
-                    width: auto;
+                    overflow: hidden;
                 }
             `}</style>
         </div>

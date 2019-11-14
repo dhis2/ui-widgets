@@ -5,7 +5,9 @@ Then('the HeaderBar should display the dhis2 logo', () => {
 })
 
 Then('the logo should link to the homepage', () => {
-    cy.get('[data-test-id="headerbar-logo"] a').then($a => {
-        expect($a.attr('href')).to.equal('/')
+    cy.get('@systemInfoFixture').then(({ contextPath }) => {
+        cy.get('[data-test-id="headerbar-logo"] a').then($a => {
+            expect($a.attr('href')).to.equal(contextPath)
+        })
     })
 })

@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Search apps"
-msgstr "Search apps"
+msgstr ""
 
 msgid "Edit profile"
 msgstr "အတ္ထုပ္ပတ္တိအကျဉ်းကိုပြင်ဆင်ခြင်း"

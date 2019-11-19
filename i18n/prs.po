@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Search apps"
-msgstr ""
+msgstr "جستجوی برنامه ها"
 
 msgid "Edit profile"
 msgstr "ویرایش پروفایل"

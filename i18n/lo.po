@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Search apps"
-msgstr "Search apps"
+msgstr "ຄົ້ນຫາແອັບ"
 
 msgid "Edit profile"
 msgstr "ແກ້ໄຂຂໍ້ມູນ"

@@ -16,7 +16,7 @@
     },
     "scripts": {
         "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
-        "generate-locale": "d2-i18n-generate -n 'ui-widgets' -p ./i18n/ -o ./src/locales/",
+        "generate-locale": "d2-i18n-generate -n 'default' -p ./i18n/ -o ./src/locales/",
         "localize": "yarn extract-pot && yarn generate-locale",
         "prebuild": "rm -rf ./build/* && yarn localize",
         "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir ./build/cjs --copy-files --verbose",

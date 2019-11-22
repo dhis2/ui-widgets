@@ -44,7 +44,7 @@ import urTranslations from './ur/translations.json'
 import viTranslations from './vi/translations.json'
 import zhTranslations from './zh/translations.json'
 
-const namespace = 'ui-widgets'
+const namespace = 'default'
 moment.locale('en')
 
 i18n.addResources('ar', namespace, arTranslations)

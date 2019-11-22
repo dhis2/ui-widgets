@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/dhis2/ui-widgets/compare/v2.0.1...v2.0.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* use default namespace for i18n ([#208](https://github.com/dhis2/ui-widgets/issues/208)) ([f636c2e](https://github.com/dhis2/ui-widgets/commit/f636c2e44194b2b272874f3b47b72a7ac3349d8e))
+
 ## [2.0.1](https://github.com/dhis2/ui-widgets/compare/v2.0.0...v2.0.1) (2019-11-12)
 
 

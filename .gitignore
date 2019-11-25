@@ -28,3 +28,6 @@ bundle.stats.json
 
 # cypress
 cypress/screenshots
+
+# DHIS2
+src/locales

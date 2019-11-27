@@ -9,20 +9,21 @@ build)](https://d2-ci.github.io/ui-widgets/)**
 
 Testing is done with cypress & cucumber.
 
-* Run `yarn cypress:run`<br />
-  This will run cypress and exit with either 0 or 1
+-   Run `yarn cypress:run`<br />
+    This will run cypress and exit with either 0 or 1
 
-* Run `yarn cypress:open`<br />
-This will open the cypress gui, which is useful for writing tests
+-   Run `yarn cypress:open`<br />
+    This will open the cypress gui, which is useful for writing tests
 
 ### Recording videos and taking screenshots
 
 When running `yarn cypress:run`, by default no video is recorded and no
 screenshot will be taken.
-* Recording videos can be enabled by supplying the
-`CYPRESS_VIDEO=true` env var.
-* Taking screenshots can be enabled by supplying the
-`CYPRESS_SCREENSHOT=true` env var.
+
+-   Recording videos can be enabled by supplying the
+    `CYPRESS_VIDEO=true` env var.
+-   Taking screenshots can be enabled by supplying the
+    `CYPRESS_SCREENSHOT=true` env var.
 
 ### Storybook stories for testing
 

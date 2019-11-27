@@ -1,4 +1,5 @@
 import '../common/index'
+import { Then, Given } from 'cypress-cucumber-preprocessor/steps'
 
 Given('there are 10 unread interpretations', () => {
     cy.fixture('HeaderBar/dashboard')

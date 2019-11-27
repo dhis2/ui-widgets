@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import css from 'styled-jsx/css'
-
 export const TextIcon = ({ name, onClick, dataTestId }) => {
     let title = name[0]
 
@@ -46,6 +44,6 @@ TextIcon.defaultProps = {
 
 TextIcon.propTypes = {
     name: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
     dataTestId: PropTypes.string,
+    onClick: PropTypes.func,
 }

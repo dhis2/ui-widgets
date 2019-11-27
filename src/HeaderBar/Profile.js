@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import css from 'styled-jsx/css'
-
 import { ProfileMenu } from './Profile/ProfileMenu.js'
 
 import { TextIcon } from './TextIcon.js'
@@ -92,6 +90,6 @@ export default class Profile extends React.Component {
 }
 
 Profile.propTypes = {
-    user: PropTypes.object.isRequired,
     contextPath: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired,
 }

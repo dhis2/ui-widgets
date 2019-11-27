@@ -79,8 +79,8 @@ NotificationIcon.defaultProps = {
 }
 
 NotificationIcon.propTypes = {
-    kind: PropTypes.oneOf(['interpretation', 'message']),
     href: PropTypes.string.isRequired,
     count: PropTypes.number,
     dataTestId: PropTypes.string,
+    kind: PropTypes.oneOf(['interpretation', 'message']),
 }

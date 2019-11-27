@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from '@dhis2/prop-types'
 
 export function Apps({ className }) {
     return (
@@ -13,4 +14,7 @@ export function Apps({ className }) {
             <path d="M0 0h48v48H0z" fill="none" />
         </svg>
     )
+}
+Apps.propTypes = {
+    className: propTypes.string,
 }

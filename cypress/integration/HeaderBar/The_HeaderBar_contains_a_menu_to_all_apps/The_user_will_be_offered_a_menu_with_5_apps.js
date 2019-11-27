@@ -1,4 +1,5 @@
-import '../common/index'
+import '../common/index.js'
+import { When, Then, Given } from 'cypress-cucumber-preprocessor/steps'
 
 Given('there are 5 apps available to the user', () => {
     cy.fixture('HeaderBar/getModules')

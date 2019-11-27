@@ -1,4 +1,5 @@
 import '../common/index'
+import { Then } from 'cypress-cucumber-preprocessor/steps'
 
 Then('the HeaderBar displays a profile icon', () => {
     cy.get(

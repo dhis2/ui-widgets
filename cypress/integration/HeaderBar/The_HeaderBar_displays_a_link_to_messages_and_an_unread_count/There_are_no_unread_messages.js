@@ -1,4 +1,5 @@
 import '../common/index'
+import { Then, Given } from 'cypress-cucumber-preprocessor/steps'
 
 Given('there are 0 unread messages', () => {
     cy.fixture('HeaderBar/dashboard')

@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import css from 'styled-jsx/css'
+import propTypes from '@dhis2/prop-types'
 
 import { LogoImage } from './LogoImage.js'
 
@@ -31,5 +30,5 @@ export const Logo = ({ baseUrl }) => (
 )
 
 Logo.propTypes = {
-    baseUrl: PropTypes.string.isRequired,
+    baseUrl: propTypes.string.isRequired,
 }

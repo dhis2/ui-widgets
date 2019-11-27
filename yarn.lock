@@ -1371,7 +1371,7 @@
     update-notifier "^3.0.0"
     yargs "^13.1.0"
 
-"@dhis2/cli-style@5.0.2":
+"@dhis2/cli-style@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@dhis2/cli-style/-/cli-style-5.0.2.tgz#31a07b972025e4032cd26cb236e7aa194deda28d"
   integrity sha512-s5diu50VCC1XH6meJR48eCzdIhSxEedIVpGXfyIxfHQJq3hyJBwZXjyl/NCVvOk7wNoPgbn3ZhVnb05yPBVRag==
@@ -1424,6 +1424,13 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@dhis2/prop-types/-/prop-types-1.1.1.tgz#a70dd59e56cff13f6e49470677a4def0ac78ff6f"
   integrity sha512-ILyRcpPjFVtfxuZhyZ2yBp5NkIiTKBF/KfTtr6cSGqXnBIeV9XqHR+IT+C9jwcB96hxhuxBKmvfiaFQFT8uU6g==
+  dependencies:
+    prop-types "^15"
+
+"@dhis2/prop-types@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/prop-types/-/prop-types-1.4.0.tgz#921e733bf55a03617414f60d303fa7eacee3ac52"
+  integrity sha512-vQomZH0sBLNrTVRMlwQ6HM8rn0kFiw6zt/Z8d6flTAuDuZrwD0Wi505dvbqbf7/bHDwpMnp4xz6v6ky1l+jfeg==
   dependencies:
     prop-types "^15"
 

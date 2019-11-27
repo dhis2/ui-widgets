@@ -1,4 +1,4 @@
-import { Before } from 'cypress-cucumber-preprocessor/steps'
+import { Before, Given } from 'cypress-cucumber-preprocessor/steps'
 
 /**
  * Will be executed before any `Given` statement,

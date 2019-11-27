@@ -1,3 +1,5 @@
+import { Then, When } from 'cypress-cucumber-preprocessor/steps'
+
 Then('the HeaderBar does not display the profile menu', () => {
     cy.get('[data-test-id="headerbar-profile-menu"]').should('not.exist')
 })

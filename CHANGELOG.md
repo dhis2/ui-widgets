@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/dhis2/ui-widgets/compare/v2.0.2...v2.0.3) (2019-11-27)
+
+
+### Bug Fixes
+
+* prevent translations code elimination ([#219](https://github.com/dhis2/ui-widgets/issues/219)) ([3ae32b6](https://github.com/dhis2/ui-widgets/commit/3ae32b61248ae5cbe7cfc279f914a1e88c8a9c0d))
+
 ## [2.0.2](https://github.com/dhis2/ui-widgets/compare/v2.0.1...v2.0.2) (2019-11-22)
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 
 export const TextIcon = ({ name, onClick, dataTestId }) => {
     let title = name[0]
@@ -43,7 +43,7 @@ TextIcon.defaultProps = {
 }
 
 TextIcon.propTypes = {
-    name: PropTypes.string.isRequired,
-    dataTestId: PropTypes.string,
-    onClick: PropTypes.func,
+    name: propTypes.string.isRequired,
+    dataTestId: propTypes.string,
+    onClick: propTypes.func,
 }

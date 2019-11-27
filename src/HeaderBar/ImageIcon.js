@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 
 export const ImageIcon = ({ src, onClick, dataTestId }) => (
     <div onClick={onClick} data-test-id={dataTestId}>
@@ -24,7 +24,7 @@ ImageIcon.defaultProps = {
 }
 
 ImageIcon.propTypes = {
-    src: PropTypes.string.isRequired,
-    dataTestId: PropTypes.string,
-    onClick: PropTypes.func,
+    src: propTypes.string.isRequired,
+    dataTestId: propTypes.string,
+    onClick: propTypes.func,
 }

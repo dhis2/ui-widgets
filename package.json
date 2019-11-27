@@ -3,7 +3,9 @@
     "version": "2.0.2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
-    "sideEffects": false,
+    "sideEffects": [
+        "./build/es/locales/index.js"
+    ],
     "repository": "git@github.com:dhis2/ui-widgets.git",
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
     "contributors": [

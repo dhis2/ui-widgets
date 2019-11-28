@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 
 import { NotificationIcon } from './NotificationIcon.js'
 
@@ -30,3 +30,8 @@ export const Notifications = ({ interpretations, messages, contextPath }) => (
         `}</style>
     </div>
 )
+Notifications.propTypes = {
+    contextPath: propTypes.string,
+    interpretations: propTypes.string,
+    messages: propTypes.string,
+}

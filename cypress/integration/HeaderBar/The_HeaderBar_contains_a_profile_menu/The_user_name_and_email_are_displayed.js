@@ -1,4 +1,5 @@
 import '../common/index'
+import { Then } from 'cypress-cucumber-preprocessor/steps'
 
 Then('contains the user name', () => {
     cy.get('@meFixture').then(({ name }) => {

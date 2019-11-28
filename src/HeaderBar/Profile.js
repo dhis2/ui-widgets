@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import css from 'styled-jsx/css'
+import propTypes from '@dhis2/prop-types'
 
 import { ProfileMenu } from './Profile/ProfileMenu.js'
 
@@ -92,6 +90,6 @@ export default class Profile extends React.Component {
 }
 
 Profile.propTypes = {
-    user: PropTypes.object.isRequired,
-    contextPath: PropTypes.string.isRequired,
+    contextPath: propTypes.string.isRequired,
+    user: propTypes.object.isRequired,
 }

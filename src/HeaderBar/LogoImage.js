@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import css from 'styled-jsx/css'
 
 import { useDataQuery } from '@dhis2/app-runtime'

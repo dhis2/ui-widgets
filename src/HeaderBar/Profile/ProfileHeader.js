@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import css from 'styled-jsx/css'
+import propTypes from '@dhis2/prop-types'
 
 import i18n from '@dhis2/d2-i18n'
 
@@ -20,6 +19,9 @@ const ProfileName = ({ children }) => (
         `}</style>
     </div>
 )
+ProfileName.propTypes = {
+    children: propTypes.string,
+}
 
 const ProfileEmail = ({ children }) => (
     <div data-test-id="headerbar-profile-user-email">
@@ -34,6 +36,9 @@ const ProfileEmail = ({ children }) => (
         `}</style>
     </div>
 )
+ProfileEmail.propTypes = {
+    children: propTypes.string,
+}
 
 const ProfileEdit = ({ children, contextPath }) => (
     <a
@@ -53,6 +58,10 @@ const ProfileEdit = ({ children, contextPath }) => (
         `}</style>
     </a>
 )
+ProfileEdit.propTypes = {
+    children: propTypes.string,
+    contextPath: propTypes.string,
+}
 
 const ProfileDetails = ({ name, email, contextPath }) => (
     <div>
@@ -74,6 +83,11 @@ const ProfileDetails = ({ name, email, contextPath }) => (
         `}</style>
     </div>
 )
+ProfileDetails.propTypes = {
+    contextPath: propTypes.string,
+    email: propTypes.string,
+    name: propTypes.string,
+}
 
 export const ProfileHeader = ({ name, email, img, contextPath }) => (
     <div>
@@ -93,8 +107,8 @@ export const ProfileHeader = ({ name, email, img, contextPath }) => (
 )
 
 ProfileHeader.propTypes = {
-    name: PropTypes.string,
-    email: PropTypes.string,
-    img: PropTypes.string,
-    contextPath: PropTypes.string.isRequired,
+    contextPath: propTypes.string.isRequired,
+    email: propTypes.string,
+    img: propTypes.string,
+    name: propTypes.string,
 }

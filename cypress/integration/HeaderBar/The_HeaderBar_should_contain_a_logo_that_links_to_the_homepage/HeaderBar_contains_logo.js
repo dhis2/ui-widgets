@@ -1,4 +1,5 @@
 import '../common/index.js'
+import { Then } from 'cypress-cucumber-preprocessor/steps'
 
 Then('the HeaderBar should display the dhis2 logo', () => {
     cy.get('[data-test-id="headerbar-logo"]').should('be.visible')

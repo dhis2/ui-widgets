@@ -1,4 +1,6 @@
 {
+    "baseUrl": "http://localhost:5000",
     "testFiles": "**/*.feature",
-    "video": false
+    "video": false,
+    "projectId": "m31w8q"
 }

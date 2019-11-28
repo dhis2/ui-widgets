@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 import css from 'styled-jsx/css'
 
 import { colors, theme } from '@dhis2/ui-core'
@@ -79,8 +79,8 @@ NotificationIcon.defaultProps = {
 }
 
 NotificationIcon.propTypes = {
-    kind: PropTypes.oneOf(['interpretation', 'message']),
-    href: PropTypes.string.isRequired,
-    count: PropTypes.number,
-    dataTestId: PropTypes.string,
+    href: propTypes.string.isRequired,
+    count: propTypes.number,
+    dataTestId: propTypes.string,
+    kind: propTypes.oneOf(['interpretation', 'message']),
 }

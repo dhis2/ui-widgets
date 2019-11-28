@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 
 import { colors } from '@dhis2/ui-core'
 
 import Apps from './HeaderBar/Apps.js'
 import Profile from './HeaderBar/Profile.js'
-
-import css from 'styled-jsx/css'
 
 import { useDataQuery } from '@dhis2/app-runtime'
 
@@ -103,6 +101,6 @@ export const HeaderBar = ({ appName, className }) => {
 }
 
 HeaderBar.propTypes = {
-    className: PropTypes.string,
-    appName: PropTypes.string,
+    appName: propTypes.string,
+    className: propTypes.string,
 }

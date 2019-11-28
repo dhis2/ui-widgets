@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 
 import i18n from '@dhis2/d2-i18n'
 import { Card, InputField, colors, theme } from '@dhis2/ui-core'
@@ -7,8 +7,6 @@ import { Card, InputField, colors, theme } from '@dhis2/ui-core'
 import { Settings } from '../icons/Settings.js'
 import { Apps as AppsIcon } from '../icons/Apps.js'
 import { Cancel } from '../icons/Cancel.js'
-
-import cx from 'classnames'
 
 import css from 'styled-jsx/css'
 
@@ -48,6 +46,9 @@ function TrailIcon({ onClick }) {
             <Cancel className={trailIcon.className} />
         </a>
     )
+}
+TrailIcon.propTypes = {
+    onClick: propTypes.func,
 }
 
 function Search({ value, onChange, onIconClick, contextPath }) {
@@ -100,10 +101,10 @@ Search.defaultProps = {
 }
 
 Search.propTypes = {
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onIconClick: PropTypes.func,
-    contextPath: PropTypes.string.isRequired,
+    contextPath: propTypes.string.isRequired,
+    value: propTypes.string.isRequired,
+    onChange: propTypes.func.isRequired,
+    onIconClick: propTypes.func,
 }
 
 function Item({ name, path, img }) {
@@ -160,9 +161,9 @@ function Item({ name, path, img }) {
 }
 
 Item.propTypes = {
-    name: PropTypes.string,
-    path: PropTypes.string,
-    img: PropTypes.string,
+    img: propTypes.string,
+    name: propTypes.string,
+    path: propTypes.string,
 }
 
 function List({ apps, filter }) {
@@ -205,6 +206,10 @@ function List({ apps, filter }) {
             `}</style>
         </div>
     )
+}
+List.propTypes = {
+    apps: propTypes.array,
+    filter: propTypes.string,
 }
 
 export default class Apps extends React.Component {
@@ -289,6 +294,6 @@ export default class Apps extends React.Component {
 }
 
 Apps.propTypes = {
-    apps: PropTypes.array.isRequired,
-    contextPath: PropTypes.string.isRequired,
+    apps: propTypes.array.isRequired,
+    contextPath: propTypes.string.isRequired,
 }

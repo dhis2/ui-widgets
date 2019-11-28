@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from '@dhis2/prop-types'
 import css from 'styled-jsx/css'
 
 import i18n from '@dhis2/d2-i18n'
@@ -129,6 +129,12 @@ const ProfileContents = ({ name, email, avatar, contextPath }) => (
         `}</style>
     </Card>
 )
+ProfileContents.propTypes = {
+    avatar: propTypes.element,
+    contextPath: propTypes.string,
+    email: propTypes.string,
+    name: propTypes.string,
+}
 
 export const ProfileMenu = ({ avatar, name, email, contextPath }) => (
     <div data-test-id="headerbar-profile-menu">
@@ -150,3 +156,9 @@ export const ProfileMenu = ({ avatar, name, email, contextPath }) => (
         `}</style>
     </div>
 )
+ProfileMenu.propTypes = {
+    avatar: propTypes.element,
+    contextPath: propTypes.string,
+    email: propTypes.string,
+    name: propTypes.string,
+}

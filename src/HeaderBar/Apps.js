@@ -58,12 +58,10 @@ function Search({ value, onChange, onIconClick, contextPath }) {
                 <InputField
                     value={value}
                     name="filter"
-                    label={i18n.t('Search apps')}
+                    placeholder={i18n.t('Search apps')}
                     onChange={onChange}
                     trailIcon={<TrailIcon onClick={onIconClick} />}
-                    focus
-                    filled
-                    dense
+                    initialFocus
                 />
             </span>
 
@@ -234,7 +232,7 @@ export default class Apps extends React.Component {
 
     onToggle = () => this.setState({ show: !this.state.show })
 
-    onChange = e => this.setState({ filter: e.target.value })
+    onChange = ({ value }) => this.setState({ filter: value })
 
     onIconClick = () => this.setState({ filter: '' })
 

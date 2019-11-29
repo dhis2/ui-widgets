@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/dhis2/ui-widgets/compare/v2.0.3...v2.0.4) (2019-11-29)
+
+
+### Bug Fixes
+
+* update ui-core to 4.0 ([#217](https://github.com/dhis2/ui-widgets/issues/217)) ([ee2ab20](https://github.com/dhis2/ui-widgets/commit/ee2ab20bbbc2b936d899a8f14062c549ef29809a))
+
 ## [2.0.3](https://github.com/dhis2/ui-widgets/compare/v2.0.2...v2.0.3) (2019-11-27)
 
 

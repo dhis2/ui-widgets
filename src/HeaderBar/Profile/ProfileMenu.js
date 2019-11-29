@@ -28,7 +28,6 @@ const list = [
         label: i18n.t('Settings'),
         value: 'settings',
         link: `/dhis-web-user-profile/#/settings`,
-        target: '_self',
         dataTestId: 'headerbar-profile-menu-link-settings',
     },
     {
@@ -36,7 +35,6 @@ const list = [
         label: i18n.t('Account'),
         value: 'account',
         link: `/dhis-web-user-profile/#/account`,
-        target: '_self',
         dataTestId: 'headerbar-profile-menu-link-account',
     },
     {
@@ -45,7 +43,6 @@ const list = [
         value: 'help',
         link:
             'https://docs.dhis2.org/master/en/user/html/dhis2_user_manual_en.html',
-        target: '_blank',
         nobase: true,
         dataTestId: 'headerbar-profile-menu-link-help',
     },
@@ -54,7 +51,6 @@ const list = [
         label: i18n.t('About DHIS2'),
         value: 'about',
         link: `/dhis-web-user-profile/#/aboutPage`,
-        target: '_self',
         dataTestId: 'headerbar-profile-menu-link-about',
     },
     {
@@ -62,7 +58,6 @@ const list = [
         label: i18n.t('Logout'),
         value: 'logout',
         link: `/dhis-web-commons-security/logout.action`,
-        target: '_self',
         dataTestId: 'headerbar-profile-menu-link-logout',
     },
 ]
@@ -79,28 +74,16 @@ const ProfileContents = ({ name, email, avatar, contextPath }) => (
             <Divider margin="13px 0 7px 0" />
             <ul>
                 {list.map(
-                    ({
-                        label,
-                        value,
-                        icon,
-                        link,
-                        target,
-                        nobase,
-                        dataTestId,
-                    }) => (
-                        <a
-                            href={nobase ? link : `${contextPath}${link}`}
-                            target={target}
-                            key={`h-p-${value}`}
-                            data-test-id={dataTestId}
-                        >
+                    ({ label, value, icon, link, nobase, dataTestId }) => (
+                        <span key={`h-p-${value}`} data-test-id={dataTestId}>
                             <MenuItem
+                                href={nobase ? link : `${contextPath}${link}`}
                                 key={`h-mi-${value}`}
                                 label={label}
                                 value={value}
                                 icon={icon}
                             />
-                        </a>
+                        </span>
                     )
                 )}
             </ul>

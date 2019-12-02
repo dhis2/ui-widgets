@@ -55,10 +55,9 @@
         "@dhis2/d2-i18n-extract": "1.0.8",
         "@dhis2/d2-i18n-generate": "1.1.1",
         "@dhis2/ui-core": "^4.0.0",
-        "@storybook/addon-notes": "5.2.6",
         "@storybook/react": "5.2.8",
-        "babel-eslint": "^10.0.3",
         "babel-loader": "^8.0.6",
+        "concurrently": "^5.0.0",
         "cypress": "^3.7.0",
         "cypress-cucumber-preprocessor": "^1.17.0",
         "fs-extra": "^8.1.0",
@@ -68,12 +67,11 @@
         "storybook-addon-jsx": "^7.1.13",
         "storybook-addon-react-docgen": "^1.2.2",
         "typeface-roboto": "^0.0.75",
-        "wait-on": "^3.3.0",
-        "concurrently": "^5.0.0"
+        "wait-on": "^3.3.0"
     },
     "peerDependencies": {
         "@dhis2/app-runtime": "^2",
-        "@dhis2/ui-core": "^4.0.0",
+        "@dhis2/ui-core": "^4",
         "react": "^16.8",
         "react-dom": "^16.8"
     },

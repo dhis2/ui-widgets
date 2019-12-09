@@ -32,6 +32,6 @@ export const Notifications = ({ interpretations, messages, contextPath }) => (
 )
 Notifications.propTypes = {
     contextPath: propTypes.string,
-    interpretations: propTypes.string,
-    messages: propTypes.string,
+    interpretations: propTypes.number,
+    messages: propTypes.number,
 }

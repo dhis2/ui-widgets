@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/dhis2/ui-widgets/compare/v2.0.4...v2.0.5) (2019-12-09)
+
+
+### Bug Fixes
+
+* **headerbar:** Proptypes for notifications ([#241](https://github.com/dhis2/ui-widgets/issues/241)) ([23a533a](https://github.com/dhis2/ui-widgets/commit/23a533a99ec8d7a4f0ff7c37d76a68f4f17ca25a))
+
 ## [2.0.4](https://github.com/dhis2/ui-widgets/compare/v2.0.3...v2.0.4) (2019-11-29)
 
 

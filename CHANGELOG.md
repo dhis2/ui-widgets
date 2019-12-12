@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/dhis2/ui-widgets/compare/v2.0.5...v2.0.6) (2019-12-12)
+
+
+### Bug Fixes
+
+* **deps:** set dependencies provided by app-platform to peerDeps ([#242](https://github.com/dhis2/ui-widgets/issues/242)) ([993ac30](https://github.com/dhis2/ui-widgets/commit/993ac30557f3c0fc85c6c73b227bafd9781eab8d))
+
 ## [2.0.5](https://github.com/dhis2/ui-widgets/compare/v2.0.4...v2.0.5) (2019-12-09)
 
 

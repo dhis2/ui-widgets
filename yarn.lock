@@ -1439,10 +1439,10 @@
   dependencies:
     prop-types "^15"
 
-"@dhis2/ui-core@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-4.4.1.tgz#9b7455f14e49075cb4389f4adc0fb0204ce015cb"
-  integrity sha512-ybZnb6Qiu6diHHLByupEnQg/U4jK6ljVDSI+hBcqY+fFyaGXGdGVuRQ1Zv57qpD1zTPdrUkhmrAXyUegDp3sxw==
+"@dhis2/ui-core@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-4.5.0.tgz#562ba8c4d0ac8f0827ce226bd76ca13d435b06f1"
+  integrity sha512-dIHUN1Bn2apFuDQ7li3clJz+B/avnrVpVQ13T9x/yky8edbDX0bn1+j+vAter52RD3oCQv6nrVHndbybyylYiw==
   dependencies:
     "@dhis2/prop-types" "^1.5.0"
     classnames "^2.2.6"

@@ -4,7 +4,7 @@ import propTypes from '@dhis2/prop-types'
 import { NotificationIcon } from './NotificationIcon.js'
 
 export const Notifications = ({ interpretations, messages, contextPath }) => (
-    <div data-test-id="headerbar-notifications">
+    <div data-test="headerbar-notifications">
         <NotificationIcon
             count={interpretations}
             href={`${contextPath}/dhis-web-interpretation`}

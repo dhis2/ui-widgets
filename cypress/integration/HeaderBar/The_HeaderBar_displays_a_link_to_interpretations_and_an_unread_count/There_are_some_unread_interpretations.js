@@ -11,7 +11,7 @@ Given('there are 10 unread interpretations', () => {
 })
 
 Then('the interpretations link contains an icon with the number 10', () => {
-    cy.get('[data-test-id="headerbar-interpretations-count"]').then($count => {
+    cy.get('[data-test="headerbar-interpretations-count"]').then($count => {
         expect($count.text()).to.equal('10')
     })
 })

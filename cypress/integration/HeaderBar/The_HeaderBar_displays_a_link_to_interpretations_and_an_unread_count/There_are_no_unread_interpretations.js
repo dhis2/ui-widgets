@@ -11,7 +11,5 @@ Given('there are 0 unread interpretations', () => {
 })
 
 Then('the interpretations link does not contain a count', () => {
-    cy.get('[data-test-id="headerbar-interpretations-count"]').should(
-        'not.exist'
-    )
+    cy.get('[data-test="headerbar-interpretations-count"]').should('not.exist')
 })

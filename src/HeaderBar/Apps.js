@@ -166,7 +166,7 @@ Item.propTypes = {
 
 function List({ apps, filter }) {
     return (
-        <div data-test-id="headerbar-apps-menu-list">
+        <div data-test="headerbar-apps-menu-list">
             {apps
                 .filter(({ displayName }) => {
                     return filter.length > 0
@@ -237,7 +237,7 @@ export default class Apps extends React.Component {
     onIconClick = () => this.setState({ filter: '' })
 
     AppMenu = apps => (
-        <div data-test-id="headerbar-apps-menu">
+        <div data-test="headerbar-apps-menu">
             <Card>
                 <Search
                     value={this.state.filter}
@@ -263,11 +263,8 @@ export default class Apps extends React.Component {
     render() {
         const apps = this.props.apps
         return (
-            <div
-                ref={c => (this.elContainer = c)}
-                data-test-id="headerbar-apps"
-            >
-                <a onClick={this.onToggle} data-test-id="headerbar-apps-icon">
+            <div ref={c => (this.elContainer = c)} data-test="headerbar-apps">
+                <a onClick={this.onToggle} data-test="headerbar-apps-icon">
                     <AppsIcon className={appIcon.className} />
                 </a>
 

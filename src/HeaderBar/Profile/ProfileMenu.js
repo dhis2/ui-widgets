@@ -67,7 +67,7 @@ const ProfileContents = ({ name, email, avatar, contextPath }) => (
                 contextPath={contextPath}
             />
             <Divider margin="13px 0 7px 0" />
-            <ul data-test-id="headerbar-profile-menu">
+            <ul data-test="headerbar-profile-menu">
                 {list.map(({ label, value, icon, link, nobase }) => (
                     <MenuItem
                         href={nobase ? link : `${contextPath}${link}`}
@@ -111,7 +111,7 @@ ProfileContents.propTypes = {
 }
 
 export const ProfileMenu = ({ avatar, name, email, contextPath }) => (
-    <div data-test-id="headerbar-profile-menu">
+    <div data-test="headerbar-profile-menu">
         <ProfileContents
             name={name}
             email={email}

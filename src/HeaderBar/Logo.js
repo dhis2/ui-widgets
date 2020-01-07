@@ -4,7 +4,7 @@ import propTypes from '@dhis2/prop-types'
 import { LogoImage } from './LogoImage.js'
 
 export const Logo = ({ baseUrl }) => (
-    <div data-test-id="headerbar-logo">
+    <div data-test="headerbar-logo">
         <a href={baseUrl}>
             <LogoImage />
         </a>

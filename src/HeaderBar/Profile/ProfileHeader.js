@@ -7,7 +7,7 @@ import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
 
 const ProfileName = ({ children }) => (
-    <div data-test-id="headerbar-profile-username">
+    <div data-test="headerbar-profile-username">
         {children}
 
         <style jsx>{`
@@ -24,7 +24,7 @@ ProfileName.propTypes = {
 }
 
 const ProfileEmail = ({ children }) => (
-    <div data-test-id="headerbar-profile-user-email">
+    <div data-test="headerbar-profile-user-email">
         {children}
 
         <style jsx>{`
@@ -43,7 +43,7 @@ ProfileEmail.propTypes = {
 const ProfileEdit = ({ children, contextPath }) => (
     <a
         href={`${contextPath}/dhis-web-user-profile/#/profile`}
-        data-test-id="headerbar-profile-edit-profile-link"
+        data-test="headerbar-profile-edit-profile-link"
     >
         {children}
 

@@ -11,15 +11,15 @@ Given('there are 5 apps available to the user', () => {
 })
 
 When('the user clicks on the menu icons', () => {
-    cy.get('[data-test-id="headerbar-apps-icon"]').click()
+    cy.get('[data-test="headerbar-apps-icon"]').click()
 })
 
 Then('the menu opens', () => {
-    cy.get('[data-test-id="headerbar-apps-menu"]').should('be.visible')
+    cy.get('[data-test="headerbar-apps-menu"]').should('be.visible')
 })
 
 Then('contains 5 items with links', () => {
-    cy.get('[data-test-id="headerbar-apps-menu-list"]')
+    cy.get('[data-test="headerbar-apps-menu-list"]')
         .find('a')
         .should('have.length', 5)
 })

@@ -9,7 +9,7 @@ export const TextIcon = ({ name, onClick, dataTestId }) => {
     }
 
     return (
-        <div onClick={onClick} data-test-id={dataTestId}>
+        <div onClick={onClick} data-test={dataTestId}>
             <p>{title}</p>
 
             <style jsx>{`

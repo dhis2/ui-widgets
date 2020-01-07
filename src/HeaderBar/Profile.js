@@ -63,7 +63,7 @@ export default class Profile extends React.Component {
         return (
             <div
                 ref={c => (this.elContainer = c)}
-                data-test-id="headerbar-profile"
+                data-test="headerbar-profile"
             >
                 {this.userIcon(user, contextPath)}
 

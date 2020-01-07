@@ -42,10 +42,10 @@ function icon(kind) {
 }
 
 export const NotificationIcon = ({ count, href, kind, dataTestId }) => (
-    <a href={href} className={kind} data-test-id={dataTestId}>
+    <a href={href} className={kind} data-test={dataTestId}>
         {icon(kind)}
 
-        {count > 0 && <span data-test-id={`${dataTestId}-count`}>{count}</span>}
+        {count > 0 && <span data-test={`${dataTestId}-count`}>{count}</span>}
 
         <style jsx>{`
             a {

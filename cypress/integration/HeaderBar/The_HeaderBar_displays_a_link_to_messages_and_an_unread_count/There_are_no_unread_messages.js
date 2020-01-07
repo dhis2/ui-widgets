@@ -11,5 +11,5 @@ Given('there are 0 unread messages', () => {
 })
 
 Then('the messages link does not contain a count', () => {
-    cy.get('[data-test-id="headerbar-messages-count"]').should('not.exist')
+    cy.get('[data-test="headerbar-messages-count"]').should('not.exist')
 })

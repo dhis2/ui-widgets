@@ -168,9 +168,10 @@ function List({ apps, filter }) {
     return (
         <div data-test="headerbar-apps-menu-list">
             {apps
-                .filter(({ displayName }) => {
+                .filter(({ displayName, name }) => {
+                    const appName = displayName || name;
                     return filter.length > 0
-                        ? displayName.toLowerCase().match(filter.toLowerCase())
+                        ? appName.toLowerCase().match(filter.toLowerCase())
                         : true
                 })
                 .map(({ displayName, name, defaultAction, icon }, idx) => (

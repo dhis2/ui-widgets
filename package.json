@@ -56,7 +56,7 @@
         "@dhis2/d2-i18n-generate": "1.1.1",
         "@dhis2/d2-i18n": "^1.0.6",
         "@dhis2/ui-core": "^4.6.1",
-        "@storybook/react": "5.2.8",
+        "@storybook/react": "5.3.1",
         "babel-loader": "^8.0.6",
         "concurrently": "^5.0.2",
         "cypress": "^3.8.2",

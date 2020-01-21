@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/dhis2/ui-widgets/compare/v2.0.6...v2.0.7) (2020-01-21)
+
+
+### Bug Fixes
+
+* **headerbar:** Include apps with no display name in filter ([#274](https://github.com/dhis2/ui-widgets/issues/274)) ([9077432](https://github.com/dhis2/ui-widgets/commit/9077432773c86b64fea1c128c6393dd29809bd28))
+
 ## [2.0.6](https://github.com/dhis2/ui-widgets/compare/v2.0.5...v2.0.6) (2019-12-12)
 
 

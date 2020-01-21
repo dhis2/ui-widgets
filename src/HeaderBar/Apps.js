@@ -169,7 +169,7 @@ function List({ apps, filter }) {
         <div data-test="headerbar-apps-menu-list">
             {apps
                 .filter(({ displayName, name }) => {
-                    const appName = displayName || name;
+                    const appName = displayName || name
                     return filter.length > 0
                         ? appName.toLowerCase().match(filter.toLowerCase())
                         : true

@@ -27,7 +27,7 @@ jobs:
                   MERGE_METHOD: squash
                   MERGE_FORKS: false
                   MERGE_RETRIES: 10
-                  MERGE_RETRY_SLEEP: 30
+                  MERGE_RETRY_SLEEP: 30000
                   MERGE_DELETE_BRANCH: true
                   UPDATE_LABELS: translations
                   UPDATE_METHOD: rebase

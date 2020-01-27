@@ -1,30 +1,33 @@
 name: 'DHIS2'
-
 on:
     pull_request:
         types:
             - labeled
-            - review_request_removed
-            - review_requested
             - unlabeled
+            - synchronize
+            - opened
+            - edited
+            - ready_for_review
+            - reopened
+            - unlocked
     pull_request_review:
         types:
-            - dismissed
             - submitted
-    status:
-
+    status: {}
 jobs:
-    merge:
-        runs-on: ubuntu-latest
+    automerge:
         name: Translations
+        runs-on: ubuntu-latest
         steps:
-            - name: Integration
-              uses: squalrus/merge-bot@v0.2.0
-              with:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  test: false
-                  reviewers: false
-                  labels: translations
-                  blocking-labels: do not merge
-                  checks: true
-                  method: squash
+            - name: Automerge
+              uses: 'pascalgn/automerge-action@7854d3bd607dccdaf0b2c134b699a812c8960213'
+              env:
+                  GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+                  MERGE_LABELS: translations
+                  MERGE_METHOD: squash
+                  MERGE_FORKS: false
+                  MERGE_RETRIES: 10
+                  MERGE_RETRY_SLEEP: 30
+                  MERGE_DELETE_BRANCH: true
+                  UPDATE_LABELS: translations
+                  UPDATE_METHOD: rebase

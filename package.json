@@ -58,7 +58,7 @@
         "@dhis2/ui-core": "^4.7.0",
         "@storybook/react": "5.3.9",
         "babel-loader": "^8.0.6",
-        "concurrently": "^5.0.2",
+        "concurrently": "^5.1.0",
         "cypress": "^3.8.3",
         "cypress-cucumber-preprocessor": "^2.0.1",
         "fs-extra": "^8.1.0",

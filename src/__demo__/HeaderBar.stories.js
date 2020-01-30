@@ -1,8 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { HeaderBar } from '../src'
 import { CustomDataProvider } from '@dhis2/app-runtime'
 //import { Provider } from '@dhis2/app-runtime'
+
+import { HeaderBar } from '../index.js'
 
 const customData = {
     'system/info': {

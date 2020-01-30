@@ -1,11 +1,9 @@
 {
     "name": "@dhis2/ui-widgets",
     "version": "2.0.7",
-    "main": "./build/cjs/index.js",
-    "module": "./build/es/index.js",
-    "sideEffects": [
-        "./build/es/locales/index.js"
-    ],
+    "main": "build/cjs/lib.js",
+    "module": "build/es/lib.js",
+    "sideEffects": false,
     "repository": "git@github.com:dhis2/ui-widgets.git",
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
     "contributors": [
@@ -17,23 +15,14 @@
         "access": "public"
     },
     "scripts": {
-        "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
-        "generate-locale": "d2-i18n-generate -n 'default' -p ./i18n/ -o ./src/locales/",
-        "localize": "yarn extract-pot && yarn generate-locale",
-        "prebuild": "rm -rf ./build/* && yarn localize",
-        "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir ./build/cjs --copy-files --verbose",
-        "build:modules": "BABEL_ENV=modules babel src --out-dir ./build/es --copy-files --verbose",
-        "build": "NODE_ENV=production yarn build:commonjs && NODE_ENV=production yarn build:modules",
-        "postbuild": "NODE_ENV=production yarn build-storybook",
-        "build-storybook": "build-storybook -c .storybook -o ./build/docs",
-        "start-storybook": "start-storybook",
-        "prestart": "yarn localize",
-        "start": "yarn start-storybook --port 5000",
-        "start:testing": "STORYBOOK_INCLUDE_TESTING=1 yarn start --port $PORT --ci --quiet",
-        "cypress:browser": "cypress open --config baseUrl=http://localhost:$PORT",
-        "cypress:ci": "NO_COLOR=1 cypress run -b $BROWSER --config baseUrl=http://localhost:$PORT",
-        "cypress:open": "PORT=12345 concurrently --kill-others -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:$PORT && yarn cypress:browser'",
-        "cypress:run": "PORT=12345 concurrently --kill-others --success first -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:$PORT && yarn cypress:ci'",
+        "build": "d2-app-scripts build && yarn build:demo",
+        "build:demo": "build-storybook -c .storybook -o ./build/docs",
+        "prestart": "d2-app-scripts i18n extract && d2-app-scripts i18n generate",
+        "start": "EXTEND_ESLINT=true start-storybook -c .storybook",
+        "start:demo": "yarn start --port 5000",
+        "start:testing": "STORYBOOK_TESTING=1 yarn start --port 5001 --quiet --ci",
+        "cypress:open": "concurrently --kill-others -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:5001 && cypress open'",
+        "cypress:run": "concurrently --kill-others --success first -n storybook,cypress 'yarn start:testing' 'wait-on http-get://localhost:5001 && cypress run --headless'",
         "lint": "yarn lint:js && yarn lint:text",
         "lint:js": "d2-style js check",
         "lint:text": "d2-style text check",
@@ -43,21 +32,14 @@
         "format:staged": "yarn format:js --staged && yarn format:text --staged"
     },
     "devDependencies": {
-        "@babel/cli": "^7.8.3",
-        "@babel/core": "^7.8.3",
-        "@babel/plugin-proposal-class-properties": "^7.8.3",
-        "@babel/plugin-proposal-object-rest-spread": "^7.8.0",
-        "@babel/plugin-transform-react-constant-elements": "^7.8.3",
-        "@babel/preset-env": "^7.8.3",
-        "@babel/preset-react": "^7.8.3",
         "@dhis2/app-runtime": "^2",
+        "@dhis2/cli-app-scripts": "^3.2.2",
         "@dhis2/cli-style": "^5.1.0",
-        "@dhis2/d2-i18n-extract": "1.0.8",
-        "@dhis2/d2-i18n-generate": "1.1.1",
         "@dhis2/d2-i18n": "^1.0.6",
-        "@dhis2/ui-core": "^4.7.0",
+        "@dhis2/ui-core": "^4.7.1",
+        "@storybook/csf": "^0.0.1",
+        "@storybook/preset-create-react-app": "^1.5.2",
         "@storybook/react": "5.3.9",
-        "babel-loader": "^8.0.6",
         "concurrently": "^5.1.0",
         "cypress": "^3.8.3",
         "cypress-cucumber-preprocessor": "^2.0.1",
@@ -85,8 +67,5 @@
     },
     "files": [
         "build"
-    ],
-    "cypress-cucumber-preprocessor": {
-        "nonGlobalStepDefinitions": true
-    }
+    ]
 }

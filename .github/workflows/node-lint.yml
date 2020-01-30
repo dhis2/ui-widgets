@@ -1,10 +1,10 @@
-name: 'DHIS2: Lint'
+name: 'DHIS2'
 
 on: [push]
 
 jobs:
     pr:
-        name: Code style
+        name: Style
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
@@ -17,3 +17,5 @@ jobs:
 
             - name: Lint
               run: yarn lint
+        env:
+            CI: true

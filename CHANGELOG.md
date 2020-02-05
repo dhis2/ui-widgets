@@ -1,3 +1,10 @@
+## [2.0.8](https://github.com/dhis2/ui-widgets/compare/v2.0.7...v2.0.8) (2020-02-05)
+
+
+### Bug Fixes
+
+* repair the broken integration test server ([#304](https://github.com/dhis2/ui-widgets/issues/304)) ([d12d2ea](https://github.com/dhis2/ui-widgets/commit/d12d2ea8f5e93a8795714cc1c2d1c0fa80533e1a))
+
 ## [2.0.7](https://github.com/dhis2/ui-widgets/compare/v2.0.6...v2.0.7) (2020-01-21)
 
 

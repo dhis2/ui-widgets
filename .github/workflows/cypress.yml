@@ -1,7 +1,7 @@
 # For more options:
 # https://github.com/cypress-io/github-action
 
-name: 'DHIS2'
+name: 'DHIS2: Cypress'
 
 on:
     push:

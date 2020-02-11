@@ -9,6 +9,11 @@ import { FileInputFieldWithList as UiCoreFileInputFieldWithList } from '@dhis2/u
  * @returns {React.Component}
  *
  * @example import { FileInputFieldWithList } from '@dhis2/ui-widgets'
+ * @description This component adds translations to its counterpart in ui-core.
+ * The default property values for locale "en" are listed below.
+ * For more information, please refer to ui-core:
+ * @see Demo: {@link https://ui-core.dhis2.nu/#module_FileInputFieldWithList}
+ * @see API docs: {@link https://ui-core.dhis2.nu/demo/?path=/story/fileinputfieldwithlist--default}
  */
 
 const placeholderText = (placeholder, multiple) =>
@@ -35,13 +40,6 @@ const FileInputFieldWithList = ({
 
 /**
  * @typedef {Object} PropTypes
- * @description This component adds translations to its counterpart in ui-core.
- * The default property values for locale "en" are listed below.
- * For more information, please refer to ui-core:
- * <ul>
- * <li>{@link https://ui-core.dhis2.nu/#module_FileInputFieldWithList|API docs}</li>
- * <li>{@link https://ui-core.dhis2.nu/demo/?path=/story/fileinputfieldwithlist--default|Stories}</li>
- * </ul>
  * @static
  *
  * @prop {string} [dataTest=dhis2-uiwidgets-fileinputfieldwithlist]

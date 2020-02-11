@@ -9,6 +9,11 @@ import { SingleSelectField as UiCoreSingleSelectField } from '@dhis2/ui-core'
  * @returns {React.Component}
  *
  * @example import { SingleSelectField } from '@dhis2/ui-widgets'
+ * @description This component adds translations to its counterpart in ui-core.
+ * The default property values for locale "en" are listed below.
+ * For more information, please refer to ui-core:
+ * @see Demo: {@link https://ui-core.dhis2.nu/demo/?path=/story/singleselectfield--default}
+ * @see API docs: {@link https://ui-core.dhis2.nu/#module_SingleSelectField}
  */
 
 const SingleSelectField = props => <UiCoreSingleSelectField {...props} />
@@ -22,13 +27,6 @@ SingleSelectField.defaultProps = {
 }
 /**
  * @typedef {Object} PropTypes
- * @description This component adds translations to its counterpart in ui-core.
- * The default property values for locale "en" are listed below.
- * For more information, please refer to ui-core:
- * <ul>
- * <li>{@link https://ui-core.dhis2.nu/#module_SingleSelectField|API docs}</li>
- * <li>{@link https://ui-core.dhis2.nu/demo/?path=/story/singleselectfield--default|Stories}</li>
- * </ul>
  * @static
  *
  * @prop {string} [dataTest]

@@ -5,8 +5,23 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-05-06T10:04:38.118Z\n"
-"PO-Revision-Date: 2019-05-06T10:04:38.118Z\n"
+"POT-Creation-Date: 2020-02-11T10:59:00.005Z\n"
+"PO-Revision-Date: 2020-02-11T10:59:00.005Z\n"
+
+msgid "No files selected yet"
+msgstr ""
+
+msgid "No file selected yet"
+msgstr ""
+
+msgid "Upload files"
+msgstr ""
+
+msgid "Upload file"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
 
 msgid "Search apps"
 msgstr ""
@@ -27,4 +42,16 @@ msgid "About DHIS2"
 msgstr ""
 
 msgid "Logout"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "No Match"
 msgstr ""

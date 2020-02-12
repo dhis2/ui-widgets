@@ -23,7 +23,7 @@ SingleSelectField.defaultProps = {
     clearText: i18n.t('Clear'),
     filterPlaceholder: i18n.t('Filter'),
     loadingText: i18n.t('Loading'),
-    noMatchText: i18n.t('No Match'),
+    noMatchText: i18n.t('No match found'),
 }
 /**
  * @typedef {Object} PropTypes

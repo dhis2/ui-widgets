@@ -18,11 +18,11 @@ import { FileInputFieldWithList as UiCoreFileInputFieldWithList } from '@dhis2/u
 
 const placeholderText = (placeholder, multiple) =>
     placeholder || multiple
-        ? i18n.t('No files selected yet')
-        : i18n.t('No file selected yet')
+        ? i18n.t('No files selected')
+        : i18n.t('No file selected')
 
 const buttonLabelText = (label, multiple) =>
-    label || multiple ? i18n.t('Upload files') : i18n.t('Upload file')
+    label || multiple ? i18n.t('Upload files') : i18n.t('Upload a file')
 
 const FileInputFieldWithList = ({
     multiple,

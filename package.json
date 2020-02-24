@@ -33,7 +33,7 @@
     },
     "devDependencies": {
         "@dhis2/app-runtime": "^2",
-        "@dhis2/cli-app-scripts": "^3.2.4",
+        "@dhis2/cli-app-scripts": "^3.2.5",
         "@dhis2/cli-style": "^6.0.0",
         "@dhis2/d2-i18n": "^1.0.6",
         "@dhis2/ui-core": "^4.12.0",

@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/dhis2/ui-widgets/compare/v2.0.8...v2.1.0) (2020-03-02)
+
+
+### Features
+
+* add OrganisationUnitTree component ([ad0793c](https://github.com/dhis2/ui-widgets/commit/ad0793cac992d5c509bf26716ea595d19ffb5755))
+
 ## [2.0.8](https://github.com/dhis2/ui-widgets/compare/v2.0.7...v2.0.8) (2020-02-05)
 
 

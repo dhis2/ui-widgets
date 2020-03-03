@@ -1653,10 +1653,10 @@
   dependencies:
     prop-types "^15"
 
-"@dhis2/ui-core@^4.12.0", "@dhis2/ui-core@^4.6.1":
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-4.12.0.tgz#5cf05f5d0ed5314cb82a12b436db6d895d312f72"
-  integrity sha512-V/1Yzz6u1cBP1A52o+pKqbUKxbfY06dmo7M31nPMm9NrbnX+0PX1/0d09ucJucaLPx06yqUhsqr7B5A8g7XA8w==
+"@dhis2/ui-core@^4.13.0", "@dhis2/ui-core@^4.6.1":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui-core/-/ui-core-4.13.0.tgz#98792bf7616574043868986a856f6180885d82f4"
+  integrity sha512-p0FrkKBc2aUWBtZ+TKG6R0wyIWN/QfChbJen5BbzXpPT2y1uUtbCdIZmJYTlFLjW4eueCOyLjHXWLPMibpVuIg==
   dependencies:
     "@dhis2/prop-types" "^1.5.0"
     "@popperjs/core" "^2.0.6"

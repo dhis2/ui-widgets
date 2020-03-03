@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2019-05-06T10:04:38.118Z\n"
+"POT-Creation-Date: 2020-02-18T13:19:29.126Z\n"
 "PO-Revision-Date: 2019-08-12 21:09+0000\n"
 "Last-Translator: Aung Kyi Min <AungKyi.Min@savethechildren.org>, 2019\n"
 "Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
@@ -34,4 +34,7 @@ msgid "About DHIS2"
 msgstr ""
 
 msgid "Logout"
+msgstr ""
+
+msgid "Something went wrong with loading the children."
 msgstr ""

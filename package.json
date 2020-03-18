@@ -48,7 +48,7 @@
         "react": "^16.13.0",
         "react-dev-utils": "^10.2.0",
         "react-dom": "^16.13.0",
-        "storybook-addon-jsx": "^7.1.14",
+        "storybook-addon-jsx": "^7.1.15",
         "storybook-addon-react-docgen": "^1.2.2",
         "styled-jsx": "^3.2.5",
         "typeface-roboto": "^0.0.75",

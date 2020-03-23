@@ -46,7 +46,7 @@
         "cypress-cucumber-preprocessor": "^2.0.1",
         "fs-extra": "^8.1.0",
         "react": "^16.13.0",
-        "react-dev-utils": "^10.2.0",
+        "react-dev-utils": "^10.2.1",
         "react-dom": "^16.13.0",
         "storybook-addon-jsx": "^7.1.15",
         "storybook-addon-react-docgen": "^1.2.2",

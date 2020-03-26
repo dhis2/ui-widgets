@@ -47,7 +47,7 @@
         "fs-extra": "^8.1.0",
         "react": "^16.13.1",
         "react-dev-utils": "^10.2.1",
-        "react-dom": "^16.13.0",
+        "react-dom": "^16.13.1",
         "storybook-addon-jsx": "^7.1.15",
         "storybook-addon-react-docgen": "^1.2.2",
         "styled-jsx": "^3.2.5",

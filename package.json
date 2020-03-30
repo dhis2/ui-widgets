@@ -63,7 +63,7 @@
         "styled-jsx": "^3.2"
     },
     "dependencies": {
-        "@dhis2/prop-types": "^1.5",
+        "@dhis2/prop-types": "^1.6",
         "classnames": "^2.2.6"
     },
     "files": [

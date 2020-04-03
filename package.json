@@ -42,7 +42,7 @@
         "@storybook/preset-create-react-app": "^2.0.0",
         "@storybook/react": "5.3.17",
         "concurrently": "^5.1.0",
-        "cypress": "^4.2.0",
+        "cypress": "^4.3.0",
         "cypress-cucumber-preprocessor": "^2.0.1",
         "fs-extra": "^8.1.0",
         "react": "^16.13.1",

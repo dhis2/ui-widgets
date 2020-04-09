@@ -36,4 +36,4 @@ msgid "Logout"
 msgstr "Logg ut"
 
 msgid "Something went wrong with loading the children."
-msgstr ""
+msgstr "Noe gikk galt med å laste underordnede enheter."

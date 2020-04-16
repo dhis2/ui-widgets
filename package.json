@@ -44,7 +44,7 @@
         "concurrently": "^5.1.0",
         "cypress": "^4.2.0",
         "cypress-cucumber-preprocessor": "^2.0.1",
-        "fs-extra": "^8.1.0",
+        "fs-extra": "^9.0.0",
         "react": "^16.13.1",
         "react-dev-utils": "^10.2.1",
         "react-dom": "^16.13.1",

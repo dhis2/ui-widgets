@@ -39,7 +39,7 @@
         "@dhis2/d2-i18n": "^1.0.6",
         "@dhis2/ui-core": "^4.17.1",
         "@storybook/csf": "^0.0.1",
-        "@storybook/preset-create-react-app": "^2.0.0",
+        "@storybook/preset-create-react-app": "^2.1.1",
         "@storybook/react": "5.3.17",
         "concurrently": "^5.1.0",
         "cypress": "^4.2.0",

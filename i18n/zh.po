@@ -36,7 +36,7 @@ msgid "About DHIS2"
 msgstr "关于DHIS2"
 
 msgid "Logout"
-msgstr ""
+msgstr "退出"
 
 msgid "Something went wrong with loading the children."
-msgstr ""
+msgstr "载入下属发生错误"

@@ -34,7 +34,7 @@ msgid "About DHIS2"
 msgstr "عن DHIS2"
 
 msgid "Logout"
-msgstr ""
+msgstr "تسجيل الخروج"
 
 msgid "Something went wrong with loading the children."
-msgstr ""
+msgstr "حدث خطأ أثناء تحميل الأبناء"

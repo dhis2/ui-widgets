@@ -1,10 +1,10 @@
-import '../common/index.js'
+import { webCommons } from '../common/index.js'
 import { When, Then, Given } from 'cypress-cucumber-preprocessor/steps'
 
 Given('there are 5 apps available to the user', () => {
     cy.get('@modulesFixture').then(fx => {
         cy.route({
-            url: 'https://domain.tld/dhis-web-commons/menu/getModules.action',
+            url: `${webCommons}menu/getModules.action`,
             response: {
                 ...fx,
                 modules: fx.modules.slice(0, 5),

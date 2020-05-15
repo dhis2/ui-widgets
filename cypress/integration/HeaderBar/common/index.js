@@ -1,6 +1,7 @@
 import { Before, Given } from 'cypress-cucumber-preprocessor/steps'
 
 export const baseUrl = 'https://domain.tld/'
+export const webCommons = 'https://domain.tld/dhis-web-commons/'
 
 /**
  * Will be executed before any `Given` statement,

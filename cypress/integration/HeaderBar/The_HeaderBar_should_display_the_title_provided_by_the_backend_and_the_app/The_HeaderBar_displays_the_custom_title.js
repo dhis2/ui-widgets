@@ -1,4 +1,4 @@
-import '../common/index'
+import { baseUrl } from '../common/index'
 import { Then, Given } from 'cypress-cucumber-preprocessor/steps'
 
 Given(
@@ -6,9 +6,9 @@ Given(
     applicationTitle => {
         cy.get('@applicationTitleFixture').then(fx => {
             cy.route({
-                url: 'https://domain.tld/api/system/info',
+                url: `${baseUrl}api/systemSettings/applicationTitle`,
                 response: { ...fx, applicationTitle },
-            }).as('modules')
+            }).as('applicationTitle')
         })
     }
 )

@@ -1,3 +1,10 @@
+## [2.1.1-alpha.2](https://github.com/dhis2/ui-widgets/compare/v2.1.1-alpha.1...v2.1.1-alpha.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* escape regex special chars in search ([c913a2d](https://github.com/dhis2/ui-widgets/commit/c913a2d31a8d20587b60ba1b164195f91b8f259c))
+
 ## [2.1.1-alpha.1](https://github.com/dhis2/ui-widgets/compare/v2.1.0...v2.1.1-alpha.1) (2020-05-15)
 
 

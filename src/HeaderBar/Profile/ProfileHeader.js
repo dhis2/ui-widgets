@@ -45,7 +45,7 @@ const ProfileEdit = ({ children }) => {
     const baseUrl = useConfig().baseUrl
     return (
         <a
-            href={`${baseUrl}/dhis-web-user-profile/#/profile`}
+            href={`${baseUrl}dhis-web-user-profile/#/profile`}
             data-test="headerbar-profile-edit-profile-link"
         >
             {children}

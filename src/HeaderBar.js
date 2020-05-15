@@ -50,7 +50,6 @@ export const HeaderBar = ({ appName, className }) => {
     if (!loading && !error) {
         // TODO: This will run every render which is probably wrong!  Also, setting the global locale shouldn't be done in the headerbar
         const locale = data.user.settings.keyUiLocale || 'en'
-        console.log(locale)
         i18n.setDefaultNamespace('default')
         i18n.changeLanguage(locale)
     }

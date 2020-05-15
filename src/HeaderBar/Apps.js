@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from '@dhis2/prop-types'
+import { useConfig } from '@dhis2/app-runtime'
 
 import i18n from '@dhis2/d2-i18n'
 import { Card, InputField, colors, theme } from '@dhis2/ui-core'
@@ -51,7 +52,9 @@ TrailIcon.propTypes = {
     onClick: propTypes.func,
 }
 
-function Search({ value, onChange, onIconClick, contextPath }) {
+function Search({ value, onChange, onIconClick }) {
+    const baseUrl = useConfig().baseUrl
+
     return (
         <div>
             <span>
@@ -66,7 +69,7 @@ function Search({ value, onChange, onIconClick, contextPath }) {
             </span>
 
             <span>
-                <a href={`${contextPath}/dhis-web-menu-management`}>
+                <a href={`${baseUrl}dhis-web-menu-management`}>
                     <Settings className={settingsIcon.className} />
                 </a>
             </span>
@@ -99,7 +102,6 @@ Search.defaultProps = {
 }
 
 Search.propTypes = {
-    contextPath: propTypes.string.isRequired,
     value: propTypes.string.isRequired,
     onChange: propTypes.func.isRequired,
     onIconClick: propTypes.func,
@@ -244,7 +246,6 @@ export default class Apps extends React.Component {
                     value={this.state.filter}
                     onChange={this.onChange}
                     onIconClick={this.onIconClick}
-                    contextPath={this.props.contextPath}
                 />
                 <List apps={apps} filter={this.state.filter} />
             </Card>
@@ -291,5 +292,4 @@ export default class Apps extends React.Component {
 
 Apps.propTypes = {
     apps: propTypes.array.isRequired,
-    contextPath: propTypes.string.isRequired,
 }

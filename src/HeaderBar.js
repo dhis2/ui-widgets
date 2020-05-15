@@ -14,6 +14,7 @@ import { Title } from './HeaderBar/Title.js'
 import { Notifications } from './HeaderBar/Notifications.js'
 
 import i18n from './locales'
+import { joinPath } from './HeaderBar/joinPath.js'
 
 const query = {
     title: {
@@ -38,7 +39,7 @@ export const HeaderBar = ({ appName, className }) => {
         const getPath = path =>
             path.startsWith('http:') || path.startsWith('https:')
                 ? path
-                : `${baseUrl}api/${path}`
+                : joinPath(baseUrl, 'api', path)
 
         return data?.apps.modules.map(app => ({
             ...app,

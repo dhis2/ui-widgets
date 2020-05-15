@@ -6,6 +6,7 @@ import i18n from '@dhis2/d2-i18n'
 
 import { TextIcon } from '../TextIcon.js'
 import { ImageIcon } from '../ImageIcon.js'
+import { joinPath } from '../joinPath.js'
 
 const ProfileName = ({ children }) => (
     <div data-test="headerbar-profile-username">
@@ -45,7 +46,7 @@ const ProfileEdit = ({ children }) => {
     const baseUrl = useConfig().baseUrl
     return (
         <a
-            href={`${baseUrl}dhis-web-user-profile/#/profile`}
+            href={joinPath(baseUrl, 'dhis-web-user-profile/#/profile')}
             data-test="headerbar-profile-edit-profile-link"
         >
             {children}

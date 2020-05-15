@@ -13,6 +13,7 @@ import { Exit } from '../../icons/Exit.js'
 import { Account } from '../../icons/Account.js'
 
 import { ProfileHeader } from './ProfileHeader.js'
+import { joinPath } from '../joinPath.js'
 
 const iconStyle = css.resolve`
     svg {
@@ -70,7 +71,7 @@ const ProfileContents = ({ name, email, avatar }) => {
                     {getMenuList().map(
                         ({ label, value, icon, link, nobase }) => (
                             <MenuItem
-                                href={nobase ? link : `${baseUrl}${link}`}
+                                href={nobase ? link : joinPath(baseUrl, link)}
                                 key={`h-mi-${value}`}
                                 label={label}
                                 value={value}

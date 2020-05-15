@@ -3,6 +3,7 @@ import propTypes from '@dhis2/prop-types'
 import { useConfig } from '@dhis2/app-runtime'
 
 import { NotificationIcon } from './NotificationIcon.js'
+import { joinPath } from './joinPath.js'
 
 export const Notifications = ({ interpretations, messages }) => {
     const baseUrl = useConfig().baseUrl
@@ -11,7 +12,7 @@ export const Notifications = ({ interpretations, messages }) => {
         <div data-test="headerbar-notifications">
             <NotificationIcon
                 count={interpretations}
-                href={`${baseUrl}/dhis-web-interpretation`}
+                href={joinPath(baseUrl, 'dhis-web-interpretation')}
                 kind="message"
                 dataTestId="headerbar-interpretations"
             />
@@ -19,7 +20,7 @@ export const Notifications = ({ interpretations, messages }) => {
             <NotificationIcon
                 message="email"
                 count={messages}
-                href={`${baseUrl}/dhis-web-messaging`}
+                href={joinPath(baseUrl, 'dhis-web-messaging')}
                 kind="interpretation"
                 dataTestId="headerbar-messages"
             />

@@ -1,4 +1,3 @@
-import '../common/index.js'
 import { Then } from 'cypress-cucumber-preprocessor/steps'
 import { baseUrl } from '../common/index.js'
 

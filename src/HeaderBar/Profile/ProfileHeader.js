@@ -43,7 +43,7 @@ ProfileEmail.propTypes = {
 }
 
 const ProfileEdit = ({ children }) => {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
     return (
         <a
             href={joinPath(baseUrl, 'dhis-web-user-profile/#/profile')}

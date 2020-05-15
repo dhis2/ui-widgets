@@ -60,7 +60,7 @@ const getMenuList = () => [
 ]
 
 const ProfileContents = ({ name, email, avatar }) => {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
 
     return (
         <Card>

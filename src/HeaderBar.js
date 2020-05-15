@@ -32,7 +32,7 @@ const query = {
 }
 
 export const HeaderBar = ({ appName, className }) => {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
     const { loading, error, data } = useDataQuery(query)
 
     const apps = useMemo(() => {
@@ -72,7 +72,7 @@ export const HeaderBar = ({ appName, className }) => {
                         messages={data.notifications.unreadMessageConversations}
                     />
                     <Apps apps={apps} />
-                    <Profile user={data.user} />
+                    <Profile user={data.user} baseUrl={baseUrl} />
                 </>
             )}
 

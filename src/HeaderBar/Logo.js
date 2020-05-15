@@ -4,7 +4,7 @@ import { useConfig } from '@dhis2/app-runtime'
 import { LogoImage } from './LogoImage.js'
 
 export const Logo = () => {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
 
     return (
         <div data-test="headerbar-logo">

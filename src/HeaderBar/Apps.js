@@ -54,7 +54,7 @@ TrailIcon.propTypes = {
 }
 
 function Search({ value, onChange, onIconClick }) {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
 
     return (
         <div>

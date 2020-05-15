@@ -6,7 +6,7 @@ import { NotificationIcon } from './NotificationIcon.js'
 import { joinPath } from './joinPath.js'
 
 export const Notifications = ({ interpretations, messages }) => {
-    const baseUrl = useConfig().baseUrl
+    const { baseUrl } = useConfig()
 
     return (
         <div data-test="headerbar-notifications">

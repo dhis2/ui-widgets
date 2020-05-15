@@ -167,14 +167,27 @@ Item.propTypes = {
     path: propTypes.string,
 }
 
+/**
+ * Copied from here:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+ */
+function escapeRegExpCharacters(text) {
+    return text.replace(/[/.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
 function List({ apps, filter }) {
     return (
         <div data-test="headerbar-apps-menu-list">
             {apps
                 .filter(({ displayName, name }) => {
                     const appName = displayName || name
+                    const formattedAppName = appName.toLowerCase()
+                    const formattedFilter = escapeRegExpCharacters(
+                        filter
+                    ).toLowerCase()
+
                     return filter.length > 0
-                        ? appName.toLowerCase().match(filter.toLowerCase())
+                        ? formattedAppName.match(formattedFilter)
                         : true
                 })
                 .map(({ displayName, name, defaultAction, icon }, idx) => (

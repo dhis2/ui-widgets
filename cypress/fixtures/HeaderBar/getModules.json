@@ -57,27 +57,19 @@
             "description": ""
         },
         {
-            "name": "dhis-web-importexport",
-            "namespace": "/dhis-web-importexport",
-            "defaultAction": "../dhis-web-importexport/index.action",
-            "displayName": "Import/Export",
-            "icon": "../icons/dhis-web-importexport.png",
-            "description": ""
-        },
-        {
             "name": "WHO Metadata browser",
             "namespace": "WHO Metadata browser",
-            "defaultAction": "https://play.dhis2.org/2.32.0/api/apps/WHO-Metadata-browser/index.html",
+            "defaultAction": "https://debug.dhis2.org/dev/api/apps/WHO-Metadata-browser/index.html",
             "displayName": "",
-            "icon": "https://play.dhis2.org/2.32.0/api/apps/WHO-Metadata-browser/icons/medicine-48.png",
+            "icon": "https://debug.dhis2.org/dev/api/apps/WHO-Metadata-browser/icons/medicine-48.png",
             "description": ""
         },
         {
             "name": "Dashboard Classic",
             "namespace": "Dashboard Classic",
-            "defaultAction": "https://play.dhis2.org/2.32.0/api/apps/Dashboard-Classic/index.html",
+            "defaultAction": "https://debug.dhis2.org/dev/api/apps/Dashboard-Classic/index.html",
             "displayName": "",
-            "icon": "https://play.dhis2.org/2.32.0/api/apps/Dashboard-Classic/icon.png",
+            "icon": "https://debug.dhis2.org/dev/api/apps/Dashboard-Classic/icon.png",
             "description": "DHIS2 Legacy Dashboard App"
         }
     ]

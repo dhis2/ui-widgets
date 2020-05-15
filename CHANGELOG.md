@@ -1,3 +1,10 @@
+## [2.1.1-alpha.1](https://github.com/dhis2/ui-widgets/compare/v2.1.0...v2.1.1-alpha.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* correctly select and use user locale and application title text [DHIS2-8525] [DHIS2-8723] ([#399](https://github.com/dhis2/ui-widgets/issues/399)) ([a7cb026](https://github.com/dhis2/ui-widgets/commit/a7cb026721d0d3b4787d954bfb12689d244aa9b9))
+
 # [2.1.0](https://github.com/dhis2/ui-widgets/compare/v2.0.8...v2.1.0) (2020-03-02)
 
 

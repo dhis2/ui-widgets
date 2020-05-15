@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useMemo } from 'react'
 import propTypes from '@dhis2/prop-types'
 
 import { colors } from '@dhis2/ui-core'
@@ -6,19 +6,19 @@ import { colors } from '@dhis2/ui-core'
 import Apps from './HeaderBar/Apps.js'
 import Profile from './HeaderBar/Profile.js'
 
-import { useDataQuery } from '@dhis2/app-runtime'
+import { useDataQuery, useConfig } from '@dhis2/app-runtime'
 
 import { Logo } from './HeaderBar/Logo.js'
 import { Title } from './HeaderBar/Title.js'
 
 import { Notifications } from './HeaderBar/Notifications.js'
 
-import './locales'
-import i18n from '@dhis2/d2-i18n'
+import i18n from './locales'
+import { joinPath } from './HeaderBar/joinPath.js'
 
 const query = {
-    systemInfo: {
-        resource: 'system/info',
+    title: {
+        resource: 'systemSettings/applicationTitle',
     },
     user: {
         resource: 'me',
@@ -32,24 +32,26 @@ const query = {
 }
 
 export const HeaderBar = ({ appName, className }) => {
+    const { baseUrl } = useConfig()
     const { loading, error, data } = useDataQuery(query)
 
-    useEffect(() => {
+    const apps = useMemo(() => {
         const getPath = path =>
             path.startsWith('http:') || path.startsWith('https:')
                 ? path
-                : `${data.systemInfo.contextPath}/api/${path}`
+                : joinPath(baseUrl, 'api', path)
 
-        if (!loading && !error)
-            data.apps.modules.forEach(app => {
-                app.icon = getPath(app.icon)
-                app.defaultAction = getPath(app.defaultAction)
-            })
+        return data?.apps.modules.map(app => ({
+            ...app,
+            icon: getPath(app.icon),
+            defaultAction: getPath(app.defaultAction),
+        }))
     }, [data])
 
     if (!loading && !error) {
         // TODO: This will run every render which is probably wrong!  Also, setting the global locale shouldn't be done in the headerbar
         const locale = data.user.settings.keyUiLocale || 'en'
+        i18n.setDefaultNamespace('default')
         i18n.changeLanguage(locale)
     }
 
@@ -57,10 +59,10 @@ export const HeaderBar = ({ appName, className }) => {
         <header className={className}>
             {!loading && !error && (
                 <>
-                    <Logo baseUrl={data.systemInfo.contextPath} />
+                    <Logo />
                     <Title
                         app={appName}
-                        instance={data.systemInfo.systemName}
+                        instance={data.title.applicationTitle}
                     />
                     <div className="right-control-spacer" />
                     <Notifications
@@ -68,16 +70,9 @@ export const HeaderBar = ({ appName, className }) => {
                             data.notifications.unreadInterpretations
                         }
                         messages={data.notifications.unreadMessageConversations}
-                        contextPath={data.systemInfo.contextPath}
                     />
-                    <Apps
-                        apps={data.apps.modules}
-                        contextPath={data.systemInfo.contextPath}
-                    />
-                    <Profile
-                        user={data.user}
-                        contextPath={data.systemInfo.contextPath}
-                    />
+                    <Apps apps={apps} />
+                    <Profile user={data.user} baseUrl={baseUrl} />
                 </>
             )}
 

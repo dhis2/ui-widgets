@@ -37,4 +37,4 @@ msgid "Logout"
 msgstr "Logg ut"
 
 msgid "Could not load children"
-msgstr ""
+msgstr "Kunne ikke laste underordnede enheter"
